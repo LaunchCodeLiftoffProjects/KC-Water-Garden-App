@@ -23,14 +23,13 @@ DROP TABLE IF EXISTS `features`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `features` (
-  `garden_id` int NOT NULL,
+  `features_id` int NOT NULL AUTO_INCREMENT,
   `pond` tinyint DEFAULT NULL,
   `waterfall` tinyint DEFAULT NULL,
   `railroad` tinyint DEFAULT NULL,
   `accessible` tinyint DEFAULT NULL,
-  PRIMARY KEY (`garden_id`),
-  CONSTRAINT `garden_id` FOREIGN KEY (`garden_id`) REFERENCES `garden` (`garden_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`features_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-11 21:58:58
+-- Dump completed on 2020-04-13 15:07:00

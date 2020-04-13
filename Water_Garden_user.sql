@@ -16,36 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `garden`
+-- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `garden`;
+DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `garden` (
-  `garden_id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `address` varchar(45) DEFAULT NULL,
-  `image_src` varchar(45) DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  `owner_id` int DEFAULT NULL,
-  `features_id` int DEFAULT NULL,
-  PRIMARY KEY (`garden_id`),
-  KEY `owner_id_idx` (`owner_id`),
-  KEY `features_id_idx` (`features_id`),
-  CONSTRAINT `features_id` FOREIGN KEY (`features_id`) REFERENCES `features` (`features_id`),
-  CONSTRAINT `owner_id` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`owner_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `email` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `garden`
+-- Dumping data for table `user`
 --
 
-LOCK TABLES `garden` WRITE;
-/*!40000 ALTER TABLE `garden` DISABLE KEYS */;
-INSERT INTO `garden` VALUES (9,'Garden of Eden','123 Main St','image.jpeg','apple tree',1,9),(10,'Hell\'s Kitchen','456 Park Ave','pic.png','active volcano',2,10);
-/*!40000 ALTER TABLE `garden` ENABLE KEYS */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Jamie','jamie@abc.com','daisy1');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
