@@ -40,3 +40,12 @@ provide a functioning website on which a phone app may be developed and improved
 - How to interact as a team using Github and Trello
 - How to interact with Google maps to display multiple pins and select a pin for directions
 
+
+# Development
+## Database Order
+To create tables which include sample data, copy/paste code into workbench in this order:
+features
+owner
+garden
+user
+user_tour
