@@ -44,8 +44,8 @@ provide a functioning website on which a phone app may be developed and improved
 # Development
 ## Database Order
 To create tables which include sample data, copy/paste code into workbench in this order:
-features
-owner
-garden
-user
-user_tour
+1. features
+2. owner
+3. garden
+4. user
+5. user_tour
