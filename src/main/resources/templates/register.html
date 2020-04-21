@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<h1>Registration</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label>First Name
+            <input class="form-control" th:field="${user.fname}" />
+        </label>
+        <p class="error" th:errors="${user.fname}"></p>
+    </div>
+    <div class="form-group">
+        <label>Last Name
+            <input class="form-control" th:field="${user.lname}" />
+        </label>
+        <p class="error" th:errors="${user.lname}"></p>
+    </div>
+    <div class="form-group">
+        <label>Email
+
+            <input class="form-control" th:field="${user.username}" />
+        </label>
+        <p class="error" th:errors="${user.username}"></p>
+    </div>
+        <div class="form-group">
+            <label>Password
+                <input class="form-control" th:field="${user.password}" type="password" />
+            </label>
+            <p class="error" th:errors="${user.password}"></p>
+        </div>
+        <div class="form-group">
+            <label>Verify Password
+                <input class="form-control" th:field="${user.verifyPassword}" type="password" />
+            </label>
+        </div>
+
+        <input type="submit" class="btn btn-success" value="Register" />
+    </form>
+</body>
+</html>

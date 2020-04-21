@@ -12,13 +12,15 @@ import java.util.stream.Collectors;
 
 public class UserDetailsImplementation implements UserDetails {
 
-    private String userName;
+    private String fname;
+    private String lname;
+    private String email;
     private String password;
     private boolean isActive;
     private List<GrantedAuthority> authorities;
 
     public UserDetailsImplementation(User user){
-        this.userName = user.getUserName();
+        this.email = user.getUsername();
         this.password = user.getPassword();
         this.isActive = user.isActive();
         // takes in a , separated set of strings (roles) and calls new SimpleGrantedAuthority
@@ -40,7 +42,7 @@ public class UserDetailsImplementation implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return email;
     }
 
     @Override
