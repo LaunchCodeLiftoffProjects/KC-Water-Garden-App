@@ -13,31 +13,57 @@ public class User {
     private int id;
 
     @NotNull
-    private String username;
+    private String userName;
 
     @NotNull
     private String password;
 
-//    private String role;
+    private boolean isActive;
 
-    private User(){
-    }
+    private String role;
 
-    private User(String username, String password){
-        super();
-        this.username = username;
-        this.password = password;
-    }
+//    private User(){
+//    }
+//
+//    private User(String userName, String password){
+//        super();
+//        this.username = userName;
+//        this.password = password;
+//    }
 
     public int getId() {
         return id;
     }
 
-    public String getUsername() {
-        return username;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRoles(String role) {
+        this.role = role;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

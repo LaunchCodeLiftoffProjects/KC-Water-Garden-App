@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -17,6 +18,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    UserDetailsService userDetailsService;
+
 
     // To enable Spring Data in Spring Security https://www.baeldung.com/spring-data-security
     // "enables activation of automatic resolving of spring-data specific expressions annotated on classes"
@@ -27,18 +31,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // set configuration on auth object the method takes in
+        auth.userDetailsService(userDetailsService);
 
-
-
-        auth.inMemoryAuthentication()
-                .withUser("water")
-                .password("garden")
-                .roles("USER")
-                .and()
-                .withUser("water_garden")
-                .password("admin")
-                .roles("ADMIN");
     }
         @Bean
             public PasswordEncoder getPasswordEncoder() {
@@ -47,6 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // first line tells Spring to authorize all requests
         http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasAnyRole("USER", "ADMIN")
