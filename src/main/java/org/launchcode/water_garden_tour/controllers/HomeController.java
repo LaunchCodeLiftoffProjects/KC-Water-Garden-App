@@ -1,34 +1,18 @@
-package org.launchcode.water_garden_tour.controllers;
+package org.launchcode.water_garden_tour.Controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
 
+    @RequestMapping("")
+    public String index(Model model) {
 
-    @GetMapping("index")
-    public String index() {
+        model.addAttribute("title","Kansas City Water Garden Tours");
+
         return "index";
-    }
-
-    @GetMapping("/home")
-    @ResponseBody
-    public String home() {
-        return "Welcome";
-    }
-
-    @GetMapping("/user")
-    @ResponseBody
-    public String user() {
-        return "Welcome User";
-    }
-
-    @GetMapping("/admin")
-    @ResponseBody
-    public String hello() {
-        return "Welcome Admin";
     }
 
 }
