@@ -17,12 +17,12 @@ public class UserDetailServiceImplementation implements UserDetailsService {
     UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByEmail(email);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<User> user = userRepository.findByUsername(username);
         // the below exception set-up does not work. Getting a no value present error when not in database
         // may be due to the user object is not null, but is empty.
         if (user == null) {
-            throw new UsernameNotFoundException("Username " + email + " not found.");
+            throw new UsernameNotFoundException("Username " + username + " not found.");
         }
         // passes the user object to the new function/constructor of UserDetailsImplementation
         // and gets the value.

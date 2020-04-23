@@ -14,13 +14,13 @@ public class UserDetailsImplementation implements UserDetails {
 
     private String fname;
     private String lname;
-    private String email;
+    private String username;
     private String password;
     private boolean isActive;
     private List<GrantedAuthority> authorities;
 
     public UserDetailsImplementation(User user){
-        this.email = user.getUsername();
+        this.username = user.getUsername();
         this.password = user.getPassword();
         this.isActive = user.isActive();
         // takes in a , separated set of strings (roles) and calls new SimpleGrantedAuthority
@@ -42,7 +42,7 @@ public class UserDetailsImplementation implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override
