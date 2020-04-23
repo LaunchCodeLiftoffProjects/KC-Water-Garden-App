@@ -21,9 +21,8 @@ public class UserDetailServiceImplementation implements UserDetailsService {
         Optional<User> user = userRepository.findByUserName(username);
         // the below exception set-up does not work. Getting a no value present error when not in database
         // may be due to the user object is not null, but is empty.
-        if (user == null) {
-            throw new UsernameNotFoundException("Username " + username + " not found.");
-        }
+        user.orElseThrow(() -> new UsernameNotFoundException("Username " + username + " not found."));
+
         // passes the user object to the new function/constructor of UserDetailsImplementation
         // and gets the value.
         return user.map(UserDetailsImplementation::new).get();
