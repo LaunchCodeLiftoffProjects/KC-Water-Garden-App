@@ -11,14 +11,8 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-<<<<<<< HEAD
+
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     Optional<User> findByUsername(String username);
-=======
-public interface UserRepository extends CrudRepository<User, Integer> {
-
-    Optional<User> findByEmail(String email);
-
->>>>>>> a0890b7... registration page is displaying
 }
