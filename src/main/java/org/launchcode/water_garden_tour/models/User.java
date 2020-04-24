@@ -29,7 +29,7 @@ public class User {
 
     private boolean isActive;
 
-    private String role;
+    private String role = "USER";
 
 //    private User(){
 //    }

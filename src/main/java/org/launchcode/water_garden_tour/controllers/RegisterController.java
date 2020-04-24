@@ -51,12 +51,14 @@ public class RegisterController {
     }
 
 
-    /*@PostMapping("/register")
+    @PostMapping("/register")
+
     public String processRegistrationForm(@ModelAttribute @Valid User newUser, Errors errors, Model model, HttpServletRequest request) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Registration");
             model.addAttribute("user", newUser);
         }
+
 
 
         Optional<User> existingUser = userRepository.findByUsername(newUser.getUsername());
@@ -76,6 +78,7 @@ public class RegisterController {
         }
 
         userRepository.save(newUser);
+
         setUserInSession(request.getSession(), newUser);
 
         return "redirect:/";
@@ -83,6 +86,5 @@ public class RegisterController {
 
     }
 
-    }*/
 }
 

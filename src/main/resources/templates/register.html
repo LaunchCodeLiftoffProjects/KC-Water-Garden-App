@@ -25,33 +25,28 @@
 
 <form method="post">
     <div class="form-group" th:action="@{/register}">
-        <label>First Name
-            <input class="form-control" th:field="${user.fname}" />
-        </label>
+        <label th:for="fname">First Name</label>
+        <input class="form-control" th:field="${user.fname}" />
         <p class="error" th:errors="${user.fname}"></p>
     </div>
     <div class="form-group">
-        <label>Last Name
-            <input class="form-control" th:field="${user.lname}" />
-        </label>
+        <label th:for="lname">Last Name</label>
+        <input class="form-control" th:field="${user.lname}" />
         <p class="error" th:errors="${user.lname}"></p>
     </div>
     <div class="form-group">
-        <label>Email
-            <input class="form-control" th:field="${user.username}" />
-        </label>
+        <label th:for="username">Email</label>
+        <input class="form-control" th:field="${user.username}" />
         <p class="error" th:errors="${user.username}"></p>
     </div>
         <div class="form-group">
-            <label>Password
-                <input class="form-control" th:field="${user.password}" type="password" />
-            </label>
+            <label th:for="password">Password</label>
+            <input class="form-control" th:field="${user.password}" type="password" />
             <p class="error" th:errors="${user.password}"></p>
         </div>
         <div class="form-group">
-            <label>Verify Password
-                <input class="form-control" th:field="${user.verifyPassword}" type="password" />
-            </label>
+            <label th:for="verifyPassword">Verify Password</label>
+            <input class="form-control" th:field="${user.verifyPassword}" type="password" />
         </div>
 
         <input type="submit" class="btn btn-success" value="Register" />
