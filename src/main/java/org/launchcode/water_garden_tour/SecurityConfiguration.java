@@ -39,6 +39,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+
+//    @Bean
+//    public PasswordEncoder getPasswordEncoder() {
+//        return NoOpPasswordEncoder.getInstance();
+//    }
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // first line tells Spring to authorize all requests
@@ -48,6 +55,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll();
-
     }
 }
