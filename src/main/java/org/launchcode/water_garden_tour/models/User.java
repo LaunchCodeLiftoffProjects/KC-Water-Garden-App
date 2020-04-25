@@ -21,7 +21,6 @@ public class User {
     private String lname;
 
     @NotNull
-
     private String username;
 
     @NotNull

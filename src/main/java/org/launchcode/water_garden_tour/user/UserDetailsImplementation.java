@@ -20,6 +20,8 @@ public class UserDetailsImplementation implements UserDetails {
     private List<GrantedAuthority> authorities;
 
     public UserDetailsImplementation(User user){
+        this.fname = user.getFname();
+        this.lname = user.getLname();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.isActive = user.isActive();
