@@ -28,7 +28,7 @@ public class User {
 
     private boolean isActive;
 
-    private String role = "USER";
+    private String role;
 
 //    private User(){
 //    }
@@ -48,12 +48,12 @@ public class User {
     }
 
 
-    public User(String fname, String lname, String username, String password, String verifyPassword) {
+    public User(String fname, String lname, String username, String password) {
         this.fname = fname;
         this.lname = lname;
         this.username = username;
         this.password = password;
-        this.verifyPassword = verifyPassword;
+        //this.verifyPassword = verifyPassword;
     }
 
     public int getId() {
@@ -98,14 +98,6 @@ public class User {
 
     public void setLname(String lname) {
         this.lname = lname;
-    }
-
-    public String getVerifyPassword() {
-        return verifyPassword;
-    }
-
-    public void setVerifyPassword(String verifyPassword) {
-        this.verifyPassword = verifyPassword;
     }
 
     public String getPassword() {

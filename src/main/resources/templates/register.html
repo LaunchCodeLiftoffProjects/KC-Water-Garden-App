@@ -23,30 +23,31 @@
 </nav>
 <h1>Registration</h1>
 
-<form method="post">
+<form method="post" action="#" th:action="@{/register}">
     <div class="form-group" th:action="@{/register}">
         <label th:for="fname">First Name</label>
-        <input class="form-control" th:field="${user.fname}" />
-        <p class="error" th:errors="${user.fname}"></p>
+        <input class="form-control" type="text" th:field="${registerDTO.fname}" />
+        <p class="error" th:errors="${registerDTO.fname}"></p>
     </div>
     <div class="form-group">
         <label th:for="lname">Last Name</label>
-        <input class="form-control" th:field="${user.lname}" />
-        <p class="error" th:errors="${user.lname}"></p>
+        <input class="form-control" type="text" th:field="${registerDTO.lname}" />
+        <p class="error" th:errors="${registerDTO.lname}"></p>
     </div>
     <div class="form-group">
         <label th:for="username">Email</label>
-        <input class="form-control" th:field="${user.username}" />
-        <p class="error" th:errors="${user.username}"></p>
+        <input class="form-control" type="text" th:field="${registerDTO.username}" />
+        <p class="error" th:errors="${registerDTO.username}"></p>
     </div>
         <div class="form-group">
             <label th:for="password">Password</label>
-            <input class="form-control" th:field="${user.password}" type="password" />
-            <p class="error" th:errors="${user.password}"></p>
+            <input class="form-control" th:field="${registerDTO.password}" type="password" />
+            <p class="error" th:errors="${registerDTO.password}"></p>
         </div>
         <div class="form-group">
             <label th:for="verifyPassword">Verify Password</label>
-            <input class="form-control" th:field="${user.verifyPassword}" type="password" />
+            <input class="form-control" th:field="${registerDTO.verifyPassword}" type="password" />
+            <p class="error" th:errors="${registerDTO.password}"></p>
         </div>
 
         <input type="submit" class="btn btn-success" value="Register" />
