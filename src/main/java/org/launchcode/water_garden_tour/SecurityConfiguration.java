@@ -50,12 +50,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasAnyRole("USER", "ADMIN")
-<<<<<<< HEAD
-                .antMatchers("/", "/register").permitAll()
-                .and().formLogin();
-=======
                 .antMatchers("/").permitAll()
                 .and().formLogin().loginPage("/login");
->>>>>>> 0652212... Created a custom login form, login controller & updated Spring Security settings to use our login form. Added the new User fields to UserDetailsImplementation. Updated security configuration to properly implement password encoder using DaoAuthenticationProvider.
+
     }
 }
