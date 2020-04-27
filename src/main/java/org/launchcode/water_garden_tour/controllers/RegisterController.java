@@ -54,7 +54,6 @@ public class RegisterController {
 
 
     @PostMapping("/register")
-
     public String processRegistrationForm(@ModelAttribute @Valid RegisterDTO registerDTO, BindingResult result, Model model, Errors errors, HttpServletRequest request) {
         if (result.hasErrors()) {
             model.addAttribute("title", "Registration");

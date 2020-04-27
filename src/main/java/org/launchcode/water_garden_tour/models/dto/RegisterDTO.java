@@ -12,16 +12,13 @@ public class RegisterDTO {
     @NotBlank
     private String lname;
 
-
     @NotBlank
     @Size(min=5, max=20, message="Invalid username")
     private String username;
 
-
     @NotBlank
     @Size(min=5, max=20, message="Invalid password")
     private String password;
-
 
     @NotBlank
     @Size(min=5, max=20, message="Invalid password")
