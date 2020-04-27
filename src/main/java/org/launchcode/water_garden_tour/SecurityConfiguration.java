@@ -39,12 +39,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-
 //    @Bean
 //    public PasswordEncoder getPasswordEncoder() {
 //        return NoOpPasswordEncoder.getInstance();
 //    }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
