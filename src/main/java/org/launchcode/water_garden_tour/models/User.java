@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -14,16 +15,16 @@ public class User {
     @GeneratedValue
     private int id;
 
-    @NotNull
+    @NotBlank(message="First name is required.")
     private String fname;
 
-    @NotNull
+    @NotBlank(message="Last name is required.")
     private String lname;
 
-    @NotNull
+    @NotBlank(message="Email is required.")
     private String username;
 
-    @NotNull
+    @NotBlank(message="Password is required.")
     private String password;
 
     private boolean isActive;
@@ -39,8 +40,8 @@ public class User {
 //        this.password = password;
 //    }
 
-    @NotNull
-    private String verifyPassword;
+    //@NotBlank
+    //private String verifyPassword;
 
 //    private String role;
 
