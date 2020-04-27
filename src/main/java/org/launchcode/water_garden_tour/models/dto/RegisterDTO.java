@@ -6,23 +6,23 @@ import javax.validation.constraints.Size;
 
 public class RegisterDTO {
 
-    @NotNull
+    @NotBlank
     private String fname;
 
-    @NotNull
+    @NotBlank
     private String lname;
 
-    @NotNull
+
     @NotBlank
     @Size(min=5, max=20, message="Invalid username")
     private String username;
 
-    @NotNull
+
     @NotBlank
     @Size(min=5, max=20, message="Invalid password")
     private String password;
 
-    @NotNull
+
     @NotBlank
     @Size(min=5, max=20, message="Invalid password")
     private String verifyPassword;

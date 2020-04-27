@@ -6,6 +6,7 @@ import org.launchcode.water_garden_tour.models.User;
 import org.launchcode.water_garden_tour.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -54,10 +55,9 @@ public class RegisterController {
 
     @PostMapping("/register")
 
-    public String processRegistrationForm(@ModelAttribute @Valid RegisterDTO registerDTO, Model model, Errors errors, HttpServletRequest request) {
-        if (errors.hasErrors()) {
+    public String processRegistrationForm(@ModelAttribute @Valid RegisterDTO registerDTO, BindingResult result, Model model, Errors errors, HttpServletRequest request) {
+        if (result.hasErrors()) {
             model.addAttribute("title", "Registration");
-            model.addAttribute("");
             return "register";
         }
 
@@ -72,7 +72,7 @@ public class RegisterController {
         String password = registerDTO.getPassword();
         String verify = registerDTO.getVerifyPassword();
         if (!password.equals(verify)) {
-            errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
+            result.rejectValue("password", "passwords.mismatch", "Passwords do not match");
             model.addAttribute("title", "Registration");
             return "register";
         }
@@ -83,7 +83,7 @@ public class RegisterController {
 
         setUserInSession(request.getSession(), newUser);
 
-        return "redirect:";
+        return "/index";
 
     }
 
