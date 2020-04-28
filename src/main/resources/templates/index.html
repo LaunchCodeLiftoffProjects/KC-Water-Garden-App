@@ -11,7 +11,7 @@
 
 <nav class="navbar navbar-expand-sm bg-success navbar-dark">
     <!-- Logo -->
-    <a class="navbar-brand" href="#">Logo</a>
+    <a class="navbar-brand" href="#"><img th:src="@{/images/logo.jpg}" alt="Logo" style="width:40px;"></a>
 
     <!-- adds button for Nav Links when Navbar collapses (because screen size is small) -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -20,15 +20,30 @@
 
     <!-- Links on Navbar -->
     <div class="collapse navbar-collapse">
-        <div class="navbar-nav">
-            <a class="nav-link" th:href="@{/register}">Register</a>
-            <a class="nav-link" th:href="@{/login}">Log-In</a>
+        <div class="navbar-nav" id="collapsibleNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/register}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/login}">Log-In</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
 
 <h1 class="display-1" align="center">WELCOME!</h1>
+<hr>
 
 <div>
     <img class="img-fluid" th:src = "@{/images/GardenPhoto_HomeBody.jpg}"/>
 </div>
+<hr>
+
+<p align="center" class="lead">The Water Garden Society of Greater Kansas City (WGSGKC) is made up of members from all parts of the KC metro area who are interested in water gardening. Monthly meetings, September - May are open to members and the public. Tours, community service projects, garden shows and plant exchanges are some of the activities scheduled throughout the year. We welcome all interested in water gardening to join us.</p>
+
+<footer th:replace="fragments :: footer"></footer>
+
+</body>
+</html>
