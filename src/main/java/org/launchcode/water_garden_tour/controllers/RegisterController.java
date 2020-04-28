@@ -64,13 +64,13 @@ public class RegisterController {
             return "register";
         }
 
-        /*Optional<User> existingUser = userRepository.findByUsername(registerDTO.getUsername());
+        Optional<User> existingUser = userRepository.findByUsername(registerDTO.getUsername());
 
         if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that email already exists");
             model.addAttribute("title", "Registration");
             return "register";
-        }*/
+        }
 
         String password = registerDTO.getPassword();
         String verify = registerDTO.getVerifyPassword();
