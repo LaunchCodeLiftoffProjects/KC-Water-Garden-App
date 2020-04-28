@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "user")
+//@Table(name = "user")
 public class User {
 
     @Id
@@ -54,27 +54,13 @@ public class User {
         this.lname = lname;
         this.username = username;
         this.password = password;
+        this.role = "USER";
+        this.isActive = true;
         //this.verifyPassword = verifyPassword;
     }
 
     public int getId() {
         return id;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRoles(String role) {
-        this.role = role;
     }
 
     public String getUsername() {
@@ -107,6 +93,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRoles(String role) {
+        this.role = role;
     }
 
 }

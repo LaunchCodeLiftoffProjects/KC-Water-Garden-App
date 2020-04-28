@@ -1,6 +1,7 @@
 package org.launchcode.water_garden_tour.controllers;
 
 import org.launchcode.water_garden_tour.models.dto.RegisterDTO;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.launchcode.water_garden_tour.models.User;
 import org.launchcode.water_garden_tour.models.data.UserRepository;
@@ -22,6 +23,9 @@ public class RegisterController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     public static final String userSessionKey = "user";
 
@@ -76,7 +80,7 @@ public class RegisterController {
             return "register";
         }
 
-        User newUser = new User(registerDTO.getFname(), registerDTO.getLname(), registerDTO.getUsername(), registerDTO.getPassword());
+        User newUser = new User(registerDTO.getFname(), registerDTO.getLname(), registerDTO.getUsername(), passwordEncoder.encode(registerDTO.getPassword()));
 
         userRepository.save(newUser);
 
