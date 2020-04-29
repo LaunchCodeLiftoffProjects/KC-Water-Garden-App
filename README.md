@@ -41,6 +41,9 @@ provide a functioning website on which a phone app may be developed and improved
 - How to interact as a team using Github and Trello
 - How to interact with Google maps to display multiple pins and select a pin for directions
 
+# Setup
+- Create user table in MySQL Workbench with one column labeled "id" as a primary key, not null, and auto-incremented.  The rest of the table will populate through persistence when a new user registers.
+
 
 # Development
 Please see our Development README for more information:
