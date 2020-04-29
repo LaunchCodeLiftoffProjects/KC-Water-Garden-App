@@ -55,7 +55,7 @@ public class User {
         this.lname = lname;
         this.username = username;
         this.password = password;
-        this.role = "USER";
+        this.role = "ROLE_USER";
         this.isActive = true;
         //this.verifyPassword = verifyPassword;
     }
