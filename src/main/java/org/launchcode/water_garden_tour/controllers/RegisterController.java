@@ -66,7 +66,7 @@ public class RegisterController {
 
         Optional<User> existingUser = userRepository.findByUsername(registerDTO.getUsername());
 
-        if (existingUser != null) {
+        if (existingUser.isPresent()) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that email already exists");
             model.addAttribute("title", "Registration");
             return "register";
