@@ -1,10 +1,13 @@
 package org.launchcode.water_garden_tour.controllers;
 
+import org.launchcode.water_garden_tour.models.dto.RegisterDTO;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.launchcode.water_garden_tour.models.User;
 import org.launchcode.water_garden_tour.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +23,9 @@ public class RegisterController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     public static final String userSessionKey = "user";
 
@@ -44,7 +50,7 @@ public class RegisterController {
 
     @GetMapping("/register")
     public String displayRegistrationForm(Model model) {
-        model.addAttribute(new User());
+        model.addAttribute(new RegisterDTO());
         model.addAttribute("title", "Registration");
         return "register";
 
@@ -52,37 +58,35 @@ public class RegisterController {
 
 
     @PostMapping("/register")
-
-    public String processRegistrationForm(@ModelAttribute @Valid User newUser, Errors errors, Model model, HttpServletRequest request) {
-        if (errors.hasErrors()) {
+    public String processRegistrationForm(@ModelAttribute @Valid RegisterDTO registerDTO, BindingResult result, Model model, Errors errors, HttpServletRequest request) {
+        if (result.hasErrors()) {
             model.addAttribute("title", "Registration");
-            model.addAttribute("user", newUser);
+            return "register";
         }
 
+        Optional<User> existingUser = userRepository.findByUsername(registerDTO.getUsername());
 
-
-        Optional<User> existingUser = userRepository.findByUsername(newUser.getUsername());
-
-        if (existingUser != null) {
+        if (existingUser.isPresent()) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that email already exists");
             model.addAttribute("title", "Registration");
             return "register";
         }
 
-        String password = newUser.getPassword();
-        String verify = newUser.getVerifyPassword();
+        String password = registerDTO.getPassword();
+        String verify = registerDTO.getVerifyPassword();
         if (!password.equals(verify)) {
-            errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
+            result.rejectValue("password", "passwords.mismatch", "Passwords do not match");
             model.addAttribute("title", "Registration");
             return "register";
         }
+
+        User newUser = new User(registerDTO.getFname(), registerDTO.getLname(), registerDTO.getUsername(), passwordEncoder.encode(registerDTO.getPassword()));
 
         userRepository.save(newUser);
 
         setUserInSession(request.getSession(), newUser);
 
-        return "redirect:/";
-
+        return "/index";
 
     }
 

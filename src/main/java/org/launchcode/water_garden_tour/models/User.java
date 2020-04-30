@@ -4,31 +4,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "user")
+//@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue
     private int id;
 
-    @NotNull
+    @NotBlank(message="First name is required.")
     private String fname;
 
-    @NotNull
+    @NotBlank(message="Last name is required.")
     private String lname;
 
-    @NotNull
+
+    @NotBlank(message="Email is required.")
     private String username;
 
-    @NotNull
+    @NotBlank(message="Password is required.")
     private String password;
 
     private boolean isActive;
 
-    private String role = "USER";
+    private String role;
 
 //    private User(){
 //    }
@@ -39,8 +41,8 @@ public class User {
 //        this.password = password;
 //    }
 
-    @NotNull
-    private String verifyPassword;
+    //@NotBlank
+    //private String verifyPassword;
 
 //    private String role;
 
@@ -48,32 +50,18 @@ public class User {
     }
 
 
-    public User(String fname, String lname, String username, String password, String verifyPassword) {
+    public User(String fname, String lname, String username, String password) {
         this.fname = fname;
         this.lname = lname;
         this.username = username;
         this.password = password;
-        this.verifyPassword = verifyPassword;
+        this.role = "ROLE_USER";
+        this.isActive = true;
+        //this.verifyPassword = verifyPassword;
     }
 
     public int getId() {
         return id;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRoles(String role) {
-        this.role = role;
     }
 
     public String getUsername() {
@@ -100,20 +88,28 @@ public class User {
         this.lname = lname;
     }
 
-    public String getVerifyPassword() {
-        return verifyPassword;
-    }
-
-    public void setVerifyPassword(String verifyPassword) {
-        this.verifyPassword = verifyPassword;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRoles(String role) {
+        this.role = role;
     }
 
 }
