@@ -1,0 +1,4 @@
+<gardens>
+    <garden id="1" name="Garden One" owner="Owner One" address="4434 Aminda, Shawnee, KS 66226" lat="39.047210" lng="-94.847460" features="Drought Simulator"/>
+    <garden id="2" name="Garden Two" owner="Owner Two" address="28860 W. 184th St, Gardner, KS 66030" lat="38.794890" lng="-94.920680" features="Rivals Niagara Falls"/>
+</gardens>

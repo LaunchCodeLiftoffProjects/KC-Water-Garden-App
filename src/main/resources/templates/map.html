@@ -19,7 +19,6 @@
 
 <!-- Displaying the map from Maps JavaScript API -->
 <script th:inline="javascript">
-
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 39.0997, lng: -94.5786},
@@ -39,6 +38,7 @@
         }
     };
 </script>
+
 <!-- async defer allows the rest of the page to load before the map loads -->
 <script src="https://maps.googleapis.com/maps/api/js?key=INSERTapiKEYhere&callback=initMap" async defer></script>
 
