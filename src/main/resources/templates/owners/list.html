@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+
+<body>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<div class="container body-content">
+    <h2 th:text="${title}">Owners</h2>
+    <ul>
+        <li th:each="owner : ${owners}">
+            <a th:href="@{'/owners/view/' + ${owner.id}}" th:text="${owner.name}">Missing Link</a>
+<!--            <p th:text="${owner.name}">Missing Link</p>-->
+        </li>
+    </ul>
+    <a th:href="@{'/owners/add'}">Add Garden Owner</a>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+
+</body>
+</html>

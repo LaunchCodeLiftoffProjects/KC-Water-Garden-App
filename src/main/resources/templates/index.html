@@ -9,31 +9,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-sm bg-success navbar-dark">
-    <div class="container-fluid">
-        <!-- WGSGKC logo -->
-        <a class="navbar-brand" href="#">
-            <img th:src="@{/images/logo.jpg}" alt="Logo" style="width:40px;">
-        </a>
-
-        <!-- adds button for Nav Links when Navbar collapses (because screen size is small) -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Links on Navbar -->
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item">
-                    <a th:href="@{/register}" class="nav-link"><span class="glyphicon glyphicon-user"></span> Register</a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{/login}" class="nav-link"><span class="glyphicon glyphicon-log-in"></span> Log-In</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<nav th:replace="fragments :: page-header"></nav>
 
 <h1 class="display-1" align="center">WELCOME!</h1>
 <hr>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<form method="post">
+    <div class="form-group">
+        <label th:for="name">Feature Name</label>
+        <input class="form-control" th:field="${feature.name}" />
+        <span th:errors="${feature.name}" class="error"></span>
+    </div>
+    <input type="submit" value="Add Feature"/>
+</form>
+
+<footer th:replace="fragments :: footer"></footer>
+
+</body>
+</html>
