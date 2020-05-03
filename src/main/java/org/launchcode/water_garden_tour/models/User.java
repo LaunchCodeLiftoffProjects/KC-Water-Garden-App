@@ -32,20 +32,6 @@ public class User {
 
     private String role;
 
-//    private User(){
-//    }
-//
-//    private User(String userName, String password){
-//        super();
-//        this.username = userName;
-//        this.password = password;
-//    }
-
-    //@NotBlank
-    //private String verifyPassword;
-
-//    private String role;
-
     public User() {
     }
 
@@ -57,7 +43,6 @@ public class User {
         this.password = password;
         this.role = "ROLE_USER";
         this.isActive = true;
-        //this.verifyPassword = verifyPassword;
     }
 
     public int getId() {

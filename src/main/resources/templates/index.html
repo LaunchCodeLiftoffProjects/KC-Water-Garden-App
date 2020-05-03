@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
-<head th:replace="fragments :: head">
+<head >
+    <div th:replace="fragments :: head" th:remove="tag">
+    </div>
+    <style>
+        .home-link {
+            display: none;
+        }
+    </style>
     <meta charset="UTF-8"/>
     <title>Kansas City Water Garden Tours</title>
 </head>
 
-
 <body>
+<div class="home" th:replace = "fragments :: page-header"></div>
 
 <nav th:replace="fragments :: page-header"></nav>
 

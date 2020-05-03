@@ -1,7 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments :: head"></head>
+<head>
+    <div th:replace="fragments :: head" th:remove="tag">
+    </div>
+    <style>
+<<<<<<< HEAD
+        .map-link {
+=======
+        .register-link {
+>>>>>>> 664c4e6... Added code to remove Home link from homepage, Register link from Registration page, Login link from Log in page, Register and Login links from Map page.  Added 'Add Garden' link when user has ADMIN role.
+            display: none;
+        }
+        .map-link {
+            display: none;
+        }
+        .login-link {
+            display: none;
+        }
+    </style>
+</head>
 
 <body>
 
