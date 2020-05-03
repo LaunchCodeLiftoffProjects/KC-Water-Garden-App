@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
-<head th:replace="fragments :: head">
+<head >
+    <div th:replace="fragments :: head" th:remove="tag">
+    </div>
+    <style>
+        .home-link {
+            display: none;
+        }
+    </style>
     <meta charset="UTF-8"/>
     <title>Kansas City Water Garden Tours</title>
 </head>
 
-
 <body>
+<div class="home" th:replace = "fragments :: page-header"></div>
 
-<nav class="navbar navbar-expand-sm bg-success navbar-dark">
+<!--<nav class="navbar navbar-expand-sm bg-success navbar-dark">
     <div class="container-fluid">
-        <!-- WGSGKC logo -->
         <a class="navbar-brand" href="#">
             <img th:src="@{/images/logo.jpg}" alt="Logo" style="width:40px;">
         </a>
-
-        <!-- adds button for Nav Links when Navbar collapses (because screen size is small) -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <!-- Links on Navbar -->
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">
@@ -33,7 +35,7 @@
             </ul>
         </div>
     </div>
-</nav>
+</nav>-->
 
 <h1 class="display-1" align="center">WELCOME!</h1>
 <hr>

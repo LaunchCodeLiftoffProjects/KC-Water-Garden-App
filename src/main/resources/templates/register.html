@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+<head>
+    <div th:replace="fragments :: head" th:remove="tag">
+    </div>
+    <style>
+        .register-link {
+            display: none;
+        }
+    </style>
+</head>
 <body>
 
 <nav class="navbar navbar-expand-sm bg-success navbar-dark">
