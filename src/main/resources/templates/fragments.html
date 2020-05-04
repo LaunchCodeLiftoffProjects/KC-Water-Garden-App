@@ -24,9 +24,9 @@
             <div class="navbar-nav">
                 <a class="nav-link home-link" th:href="@{/}">Home</a>
                 <a class="nav-link" th:href="@{/}" sec:authorize="isAuthenticated()">Water Gardens</a>
-                <a class="nav-link" th:href="@{/map}" sec:authorize="isAuthenticated()">Map</a>
+                <a class="nav-link map-link" th:href="@{/map}" sec:authorize="isAuthenticated()">Map</a>
                 <a class="nav-link" th:href="@{/gardens/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Garden</a>
-                <a class="nav-link" th:href="@{/login}">Log In</a>
+                <a class="nav-link login-link" th:href="@{/login}">Log In</a>
                 <a class="nav-link register-link" th:href="@{/register}"><span class="glyphicon glyphicon-user"></span> Register</a>
                 <form th:action="@{/logout}" method="post" name="logoutForm"></form>
                 <a class="nav-link" href="#" sec:authorize="isAuthenticated()"  onclick="document.logoutForm.submit()">Log Out</a>

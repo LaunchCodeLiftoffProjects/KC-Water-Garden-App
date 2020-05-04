@@ -2,14 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<div th:replace="fragments :: head" th:remove="tag">
-</div>
-<style>
+    <div th:replace="fragments :: head" th:remove="tag">
+    </div>
+    <style>
         .register-link {
+            display: none;
+        }
+        .map-link {
+            display: none;
+        }
+        .login-link {
             display: none;
         }
     </style>
 </head>
+
 <body>
 
 <nav th:replace="fragments :: page-header"></nav>
