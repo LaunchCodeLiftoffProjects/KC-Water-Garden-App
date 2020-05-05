@@ -18,7 +18,8 @@
 
     <table class="garden-list">
         <tr th:each="garden : ${gardens}">
-            <hr>
+            <td>
+                <hr>
                 <p>
                     Garden Id:
                     <a th:href="@{'/view/' + ${garden.id}}" th:text="${garden.id}"></a>
@@ -46,7 +47,6 @@
 
 </div>
 
-</div>
 
 <footer th:replace="fragments :: footer"></footer>
 

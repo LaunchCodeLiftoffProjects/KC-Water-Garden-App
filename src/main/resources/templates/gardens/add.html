@@ -42,7 +42,7 @@
                     th:text="${owner.name}"
                     th:value="${owner.id}"></option>
         </select>
-        <a th:href="@{'/owner/add'}">Add Owner</a>
+        <a th:href="@{'/owners/add'}">Add Owner</a>
     </div>
     <div class="form-group">
         <label th:for="features">Features</label>
@@ -51,7 +51,7 @@
             <label th:text="${feature.name}"></label>
         </th:block>
         <a th:href="@{'/features/add'}">Add Features</a>
-
+    </div>
     <input type="submit" value="Add Garden"/>
 </form>
 
