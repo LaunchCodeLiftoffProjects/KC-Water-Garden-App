@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+    <h2 th:text="${title}">Features</h2>
+    <ul>
+        <li th:each="feature : ${features}">
+            <a th:href="@{'/features/view/' + ${feature.id}}" th:text="${feature.name}"></a>
+        </li>
+    </ul>
+
+<!--    remove link later when admin is set up-->
+    <a th:href="@{'/features/add'}">Add Features</a>
+
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+
+</body>
+</html>

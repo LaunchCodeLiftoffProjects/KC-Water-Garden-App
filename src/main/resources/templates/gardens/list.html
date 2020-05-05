@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+
+    <h2 th:text="${title}">Gardens</h2>
+
+<!--remove link later when admin is set up-->
+    <a th:href="@{'/gardens/add/'}">Add Garden</a>
+
+    <table class="garden-list">
+        <tr th:each="garden : ${gardens}">
+            <td>
+                <hr>
+                <p>
+                    Garden Id:
+                    <a th:href="@{'/view/' + ${garden.id}}" th:text="${garden.id}"></a>
+                </p>
+                <p th:text="${'Name: ' + garden.name}"></p>
+                <p th:text="${'Description: ' + garden.description}"></p>
+                <p th:text="${'Address: ' + garden.address}"></p>
+                <p>
+                    Features:
+                <ul th:each="feature : ${garden.features}">
+                    <li>
+                        <p th:text="${feature.name}"></p>
+                    </li>
+                </ul>
+                </p>
+                <p>
+                    Owner:
+                    <a th:text="${garden.owner.name}"></a>
+<!--                    <a th:href="@{'/owners/view/' + ${garden.gardenOwner.id}}" th:text="${garden.gardenOwner.name}"></a>-->
+                </p>
+                </hr>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+
+<footer th:replace="fragments :: footer"></footer>
+
+</body>
+</html>

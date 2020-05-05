@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Kansas City Water Garden Tours</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" th:href="@{css/styles.css}"/>
+    <link rel="stylesheet" th:href="@{/styles.css}" type="text/css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
     <nav class="navbar navbar-expand-sm bg-success navbar-dark">
         <!-- Logo -->
-        <a class="navbar-brand" href="#">Logo</a>
+        <img th:src="@{/images/logo.jpg}" alt="Logo" style="width:40px;">
 
         <!-- adds button for Nav Links when Navbar collapses (because screen size is small) -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -24,9 +24,12 @@
         <div class="collapse navbar-collapse">
             <div class="navbar-nav">
                 <a class="nav-link" th:href="@{/}">Home</a>
-                <a class="nav-link" th:href="@{/}" sec:authorize="isAuthenticated()">Water Gardens</a>
+                <a class="nav-link" th:href="@{/gardens/list}" sec:authorize="isAuthenticated()">Water Gardens</a>
                 <a class="nav-link" th:href="@{/map}" sec:authorize="isAuthenticated()">Map</a>
+                <a class="nav-link" th:href="@{/features/}" sec:authorize="isAuthenticated()">Features</a>
+                <a class="nav-link" th:href="@{/owners/}" sec:authorize="isAuthenticated()">Owners</a>
                 <a class="nav-link" th:href="@{/login}" sec:authorize="!isAuthenticated()">Log-In</a>
+                <a class="nav-link" th:href="@{/register}" sec:authorize="!isAuthenticated()">Register</a>
                 <form th:action="@{/logout}" method="post" name="logoutForm"></form>
                 <a class="nav-link" href="#" sec:authorize="isAuthenticated()"  onclick="document.logoutForm.submit()">Log Out</a>
             </div>
