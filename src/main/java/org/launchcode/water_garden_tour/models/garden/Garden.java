@@ -1,5 +1,7 @@
 package org.launchcode.water_garden_tour.models.garden;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -31,9 +33,11 @@ public class Garden extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     private Owner owner;
 
     @ManyToMany
+    @JsonIgnore
     private List<Feature> features = new ArrayList<>();
 
     public Garden(String name, String address, String latitude, String longitude, String description, String image, Owner owner, List<Feature> features) throws IOException {
