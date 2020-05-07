@@ -12,10 +12,6 @@
 <div class="container body-content">
 
     <h2 th:text="${title}">Gardens</h2>
-
-<!--remove link later when admin is set up-->
-    <a th:href="@{'/gardens/add/'}">Add Garden</a>
-
     <table class="garden-list">
         <tr th:each="garden : ${gardens}">
             <td>
