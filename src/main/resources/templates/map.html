@@ -15,19 +15,31 @@
 
 <nav th:replace="fragments :: page-header"></nav>
 
-<!-- Displaying the map from Maps JavaScript API -->
 <div id="map"></div>
 
-<script>
-    var map;
+<!-- Displaying the map from Maps JavaScript API -->
+<script th:inline="javascript">
     function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
+        var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 39.0997, lng: -94.5786},
             zoom: 10
         });
-    }
+
+        var gardens = /*[[${gardens}]]*/;
+
+        for(var i=0; i < gardens.length; i++) {
+            if(gardens[i].latitude !== null && gardens[i].longitude !== "") {
+                var marker = new google.maps.Marker({
+                  position: {lat: parseFloat(gardens[i].latitude), lng: parseFloat(gardens[i].longitude)},
+                  map: map,
+                  title: gardens[i].name
+                });
+            }
+        }
+    };
 </script>
-<!-- allows the rest of the page to load before the map loads -->
+
+<!-- async defer allows the rest of the page to load before the map loads -->
 <script src="https://maps.googleapis.com/maps/api/js?key=INSERTapiKEYhere&callback=initMap" async defer></script>
 
 </body>
