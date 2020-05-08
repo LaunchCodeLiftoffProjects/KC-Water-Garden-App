@@ -1,26 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-<body>
-
-<nav class="navbar navbar-expand-sm bg-success navbar-dark">
-    <!-- Logo -->
-    <a class="navbar-brand" href="#">Logo</a>
-
-    <!-- adds button for Nav Links when Navbar collapses (because screen size is small) -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Links on Navbar -->
-    <div class="collapse navbar-collapse">
-        <div class="navbar-nav">
-            <a class="nav-link" th:href="@{/}">Home</a>
-            <a class="nav-link" th:href="@{/login}">Log-In</a>
-            <a class="nav-link" th:href="@{/logout}">Logout</a>
-        </div>
+<head>
+    <div th:replace="fragments :: head" th:remove="tag">
     </div>
-</nav>
+    <style>
+        .register-link {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div th:replace = "fragments :: page-header"></div>
+
 <h1>Registration</h1>
 
 <form method="post" action="#" th:action="@{/register}">
