@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="fragments :: page-header"></div>
+<div class="container body-content">
+<h1 th:text="${'Garden: ' + garden.id}">Placeholder</h1>
+    <img th:src="@{/images/garden2.jpeg}" alt = "Water Garden Photo"/>
+    <p th:text="${'Name: ' + garden.name}"></p>
+    <p th:text="${'Description: ' + garden.description}"></p>
+    <p th:text="${'Address: ' + garden.address}"></p>
+<!--    Lat/Long for mapping. Remove after map functionality added.-->
+    <p th:text="${'Latitude: ' + garden.latitude}"></p>
+    <p th:text="${'Longitude: ' + garden.longitude}"></p>
+    <h3>Features: </h3>
+        <ul th:each="feature : ${garden.features}">
+            <li th:text="${feature.name}">Feature Text</li>
+        </ul>
+    <h3>Owner: </h3>
+        <p th:text="${garden.owner.name}"></p>
+</div>
+
+</body>
+</html>
