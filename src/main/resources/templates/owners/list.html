@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head th:replace="fragments :: head">
     <meta charset="UTF-8"/>
     <title></title>
@@ -17,7 +19,7 @@
 <!--            <p th:text="${owner.name}">Missing Link</p>-->
         </li>
     </ul>
-    <a th:href="@{'/owners/add'}">Add Garden Owner</a>
+    <a th:href="@{'/owners/add'}" sec:authorize="hasRole('ROLE_ADMIN')">Add Garden Owner</a>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>

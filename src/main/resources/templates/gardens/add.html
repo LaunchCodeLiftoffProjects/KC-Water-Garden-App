@@ -38,6 +38,7 @@
     <div class="form-group">
         <label th:for="owner">Garden Owner</label>
         <select name="owner">
+            <<option>--Please select one--</option>
             <option th:each="owner : ${owners}"
                     th:text="${owner.name}"
                     th:value="${owner.id}"></option>
