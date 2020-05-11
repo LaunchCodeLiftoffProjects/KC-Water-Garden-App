@@ -86,7 +86,7 @@ public class RegisterController {
 
         setUserInSession(request.getSession(), newUser);
 
-        return "/index";
+        return "login";
 
     }
 

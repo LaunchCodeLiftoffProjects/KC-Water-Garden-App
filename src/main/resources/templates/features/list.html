@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head th:replace="fragments :: head">
     <meta charset="UTF-8"/>
     <title></title>
@@ -18,7 +20,7 @@
     </ul>
 
 <!--    remove link later when admin is set up-->
-    <a th:href="@{'/features/add'}">Add Features</a>
+    <a th:href="@{'/features/add'}" sec:authorize="hasRole('ROLE_ADMIN')">Add Features</a>
 
 </div>
 
