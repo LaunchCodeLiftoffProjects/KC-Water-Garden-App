@@ -23,9 +23,9 @@
         <div class="collapse navbar-collapse">
             <div class="navbar-nav">
                 <a class="nav-link home-link" th:href="@{/}">Home</a>
-                <a class="nav-link" th:href="@{/gardens/list}" sec:authorize="isAuthenticated()">Water Gardens</a>
+                <a class="nav-link list-link" th:href="@{/gardens/list}" sec:authorize="isAuthenticated()">Water Gardens</a>
                 <a class="nav-link map-link" th:href="@{/map}" sec:authorize="isAuthenticated()">Map</a>
-                <a class="nav-link" th:href="@{/gardens/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Garden</a>
+                <a class="nav-link add-link" th:href="@{/gardens/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Garden</a>
                 <a class="nav-link" th:href="@{/features/}" sec:authorize="isAuthenticated()">Features</a>
                 <a class="nav-link" th:href="@{/owners/}" sec:authorize="isAuthenticated()">Owners</a>
                 <a class="nav-link login-link" th:href="@{/login}" sec:authorize="!isAuthenticated()">Log In</a>

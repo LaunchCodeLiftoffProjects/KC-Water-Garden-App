@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-    <meta charset="UTF-8"/>
+<head>
+    <div th:replace="fragments :: head" th:remove="tag">
+    </div>
+    <style>
+        .add-link {
+            display: none;
+        }
+    </style>
     <title></title>
 </head>
 
@@ -10,7 +16,7 @@
 <div th:replace="fragments :: page-header"></div>
 
 <form method="post">
-    <div class="form-group">
+    <div class="form-group" enctype="multipart/form-data">
         <label th:for="name">Garden Name</label>
         <input class="form-control" th:field="${garden.name}" />
         <span th:errors="${garden.name}" class="error"></span>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <title></title>
+</head>
+
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Upload Image</label>
+        <input class="form-control-file" type="file" name="file"/>
+    </div>
+    <input type="submit" value="Upload Image"/>
+    <input type="submit" value="No image to upload"/>
+</form>
+</body>
+</html>

@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-    <meta charset="UTF-8"/>
+<head>
+    <div th:replace="fragments :: head" th:remove="tag">
+    </div>
+    <style>
+        .list-link {
+            display: none;
+        }
+    </style>
     <title></title>
 </head>
 
