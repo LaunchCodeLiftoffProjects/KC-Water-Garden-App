@@ -16,44 +16,22 @@
         <div th:each="garden,gardenStatus : ${gardens}" class="col-sm"
              th:if="${gardenStatus.index < rowStatus.index + 3 and gardenStatus.index >= rowStatus.index}">
             <img th:src="@{/images/garden2.jpeg}" style="width: 75px;" alt = "Water Garden Photo"/>
-            <p th:text="${'Name: ' + garden.name}"></p>
+            <p th:text="${garden.name}"></p>
+            <p th:text="${garden.address}"></p>
+            <p th:text="${'Owner: ' + garden.owner.name}"></p>
             <p th:text="${'Description: ' + garden.description}"></p>
-            <p th:text="${'Address: ' + garden.address}"></p>
             <a th:href="@{'/view/' + ${garden.id}}">More Information</a>
         </div>
     </div>
-
 </div>
-<!--<table class="garden-list">-->
-<!--    <tr th:each="garden : ${gardens}">-->
-<!--        <td>-->
-<!--            <hr>-->
-<!--            <p>-->
-<!--                Garden Id:-->
-<!--                <a th:href="@{'/view/' + ${garden.id}}" th:text="${garden.id}"></a>-->
-<!--            </p>-->
-<!--            <p th:text="${'Name: ' + garden.name}"></p>-->
-<!--            <p th:text="${'Description: ' + garden.description}"></p>-->
-<!--            <p th:text="${'Address: ' + garden.address}"></p>-->
-<!--            <p>-->
+<!--Saving some info in case we want to add links back in-->
 <!--                Features:-->
 <!--                <ul th:each="feature : ${garden.features}">-->
 <!--                    <li>-->
 <!--            <p th:text="${feature.name}"></p>-->
-<!--            </li>-->
-<!--            </ul>-->
-<!--            </p>-->
-<!--            <p>-->
-<!--                Owner:-->
+<!--Owner Info-->
 <!--                <a th:text="${garden.owner.name}"></a>-->
-<!--                &lt;!&ndash;                    <a th:href="@{'/owners/view/' + ${garden.gardenOwner.id}}" th:text="${garden.gardenOwner.name}"></a>&ndash;&gt;-->
-<!--            </p>-->
-<!--            </hr>-->
-<!--        </td>-->
-<!--    </tr>-->
-<!--</table>-->
-<!--</div>-->
-
+<!--              <a th:href="@{'/owners/view/' + ${garden.gardenOwner.id}}" th:text="${garden.gardenOwner.name}"></a>-->
 
 <footer th:replace="fragments :: footer"></footer>
 
