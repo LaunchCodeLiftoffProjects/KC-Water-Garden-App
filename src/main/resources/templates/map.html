@@ -30,6 +30,23 @@ function initMap() {
 
     let infoWindow = new google.maps.InfoWindow();
 
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            let userPosition = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(userPosition);
+            infoWindow.setContent('You are here.');
+            infoWindow.open(map);
+        }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+
     for(let i=0; i < gardens.length; i++) {
 
         let gardenId = gardens[i].id;
@@ -42,6 +59,14 @@ function initMap() {
 
         createMarker(gardenId, gardenLatLng, gardenName, gardenAddress, gardenDescription);
 
+    };
+
+    function handleLocationError(browserHasGeolocation, infoWindow, userPosition) {
+        infoWindow.setPosition(userPosition);
+        infoWindow.setContent(browserHasGeolocation ?
+            'Error: The geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
     };
 
     function createMarker(gardenId, gardenLatLng, gardenName, gardenAddress, gardenDescription) {
@@ -63,7 +88,7 @@ function initMap() {
                 gardenDescription +
                 '</p>' +
                 '<p>' +
-                '<a class="info" href="view/' + gardenId + '">More Garden Info</a>' +
+                '<a class="info" href="' + gardenId + '">More Garden Info</a>' +
                 ' | ' +
                 '<a class="directions" href="#">Directions</a>' +
                 '</p>' +
