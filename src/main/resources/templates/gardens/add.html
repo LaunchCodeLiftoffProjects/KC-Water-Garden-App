@@ -15,8 +15,8 @@
 
 <div th:replace="fragments :: page-header"></div>
 
-<form method="post">
-    <div class="form-group" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
         <label th:for="name">Garden Name</label>
         <input class="form-control" th:field="${garden.name}" />
         <span th:errors="${garden.name}" class="error"></span>
@@ -59,6 +59,14 @@
         </th:block>
         <a th:href="@{'/features/add'}">Add Features</a>
     </div>
+
+
+    <div class="form-group">
+        <label>Upload Image</label>
+        <input class="form-control-file" type="file" name="file"/>
+    </div>
+
+
     <input type="submit" value="Add Garden"/>
 </form>
 

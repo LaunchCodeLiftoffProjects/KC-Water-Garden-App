@@ -23,10 +23,9 @@
         <tr th:each="garden : ${gardens}">
             <td>
                 <hr>
-
-                <!--<p>
-                    <a th:text="{{image}}"></a>
-                </p>-->
+                <p>
+                    <img th:src="@{${'/garden/list/' + garden.id}}" alt="Beautiful Garden"/>
+                </p>
 
                 <p>
                     Garden Id:

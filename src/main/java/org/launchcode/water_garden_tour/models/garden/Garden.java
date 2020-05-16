@@ -38,10 +38,10 @@ public class Garden extends AbstractEntity {
     @JsonIgnore
     private List<Feature> features = new ArrayList<>();
 
-    @OneToMany(mappedBy = "garden")
-    private final List<Image> images = new ArrayList<>();
+    @Lob
+    private byte[] image;
 
-    public Garden(String name, String address, String latitude, String longitude, String description, Owner owner, List<Feature> features) throws IOException {
+    public Garden(String name, String address, String latitude, String longitude, String description, Owner owner, List<Feature> features, byte[] image) throws IOException {
         this.name = name;
         this.address = address;
         this.latitude = latitude;
@@ -49,6 +49,7 @@ public class Garden extends AbstractEntity {
         this.description = description;
         this.owner = owner;
         this.features = features;
+        this.image = image;
     }
 
     public Garden() {}
@@ -109,6 +110,13 @@ public class Garden extends AbstractEntity {
         this.features = features;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
     @Override
     public String toString() {
