@@ -53,6 +53,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll();
-        http.cors().and().csrf().disable();
     }
 }

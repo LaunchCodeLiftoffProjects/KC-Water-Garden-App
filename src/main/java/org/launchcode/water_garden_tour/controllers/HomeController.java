@@ -30,9 +30,8 @@ public class HomeController {
     }
 
     @GetMapping("/admin")
-    @ResponseBody
-    public String hello() {
-        return "Welcome Admin";
+    public String renderAdminPage() {
+        return "admin";
     }
 
 }

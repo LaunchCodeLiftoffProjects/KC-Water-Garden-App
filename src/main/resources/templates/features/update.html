@@ -9,13 +9,14 @@
 
 <div th:replace="fragments :: page-header"></div>
 
-<form method="post" th:action="@{/features/add}">
+<form method="POST" th:action="@{/features/update}" th:object="${feature}">
+    <input type="hidden" th:name="featureId" th:value="${feature.id}" />
     <div class="form-group">
         <label th:for="name">Feature Name</label>
         <input class="form-control" th:field="${feature.name}" />
         <span th:errors="${feature.name}" class="error"></span>
     </div>
-    <input type="submit" class="btn btn-success" value="Add Feature"/>
+    <button type="submit" class="btn btn-warning">Update</button>
 </form>
 
 <footer th:replace="fragments :: footer"></footer>

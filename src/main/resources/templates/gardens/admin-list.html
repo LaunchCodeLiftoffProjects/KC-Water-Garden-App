@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+
+    <h2 th:text="${title}">ADMIN Garden List</h2>
+
+    <table class="table" style="align:center;">
+        <tr>
+            <th scope="col">Garden ID</th>
+            <th scope="col">Garden Name</th>
+            <th scope="col">Garden Owner</th>
+            <th scope="col">Garden Address</th>
+        </tr>
+        <tr th:each="garden : ${gardens}">
+            <td th:text="${garden.id}" style="vertical-align:middle;"></td>
+            <td th:text="${garden.name}" style="vertical-align:middle;"></td>
+            <td th:text="${garden.owner.name}" style="vertical-align:middle;"></td>
+            <td th:text="${garden.address}" style="vertical-align:middle;"></td>
+            <td style="vertical-align:middle;">
+                <form method="get" th:action="@{/gardens/update/}">
+                    <button type="submit" th:value="${garden.id}" name="gardenId" class="btn btn-warning">Update</button>
+                </form>
+            </td>
+            <td style="vertical-align:middle;">
+                <form method="POST" th:action="@{/gardens/delete}">
+                    <button type="submit" th:value="${garden.id}" name="gardenId" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

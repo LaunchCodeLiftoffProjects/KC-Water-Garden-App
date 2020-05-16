@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+
+<body>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<ul>
+    <li>
+        <a th:href="@{/gardens/admin-list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Gardens</a>
+    </li>
+    <li>
+        <a th:href="@{/gardens/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Garden</a>
+    </li>
+    <li>
+        <a th:href="@{/owners/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Owners</a>
+    </li>
+    <li>
+        <a th:href="@{/owners/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Owner</a>
+    </li>
+    <li>
+        <a th:href="@{/features/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Features</a>
+    </li>
+    <li>
+        <a th:href="@{/features/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Feature</a>
+    </li>
+</ul>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

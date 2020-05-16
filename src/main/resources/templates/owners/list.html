@@ -13,13 +13,35 @@
 
 <div class="container body-content">
     <h2 th:text="${title}">Owners</h2>
-    <ul>
-        <li th:each="owner : ${owners}">
-            <a th:href="@{'/owners/view/' + ${owner.id}}" th:text="${owner.name}">Missing Link</a>
-<!--            <p th:text="${owner.name}">Missing Link</p>-->
-        </li>
-    </ul>
-    <a th:href="@{'/owners/add'}" sec:authorize="hasRole('ROLE_ADMIN')">Add Garden Owner</a>
+    <table class="table">
+        <tr>
+            <th scope="col">Owner ID</th>
+            <th scope="col">Owner Name</th>
+            <th scope="col">Owner Email</th>
+            <th scope="col">Owner Phone Number</th>
+        </tr>
+        <tr th:each="owner : ${owners}">
+            <td th:text="${owner.id}" style="vertical-align:middle;"></td>
+            <td th:text="${owner.name}" style="vertical-align:middle;"></td>
+            <td th:text="${owner.email}" style="vertical-align:middle;"></td>
+            <td th:text="${owner.phoneNum}" style="vertical-align:middle;"></td>
+            <td style="vertical-align:middle;">
+                <form method="get" th:action="@{/owners/update/}">
+                    <input type="hidden" th:name="ownerId" th:value="${owner.id}">
+                    <button type="submit" class="btn btn-warning">Update</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST"
+                      th:action="@{/owners/delete}"
+                      th:unless="${ownersWithGardens.contains(owner)}">
+                    <input type="hidden" th:name="ownerId" th:value="${owner.id}">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{'/owners/add'}">Add Garden Owner</a>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>
