@@ -1,7 +1,6 @@
 package org.launchcode.water_garden_tour.models.garden;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -30,9 +29,6 @@ public class Garden extends AbstractEntity {
     @Size(max=1000, message="Description exceeds maximum number of characters")
     private String description;
 
-    @Transient
-    private MultipartFile image;
-
     @ManyToOne
     @JoinColumn
     @JsonIgnore
@@ -42,13 +38,15 @@ public class Garden extends AbstractEntity {
     @JsonIgnore
     private List<Feature> features = new ArrayList<>();
 
-    public Garden(String name, String address, String latitude, String longitude, String description, MultipartFile image, Owner owner, List<Feature> features) throws IOException {
+    @OneToMany(mappedBy = "garden")
+    private final List<Image> images = new ArrayList<>();
+
+    public Garden(String name, String address, String latitude, String longitude, String description, Owner owner, List<Feature> features) throws IOException {
         this.name = name;
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
         this.description = description;
-        this.image = image;
         this.owner = owner;
         this.features = features;
     }
@@ -95,14 +93,6 @@ public class Garden extends AbstractEntity {
         this.description = description;
     }
 
-    public MultipartFile getImage() {
-        return image;
-    }
-
-    public void setImage(MultipartFile image) {
-        this.image = image;
-    }
-
     public Owner getOwner() {
         return owner;
     }
@@ -118,6 +108,7 @@ public class Garden extends AbstractEntity {
     public void setFeatures(List<Feature> features) {
         this.features = features;
     }
+
 
     @Override
     public String toString() {

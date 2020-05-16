@@ -23,6 +23,11 @@
         <tr th:each="garden : ${gardens}">
             <td>
                 <hr>
+
+                <!--<p>
+                    <a th:text="{{image}}"></a>
+                </p>-->
+
                 <p>
                     Garden Id:
                     <a th:href="@{'/view/' + ${garden.id}}" th:text="${garden.id}"></a>

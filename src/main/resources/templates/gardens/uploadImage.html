@@ -9,6 +9,16 @@
 <div th:replace="fragments :: page-header"></div>
 
 <form method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label th:for="garden">Garden</label>
+        <select name="garden">
+            <option>--Please select one--</option>
+            <option th:each="garden : ${gardens}"
+                    th:text="${garden.name}"
+                    th:value="${garden.id}"></option>
+        </select>
+    </div>
     <div class="form-group">
         <label>Upload Image</label>
         <input class="form-control-file" type="file" name="file"/>

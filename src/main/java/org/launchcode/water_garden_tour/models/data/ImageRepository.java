@@ -10,6 +10,4 @@ import javax.transaction.Transactional;
 @Transactional
 public interface ImageRepository extends JpaRepository<Image, Integer> {
 
-    //void saveImage(MultipartFile imageFile);
-
 }

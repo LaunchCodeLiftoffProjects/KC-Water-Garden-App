@@ -10,4 +10,6 @@ import javax.transaction.Transactional;
 @Transactional
 public interface GardenRepository extends JpaRepository<Garden, Integer> {
 
+    Garden findByName(String name);
+
 }

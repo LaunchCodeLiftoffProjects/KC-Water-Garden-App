@@ -34,8 +34,6 @@ public class Owner extends AbstractEntity{
 
     public Owner() {}
 
-
-
     public String getName() {
         return name;
     }
