@@ -5,7 +5,7 @@
 <head th:fragment="head">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Kansas City Water Garden Tours</title>
+    <title th:text="${title}">Kansas City Water Garden Tours</title>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" th:href="@{/normalize.css}" type="text/css">
@@ -32,7 +32,7 @@
                 <a class="nav-link home-link" th:href="@{/}">Home</a>
                 <a class="nav-link list-link" th:href="@{/user/gardens/list}" sec:authorize="isAuthenticated()">Water Gardens</a>
                 <a class="nav-link map-link" th:href="@{/user/map}" sec:authorize="isAuthenticated()">Map</a>
-                <a class="nav-link" th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')">Admin</a>
+                <a class="nav-link admin-link" th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')">Admin</a>
                 <a class="nav-link login-link" th:href="@{/login}" sec:authorize="!isAuthenticated()">Log In</a>
                 <a class="nav-link register-link" th:href="@{/register}" sec:authorize="!isAuthenticated()">Register</a>
                 <form th:action="@{/logout}" method="post" name="logoutForm"></form>

@@ -10,7 +10,6 @@
 <div th:replace="fragments :: page-header"></div>
 
 <div class="container">
-
     <form method="post" th:action="@{/admin/gardens/add}" enctype="multipart/form-data">
 
         <div class="form-group">
@@ -60,9 +59,7 @@
             <label>Upload Image</label>
             <input class="form-control-file" type="file" name="file"/>
         </div>
-
         <input type="submit" class="btn btn-success" value="Add Garden"/>
-
     </form>
 
 <footer th:replace="fragments :: footer"></footer>
