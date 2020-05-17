@@ -140,14 +140,14 @@ public class GardenController {
     @PostMapping("/gardens/update")
     public String updateGarden(Model model,
                                int gardenId,
+                               @RequestParam("file") MultipartFile file,
                                String name,
                                String address,
                                String latitude,
                                String longitude,
                                String description,
-                               String image,
                                int ownerId,
-                               Integer[] featureIds) {
+                               Integer[] featureIds) throws IOException {
 
         Optional<Garden> optGarden = gardenRepository.findById(gardenId);
         Garden gardenToUpdate = (Garden) optGarden.get();
@@ -170,7 +170,9 @@ public class GardenController {
         gardenToUpdate.setLatitude(latitude);
         gardenToUpdate.setLongitude(longitude);
         gardenToUpdate.setDescription(description);
-        gardenToUpdate.setImage(image);
+
+        gardenToUpdate.setImage(file.getBytes());
+
         gardenToUpdate.setOwner(owner);
         gardenToUpdate.setFeatures(features);
 
