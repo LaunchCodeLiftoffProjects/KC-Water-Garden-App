@@ -6,6 +6,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Kansas City Water Garden Tours</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" th:href="@{/styles.css}" type="text/css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -28,6 +29,7 @@
                 <a class="nav-link add-link" th:href="@{/gardens/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Garden</a>
                 <a class="nav-link" th:href="@{/features/}" sec:authorize="isAuthenticated()">Features</a>
                 <a class="nav-link" th:href="@{/owners/}" sec:authorize="isAuthenticated()">Owners</a>
+                <a class="nav-link" th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')">Admin</a>
                 <a class="nav-link login-link" th:href="@{/login}" sec:authorize="!isAuthenticated()">Log In</a>
                 <a class="nav-link register-link" th:href="@{/register}" sec:authorize="!isAuthenticated()">Register</a>
                 <form th:action="@{/logout}" method="post" name="logoutForm"></form>

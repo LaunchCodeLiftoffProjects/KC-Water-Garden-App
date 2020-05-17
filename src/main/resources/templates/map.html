@@ -19,24 +19,61 @@
 
 <!-- Displaying the map from Maps JavaScript API -->
 <script th:inline="javascript">
-    function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 39.0997, lng: -94.5786},
-            zoom: 10
+let gardens = /*[[${gardens}]]*/;
+
+function initMap() {
+
+    let map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 39.0997, lng: -94.5786},
+        zoom: 10
+    });
+
+    let infoWindow = new google.maps.InfoWindow();
+
+    for(let i=0; i < gardens.length; i++) {
+
+        let gardenId = gardens[i].id;
+        let gardenLatLng = new google.maps.LatLng(
+            parseFloat(gardens[i].latitude),
+            parseFloat(gardens[i].longitude));
+        let gardenName = gardens[i].name;
+        let gardenAddress = gardens[i].address;
+        let gardenDescription = gardens[i].description;
+
+        createMarker(gardenId, gardenLatLng, gardenName, gardenAddress, gardenDescription);
+
+    };
+
+    function createMarker(gardenId, gardenLatLng, gardenName, gardenAddress, gardenDescription) {
+
+        let marker = new google.maps.Marker({
+            position: gardenLatLng,
+            map: map,
+            icon: 'https://img.icons8.com/color/48/000000/water-wheel.png'
+        });
+        marker.addListener('click', function() {
+            infoWindow.setContent('<div id="info-window-content">' +
+                '<h1>' +
+                gardenName +
+                '</h1>' +
+                '<h2>' +
+                gardenAddress +
+                '</h2>' +
+                '<p>' +
+                gardenDescription +
+                '</p>' +
+                '<p>' +
+                '<a class="info" href="view/' + gardenId + '">More Garden Info</a>' +
+                ' | ' +
+                '<a class="directions" href="#">Directions</a>' +
+                '</p>' +
+                '</div>');
+            infoWindow.open(map, marker);
         });
 
-        var gardens = /*[[${gardens}]]*/;
-
-        for(var i=0; i < gardens.length; i++) {
-            if(gardens[i].latitude !== null && gardens[i].longitude !== "") {
-                var marker = new google.maps.Marker({
-                  position: {lat: parseFloat(gardens[i].latitude), lng: parseFloat(gardens[i].longitude)},
-                  map: map,
-                  title: gardens[i].name
-                });
-            }
-        }
     };
+
+};
 </script>
 
 <!-- async defer allows the rest of the page to load before the map loads -->

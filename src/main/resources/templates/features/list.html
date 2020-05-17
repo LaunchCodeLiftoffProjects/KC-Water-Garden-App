@@ -13,15 +13,28 @@
 
 <div class="container body-content">
     <h2 th:text="${title}">Features</h2>
-    <ul>
-        <li th:each="feature : ${features}">
-            <a th:href="@{'/features/view/' + ${feature.id}}" th:text="${feature.name}"></a>
-        </li>
-    </ul>
-
-<!--    remove link later when admin is set up-->
-    <a th:href="@{'/features/add'}" sec:authorize="hasRole('ROLE_ADMIN')">Add Features</a>
-
+    <table class="table" style="align:center;">
+        <tr>
+            <th scope="col">Feature ID</th>
+            <th scope="col">Feature Name</th>
+        </tr>
+        <tr th:each="feature : ${features}">
+            <td th:text="${feature.id}" style="vertical-align:middle;"></td>
+            <td th:text="${feature.name}" style="vertical-align:middle;"></td>
+            <td style="vertical-align:middle;">
+                <form method="get" th:action="@{/features/update/}">
+                    <input type="hidden" th:name="featureId" th:value="${feature.id}">
+                    <button type="submit" class="btn btn-warning">Update</button>
+                </form>
+            </td>
+            <td style="vertical-align:middle;">
+                <form method="POST" th:action="@{/features/delete}">
+                    <button type="submit" th:value="${feature.id}" name="featureId" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{'/features/add'}">Add Features</a>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>
