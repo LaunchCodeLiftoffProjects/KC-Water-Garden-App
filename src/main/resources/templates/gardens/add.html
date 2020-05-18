@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <div th:replace="fragments :: head" th:remove="tag">
-    </div>
-    <style>
-        .add-link {
-            display: none;
-        }
-    </style>
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
     <title></title>
 </head>
 
@@ -15,7 +9,7 @@
 
 <div th:replace="fragments :: page-header"></div>
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" th:action="@{/gardens/add}" enctype="multipart/form-data">
 
     <div class="form-group">
         <label th:for="name">Garden Name</label>

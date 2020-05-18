@@ -56,7 +56,7 @@ public class GardenController {
                             Errors errors, Model model) throws IOException {
 
         if (errors.hasErrors()) {
-            return "gardens/add";
+            return "/gardens/add";
         }
 
         newGarden.setImage(file.getBytes());
@@ -65,7 +65,7 @@ public class GardenController {
         model.addAttribute("gardens", gardenRepository.findAll());
         model.addAttribute("title", "Garden List");
 
-        return "redirect:/gardens/list";
+        return "/gardens/list";
     }
 
     @GetMapping("/gardens/list")
