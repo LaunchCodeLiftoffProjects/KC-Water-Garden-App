@@ -4,46 +4,34 @@
     <meta charset="UTF-8"/>
     <title></title>
 </head>
-
 <body>
-
 <div th:replace="fragments :: page-header"></div>
-
 <div class="container body-content">
-
     <h2 th:text="${title}">Gardens</h2>
-
-    <table class="garden-list">
-        <tr th:each="garden : ${gardens}">
-            <td>
-                <hr>
-                <p>
-                    Garden Id:
-                    <a th:href="@{'/view/' + ${garden.id}}" th:text="${garden.id}"></a>
-                </p>
-                <p th:text="${'Name: ' + garden.name}"></p>
-                <p th:text="${'Description: ' + garden.description}"></p>
-                <p th:text="${'Address: ' + garden.address}"></p>
-                <p>
-                    Features:
-                <ul th:each="feature : ${garden.features}">
-                    <li>
-                        <p th:text="${feature.name}"></p>
-                    </li>
-                </ul>
-                </p>
-                <p>
-                    Owner:
-                    <a th:text="${garden.owner.name}"></a>
-<!--                    <a th:href="@{'/owners/view/' + ${garden.gardenOwner.id}}" th:text="${garden.gardenOwner.name}"></a>-->
-                </p>
-                </hr>
-            </td>
-        </tr>
-    </table>
-
+<!--    Below div iterates through the collection and makes a row for every elements with an index divisible by 3 e.g. 0, 3, 6
+        adding rowStatus uses a thymeleaf mechanism to create a variable with an index property that holds the current iteration index -->
+    <div th:each="garden,rowStatus : ${gardens}" class="row grid-row" th:if="${rowStatus.index % 3} == 0">
+<!--    Below div iterates through the collection again with a new status variable and adds gardens to the row if this index is less than
+        the row index + 3 and the index is >= -->
+        <div th:each="garden,gardenStatus : ${gardens}" class="col-sm"
+             th:if="${gardenStatus.index < rowStatus.index + 3 and gardenStatus.index >= rowStatus.index}">
+            <img th:src="@{/images/garden2.jpeg}" style="width: 75px;" alt = "Water Garden Photo"/>
+            <p th:text="${garden.name}"></p>
+            <p th:text="${garden.address}"></p>
+            <p th:text="${'Owner: ' + garden.owner.name}"></p>
+            <p th:text="${'Description: ' + garden.description}"></p>
+            <a th:href="@{'/view/' + ${garden.id}}">More Information</a>
+        </div>
+    </div>
 </div>
-
+<!--Saving some info in case we want to add links back in-->
+<!--                Features:-->
+<!--                <ul th:each="feature : ${garden.features}">-->
+<!--                    <li>-->
+<!--            <p th:text="${feature.name}"></p>-->
+<!--Owner Info-->
+<!--                <a th:text="${garden.owner.name}"></a>-->
+<!--              <a th:href="@{'/owners/view/' + ${garden.gardenOwner.id}}" th:text="${garden.gardenOwner.name}"></a>-->
 
 <footer th:replace="fragments :: footer"></footer>
 

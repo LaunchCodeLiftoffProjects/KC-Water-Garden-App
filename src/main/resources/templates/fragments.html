@@ -8,12 +8,13 @@
     <title>Kansas City Water Garden Tours</title>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/normalize.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/styles.css}" type="text/css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
-    <nav class="navbar navbar-expand-sm bg-success navbar-dark">
+<div th:fragment="page-header">
+    <nav class="navbar navbar-expand-sm bg-success navbar-dark navbar-fixed-top">
         <!-- Logo -->
         <img th:src="@{/images/logo.jpg}" alt="Logo" style="width:40px;">
 
