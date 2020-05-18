@@ -170,9 +170,9 @@ public class GardenController {
         gardenToUpdate.setLatitude(latitude);
         gardenToUpdate.setLongitude(longitude);
         gardenToUpdate.setDescription(description);
-
-        gardenToUpdate.setImage(file.getBytes());
-
+        if(!file.isEmpty()) {
+            gardenToUpdate.setImage(file.getBytes());
+        }
         gardenToUpdate.setOwner(owner);
         gardenToUpdate.setFeatures(features);
 
