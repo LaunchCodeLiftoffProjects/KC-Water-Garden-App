@@ -13,9 +13,6 @@
     <p th:text="${'Name: ' + garden.name}"></p>
     <p th:text="${'Description: ' + garden.description}"></p>
     <p th:text="${'Address: ' + garden.address}"></p>
-<!--    Lat/Long for mapping. Remove after map functionality added.-->
-    <p th:text="${'Latitude: ' + garden.latitude}"></p>
-    <p th:text="${'Longitude: ' + garden.longitude}"></p>
     <h3>Features: </h3>
         <ul th:each="feature : ${garden.features}">
             <li th:text="${feature.name}">Feature Text</li>
