@@ -1,5 +1,9 @@
 package org.launchcode.water_garden_tour.controllers;
 
+
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.jvnet.staxex.Base64EncoderStream;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.launchcode.water_garden_tour.models.data.FeatureRepository;
 import org.launchcode.water_garden_tour.models.data.GardenRepository;
@@ -12,8 +16,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,13 +52,15 @@ public class GardenController {
     }
 
     @PostMapping("/gardens/add")
-    public String addGarden(@ModelAttribute @Valid Garden newGarden,
-                            Errors errors, Model model) {
+    public String addGarden(@ModelAttribute @Valid Garden newGarden, @RequestParam("file") MultipartFile file,
+                            Errors errors, Model model) throws IOException {
 
         if (errors.hasErrors()) {
             return "/gardens/add";
         }
 
+        newGarden.setImage(file.getBytes());
+      
         gardenRepository.save(newGarden);
         model.addAttribute("gardens", gardenRepository.findAll());
         model.addAttribute("title", "Garden List");
@@ -59,10 +70,24 @@ public class GardenController {
 
     @GetMapping("/gardens/list")
     public String listGarden(Model model) {
+
         model.addAttribute("gardens", gardenRepository.findAll());
         model.addAttribute("title", "Garden List");
 
         return "gardens/list";
+    }
+
+
+    @GetMapping("/garden/list/{gardenId}")
+    public void showImage(@PathVariable ("gardenId") Integer gardenId,
+                               HttpServletResponse response) throws IOException {
+
+        Optional<Garden> garden = gardenRepository.findById(gardenId);
+
+        response.setContentType("image/jpeg");
+
+        InputStream is = new ByteArrayInputStream(garden.get().getImage());
+        IOUtils.copy(is, response.getOutputStream());
     }
 
     @GetMapping("/gardens/admin-list")
@@ -115,14 +140,14 @@ public class GardenController {
     @PostMapping("/gardens/update")
     public String updateGarden(Model model,
                                int gardenId,
+                               @RequestParam("file") MultipartFile file,
                                String name,
                                String address,
                                String latitude,
                                String longitude,
                                String description,
-                               String image,
                                int ownerId,
-                               Integer[] featureIds) {
+                               Integer[] featureIds) throws IOException {
 
         Optional<Garden> optGarden = gardenRepository.findById(gardenId);
         Garden gardenToUpdate = (Garden) optGarden.get();
@@ -145,7 +170,9 @@ public class GardenController {
         gardenToUpdate.setLatitude(latitude);
         gardenToUpdate.setLongitude(longitude);
         gardenToUpdate.setDescription(description);
-        gardenToUpdate.setImage(image);
+        if(!file.isEmpty()) {
+            gardenToUpdate.setImage(file.getBytes());
+        }
         gardenToUpdate.setOwner(owner);
         gardenToUpdate.setFeatures(features);
 
@@ -157,7 +184,6 @@ public class GardenController {
 
         return "gardens/admin-list";
     }
-
 
     //****Feature Controllers
 

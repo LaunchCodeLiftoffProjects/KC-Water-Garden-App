@@ -29,8 +29,6 @@ public class Garden extends AbstractEntity {
     @Size(max=1000, message="Description exceeds maximum number of characters")
     private String description;
 
-    private String image;
-
     @ManyToOne
     @JoinColumn
     @JsonIgnore
@@ -40,15 +38,18 @@ public class Garden extends AbstractEntity {
     @JsonIgnore
     private List<Feature> features = new ArrayList<>();
 
-    public Garden(String name, String address, String latitude, String longitude, String description, String image, Owner owner, List<Feature> features) throws IOException {
+    @Lob
+    private byte[] image;
+
+    public Garden(String name, String address, String latitude, String longitude, String description, Owner owner, List<Feature> features, byte[] image) throws IOException {
         this.name = name;
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
         this.description = description;
-        this.image = image;
         this.owner = owner;
         this.features = features;
+        this.image = image;
     }
 
     public Garden() {}
@@ -101,20 +102,20 @@ public class Garden extends AbstractEntity {
         this.owner = owner;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public List<Feature> getFeatures() {
         return features;
     }
 
     public void setFeatures(List<Feature> features) {
         this.features = features;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     @Override

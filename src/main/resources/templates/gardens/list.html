@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-    <meta charset="UTF-8"/>
+<head>
+    <div th:replace="fragments :: head" th:remove="tag">
+    </div>
+    <style>
+        .list-link {
+            display: none;
+        }
+    </style>
     <title></title>
 </head>
 <body>
 <div th:replace="fragments :: page-header"></div>
 <div class="container body-content">
     <h2 th:text="${title}">Gardens</h2>
+
 <!--    Below div iterates through the collection and makes a row for every elements with an index divisible by 3 e.g. 0, 3, 6
         adding rowStatus uses a thymeleaf mechanism to create a variable with an index property that holds the current iteration index -->
     <div th:each="garden,rowStatus : ${gardens}" class="row grid-row" th:if="${rowStatus.index % 3} == 0">
@@ -15,7 +22,7 @@
         the row index + 3 and the index is >= -->
         <div th:each="garden,gardenStatus : ${gardens}" class="col-sm"
              th:if="${gardenStatus.index < rowStatus.index + 3 and gardenStatus.index >= rowStatus.index}">
-            <img th:src="@{/images/garden2.jpeg}" style="width: 75px;" alt = "Water Garden Photo"/>
+            <img th:src="@{${'/garden/list/' + garden.id}}" style="width: 75px;" alt="Beautiful Garden"/>
             <p th:text="${garden.name}"></p>
             <p th:text="${garden.address}"></p>
             <p th:text="${'Owner: ' + garden.owner.name}"></p>
