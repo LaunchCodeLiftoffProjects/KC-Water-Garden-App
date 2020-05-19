@@ -16,10 +16,12 @@
 <nav th:replace="fragments :: page-header"></nav>
 
 <div id="map"></div>
+<div id="directions"></div>
 
 <!-- Displaying the map from Maps JavaScript API -->
 <script th:inline="javascript">
 let gardens = /*[[${gardens}]]*/;
+let userPosition;
 
 function initMap() {
 
@@ -28,7 +30,29 @@ function initMap() {
         zoom: 10
     });
 
+    let directionsService = new google.maps.DirectionsService;
+    let directionsRenderer = new google.maps.DirectionsRenderer({preserveViewport: true});
+    directionsRenderer.setMap(map);
+    directionsRenderer.setPanel(document.getElementById("directions"));
+
     let infoWindow = new google.maps.InfoWindow();
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            userPosition = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(userPosition);
+            infoWindow.setContent('You are here.');
+            infoWindow.open(map);
+        }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
 
     for(let i=0; i < gardens.length; i++) {
 
@@ -44,14 +68,24 @@ function initMap() {
 
     };
 
+    function handleLocationError(browserHasGeolocation, infoWindow, userPosition) {
+        infoWindow.setPosition(userPosition);
+        infoWindow.setContent(browserHasGeolocation ?
+            'Error: The geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+    };
+
     function createMarker(gardenId, gardenLatLng, gardenName, gardenAddress, gardenDescription) {
 
         let marker = new google.maps.Marker({
             position: gardenLatLng,
             map: map,
-            icon: 'https://img.icons8.com/color/48/000000/water-wheel.png'
+            icon: 'https://img.icons8.com/color/48/000000/water-wheel.png',
+            animation: google.maps.Animation.DROP
         });
         marker.addListener('click', function() {
+            let directionsEndpoint = gardenLatLng;
             infoWindow.setContent('<div id="info-window-content">' +
                 '<h1>' +
                 gardenName +
@@ -63,15 +97,33 @@ function initMap() {
                 gardenDescription +
                 '</p>' +
                 '<p>' +
-                '<a class="info" href="view/' + gardenId + '">More Garden Info</a>' +
+                '<a class="info" target="_blank" href="view/' + gardenId + '">More Garden Info</a>' +
                 ' | ' +
-                '<a class="directions" href="#">Directions</a>' +
+                'View Directions on <a class="directions" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=' + userPosition.lat + ',' + userPosition.lng + '&destination=' + gardenLatLng + '">Google Maps</a>' +
                 '</p>' +
                 '</div>');
+
+            getDirections(userPosition, directionsEndpoint);
+
             infoWindow.open(map, marker);
+
         });
 
     };
+
+    function getDirections(userPosition, directionsEndpoint) {
+        directionsService.route({
+            origin: userPosition,
+            destination: directionsEndpoint,
+            travelMode: 'DRIVING'
+        }, function(response, status) {
+            if (status === 'OK') {
+                directionsRenderer.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    }
 
 };
 </script>
