@@ -9,7 +9,7 @@
 <div th:replace="fragments :: page-header"></div>
 <div class="container body-content">
 <h1 th:text="${'Garden: ' + garden.id}">Placeholder</h1>
-    <img th:src="@{${'/garden/list/' + garden.id}}" alt = "Water Garden Photo"/>
+    <img th:src="@{${'/user/garden/list/' + garden.id}}" alt = "Water Garden Photo"/>
     <p th:text="${'Name: ' + garden.name}"></p>
     <p th:text="${'Description: ' + garden.description}"></p>
     <p th:text="${'Address: ' + garden.address}"></p>

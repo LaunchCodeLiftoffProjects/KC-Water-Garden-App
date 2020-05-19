@@ -9,7 +9,7 @@
 
 <div th:replace="fragments :: page-header"></div>
 
-<form method="post" th:action="@{/gardens/add}" enctype="multipart/form-data">
+<form method="post" th:action="@{/admin/gardens/add}" enctype="multipart/form-data">
 
     <div class="form-group">
         <label th:for="name">Garden Name</label>
@@ -44,7 +44,7 @@
                     th:text="${owner.name}"
                     th:value="${owner.id}"></option>
         </select>
-        <a th:href="@{'/owners/add'}">Add Owner</a>
+        <a th:href="@{'/admin/owners/add'}">Add Owner</a>
     </div>
     <div class="form-group">
         <label th:for="features">Features: </label>
@@ -52,7 +52,7 @@
             <input type="checkbox" name="features" th:value="${feature.id}">
             <label th:text="${feature.name}"></label>
         </th:block>
-        <a th:href="@{'/features/add'}">Add Features</a>
+        <a th:href="@{'/admin/features/add'}">Add Features</a>
     </div>
     <div class="form-group">
         <label>Upload Image</label>

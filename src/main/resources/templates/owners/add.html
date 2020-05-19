@@ -9,7 +9,7 @@
 
 <div th:replace="fragments :: page-header"></div>
 
-<form method="post" th:action="@{/owners/add}">
+<form method="post" th:action="@{/admin/owners/add}">
     <div class="form-group">
         <label th:for="name">Owner Name</label>
         <input class="form-control" th:field="${owner.name}" />

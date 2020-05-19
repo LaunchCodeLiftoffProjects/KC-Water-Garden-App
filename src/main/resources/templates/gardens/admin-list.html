@@ -26,12 +26,12 @@
             <td th:text="${garden.owner.name}" style="vertical-align:middle;"></td>
             <td th:text="${garden.address}" style="vertical-align:middle;"></td>
             <td style="vertical-align:middle;">
-                <form method="get" th:action="@{/gardens/update/}">
+                <form method="get" th:action="@{/admin/gardens/update/}">
                     <button type="submit" th:value="${garden.id}" name="gardenId" class="btn btn-warning">Update</button>
                 </form>
             </td>
             <td style="vertical-align:middle;">
-                <form method="POST" th:action="@{/gardens/delete}">
+                <form method="POST" th:action="@{/admin/gardens/delete}">
                     <button type="submit" th:value="${garden.id}" name="gardenId" class="btn btn-danger">Delete</button>
                 </form>
             </td>

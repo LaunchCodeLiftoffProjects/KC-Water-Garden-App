@@ -22,19 +22,19 @@
             <td th:text="${feature.id}" style="vertical-align:middle;"></td>
             <td th:text="${feature.name}" style="vertical-align:middle;"></td>
             <td style="vertical-align:middle;">
-                <form method="get" th:action="@{/features/update/}">
+                <form method="get" th:action="@{/admin/features/update/}">
                     <input type="hidden" th:name="featureId" th:value="${feature.id}">
                     <button type="submit" class="btn btn-warning">Update</button>
                 </form>
             </td>
             <td style="vertical-align:middle;">
-                <form method="POST" th:action="@{/features/delete}">
+                <form method="POST" th:action="@{/admin/features/delete}">
                     <button type="submit" th:value="${feature.id}" name="featureId" class="btn btn-danger">Delete</button>
                 </form>
             </td>
         </tr>
     </table>
-    <a th:href="@{'/features/add'}">Add Features</a>
+    <a th:href="@{'/admin/features/add'}">Add Features</a>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>
