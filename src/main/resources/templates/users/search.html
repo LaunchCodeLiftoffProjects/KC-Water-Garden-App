@@ -15,7 +15,7 @@
     <h2 th:text="${title}"></h2>
 
     <td style="vertical-align:middle;">
-        <form method="get" th:action="@{/users/search/}" th:object="${user}">
+        <form method="get" th:action="@{/admin/users/search/}" th:object="${user}">
             <input type="text" name="searchTerm" id="searchTerm" th:value="${searchTerm}">
             <button type="submit" class="btn btn-warning">Search</button>
         </form>
@@ -36,7 +36,7 @@
             <td th:text="${user.username}" style="vertical-align:middle;"></td>
             <td th:text="${user.role}" style="vertical-align:middle;"></td>
             <td style="vertical-align:middle;">
-                <form method="get" th:action="@{/users/update/}" th:object="${user}">
+                <form method="get" th:action="@{/admin/users/update/}" th:object="${user}">
                     <input type="hidden" th:name="userId" th:value="${user.id}">
                     <input type="hidden" th:name="pword" th:value="${user.password}">
                     <button type="submit" class="btn btn-warning">Update</button>
