@@ -11,22 +11,22 @@
 
 <ul>
     <li>
-        <a th:href="@{/gardens/admin-list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Gardens</a>
+        <a th:href="@{/admin/gardens/admin-list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Gardens</a>
     </li>
     <li>
-        <a th:href="@{/gardens/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Garden</a>
+        <a th:href="@{/admin/gardens/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Garden</a>
     </li>
     <li>
-        <a th:href="@{/owners/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Owners</a>
+        <a th:href="@{/admin/owners/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Owners</a>
     </li>
     <li>
-        <a th:href="@{/owners/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Owner</a>
+        <a th:href="@{/admin/owners/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Owner</a>
     </li>
     <li>
-        <a th:href="@{/features/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Features</a>
+        <a th:href="@{/admin/features/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Features</a>
     </li>
     <li>
-        <a th:href="@{/features/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Feature</a>
+        <a th:href="@{/admin/features/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Feature</a>
     </li>
     <li>
         <a th:href="@{/users/list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Users</a>

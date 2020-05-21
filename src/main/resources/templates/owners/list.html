@@ -26,14 +26,14 @@
             <td th:text="${owner.email}" style="vertical-align:middle;"></td>
             <td th:text="${owner.phoneNum}" style="vertical-align:middle;"></td>
             <td style="vertical-align:middle;">
-                <form method="get" th:action="@{/owners/update/}">
+                <form method="get" th:action="@{/admin/owners/update/}">
                     <input type="hidden" th:name="ownerId" th:value="${owner.id}">
                     <button type="submit" class="btn btn-warning">Update</button>
                 </form>
             </td>
             <td>
                 <form method="POST"
-                      th:action="@{/owners/delete}"
+                      th:action="@{/admin/owners/delete}"
                       th:unless="${ownersWithGardens.contains(owner)}">
                     <input type="hidden" th:name="ownerId" th:value="${owner.id}">
                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -41,7 +41,7 @@
             </td>
         </tr>
     </table>
-    <a th:href="@{'/owners/add'}">Add Garden Owner</a>
+    <a th:href="@{'/admin/owners/add'}">Add Garden Owner</a>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>
