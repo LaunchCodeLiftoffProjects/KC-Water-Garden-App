@@ -61,8 +61,6 @@ public class UserController {
     public String renderUpdateUser(Model model, @RequestParam(value = "userId") int userId) {
 
         Optional <User> optUser = userRepository.findById(userId);
-        System.out.println(userId);
-        System.out.println(optUser);
         if (optUser.isPresent()) {
             User userToUpdate = (User) optUser.get();
             model.addAttribute("user", userToUpdate);
@@ -83,8 +81,6 @@ public class UserController {
                               String role) {
 
         Optional<User> optUser = userRepository.findById(userId);
-        System.out.println(userId);
-        System.out.println(optUser);
         User userToUpdate = (User) optUser.get();
 
         userToUpdate.setFname(fname);
