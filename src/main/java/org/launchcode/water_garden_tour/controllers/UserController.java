@@ -17,11 +17,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("admin")
 public class UserController {
 
     @Autowired
     UserRepository userRepository;
-
+    
     @GetMapping("/users/list")
     public String displaySearchPage(Model model) {
         model.addAttribute("users", userRepository.findAll());
@@ -97,7 +98,7 @@ public class UserController {
         }
 
     @PostMapping("/users/delete")
-    public String deleteOwner(Model model, @RequestParam int userId) {
+    public String deleteUser(Model model, @RequestParam int userId) {
 
         Optional<User> optUser = userRepository.findById(userId);
         if (optUser.isPresent()) {
@@ -115,57 +116,4 @@ public class UserController {
     }
 
 }
-
-
-
-        /*if (featureIds != null) {
-            gardens = GardenData.gardenSearchFeaturesFiltered(searchTerm, featureIds, allFeatures, gardenRepository.findAll());
-
-            for (int id : featureIds) {
-                selectedFeatures.add(GardenData.getFeatureFromId(id, allFeatures));
-            }
-
-        } else {
-            gardens = GardenData.gardenSearchAllFeatures(searchTerm, allFeatures, gardenRepository.findAll());
-
-        }
-
-        model.addAttribute("gardens", gardens);
-        model.addAttribute("selectedFeatures", selectedFeatures);
-        model.addAttribute("features", featureRepository.findAll());
-        model.addAttribute("searchTerm", searchTerm);
-        model.addAttribute("title", "Garden Search");
-
-        return "gardens/list";
-    }
-
-
-
-    @PostMapping("/users/search")
-    public String processSearch(Model model, @RequestParam String searchTerm) {
-
-        List<User> users = new ArrayList<>();
-
-        for (User user : users) {
-
-            if (user.getFname().toLowerCase().equals(searchTerm.toLowerCase())) {
-
-                results.add(user);
-
-            }
-            model.addAttribute("results", results);
-        }
-        return "users/results";
-    }
-
-    @GetMapping("/users/results")
-    public String displaySearchResults(Model model) {
-
-        model.addAttribute("title", "Search Results");
-        model.addAttribute("results", results);
-        return "users/search";
-    }*/
-
-
-
 
