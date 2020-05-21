@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("user")
 public class MapController {
 
     @Autowired
@@ -15,7 +16,7 @@ public class MapController {
     @RequestMapping("map")
     public String map(Model model) {
         model.addAttribute("gardens", gardenRepository.findAll());
-        return "map";
+        return "/map";
     }
 
 }

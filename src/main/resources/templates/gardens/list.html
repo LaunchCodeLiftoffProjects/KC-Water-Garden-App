@@ -8,7 +8,6 @@
             display: none;
         }
     </style>
-    <title></title>
 </head>
 <body>
 <div th:replace="fragments :: page-header"></div>
@@ -22,12 +21,12 @@
         the row index + 3 and the index is >= -->
         <div th:each="garden,gardenStatus : ${gardens}" class="col-sm"
              th:if="${gardenStatus.index < rowStatus.index + 3 and gardenStatus.index >= rowStatus.index}">
-            <img th:src="@{${'/garden/list/' + garden.id}}" style="width: 75px;" alt="Beautiful Garden"/>
+            <img th:src="@{${'/user/garden/list/' + garden.id}}" style="width: 75px;" alt="Beautiful Garden"/>
             <p th:text="${garden.name}"></p>
             <p th:text="${garden.address}"></p>
             <p th:text="${'Owner: ' + garden.owner.name}"></p>
             <p th:text="${'Description: ' + garden.description}"></p>
-            <a th:href="@{'/view/' + ${garden.id}}">More Information</a>
+            <a th:href="@{'/user/view/' + ${garden.id}}">More Information</a>
         </div>
     </div>
 </div>

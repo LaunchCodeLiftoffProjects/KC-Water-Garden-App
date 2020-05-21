@@ -48,9 +48,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // first line tells Spring to authorize all requests
         http.authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/").permitAll()
+                .mvcMatchers("/admin/**").hasRole("ADMIN")
+                .mvcMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                .mvcMatchers("/").permitAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll();
     }
