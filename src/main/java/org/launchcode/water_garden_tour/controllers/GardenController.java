@@ -1,10 +1,7 @@
 package org.launchcode.water_garden_tour.controllers;
 
 
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.jvnet.staxex.Base64EncoderStream;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.launchcode.water_garden_tour.models.data.FeatureRepository;
 import org.launchcode.water_garden_tour.models.data.GardenRepository;
 import org.launchcode.water_garden_tour.models.data.OwnerRepository;
@@ -59,12 +56,9 @@ public class GardenController {
             return "/gardens/add";
         }
 
-        newGarden.setImage(file.getBytes());
-      
         gardenRepository.save(newGarden);
         model.addAttribute("gardens", gardenRepository.findAll());
         model.addAttribute("title", "Garden List");
-
         return "/gardens/list";
     }
 

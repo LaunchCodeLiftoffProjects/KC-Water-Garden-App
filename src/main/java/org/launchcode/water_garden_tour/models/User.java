@@ -4,8 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 //@Table(name = "user")
@@ -16,12 +18,15 @@ public class User {
     private int id;
 
     @NotBlank(message="First name is required.")
+    @Size(max=15)
     private String fname;
 
     @NotBlank(message="Last name is required.")
+    @Size(max=15)
     private String lname;
 
     @NotBlank(message="Email is required.")
+    @Email(message="Email is not valid.")
     private String username;
 
     @NotBlank(message="Password is required.")
@@ -92,7 +97,7 @@ public class User {
         return role;
     }
 
-    public void setRoles(String role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
