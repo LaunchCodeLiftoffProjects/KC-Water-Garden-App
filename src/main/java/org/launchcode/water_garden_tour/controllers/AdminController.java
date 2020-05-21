@@ -96,22 +96,6 @@ public class AdminController {
         return "gardens/update";
     }
 
-    @PostMapping("/gardens/delete")
-    public String deleteGarden(Model model, @RequestParam int gardenId) {
-
-        Optional optGarden = gardenRepository.findById(gardenId);
-        if (optGarden.isPresent()) {
-            Garden garden = (Garden) optGarden.get();
-
-            gardenRepository.delete(garden);
-        }
-
-        model.addAttribute("gardens", gardenRepository.findAll());
-        model.addAttribute("title", "Garden ADMIN List");
-
-        return "gardens/admin-list";
-    }
-
     @PostMapping("/gardens/update")
     public String updateGarden(Model model,
                                int gardenId,
@@ -152,25 +136,27 @@ public class AdminController {
 
         gardenRepository.save(gardenToUpdate);
 
-        model.addAttribute("title", "Owners List");
-        model.addAttribute("owners", ownerRepository.findAll());
+        //attributes for return to admin-list
+        model.addAttribute("gardens", gardenRepository.findAll());
+        model.addAttribute("title", "Garden ADMIN List");
 
-        //delete button only for owners not attached to gardens
-        List<Garden> gardens = gardenRepository.findAll();
-        List<Owner> ownersWithGardens = new ArrayList<>();
+        return "gardens/admin-list";
+    }
 
-        for (Garden garden : gardens) {
-            Optional optGardenOwner = ownerRepository.findById(garden.getOwner().getId());
-            if (optGardenOwner.isPresent()) {
-                Owner curOwner = (Owner) optGardenOwner.get();
+    @PostMapping("/gardens/delete")
+    public String deleteGarden(Model model, @RequestParam int gardenId) {
 
-                ownersWithGardens.add(curOwner);
-            }
+        Optional optGarden = gardenRepository.findById(gardenId);
+        if (optGarden.isPresent()) {
+            Garden garden = (Garden) optGarden.get();
 
-            model.addAttribute("ownersWithGardens", ownersWithGardens);
-
+            gardenRepository.delete(garden);
         }
-        return "owners/list";
+
+        model.addAttribute("gardens", gardenRepository.findAll());
+        model.addAttribute("title", "Garden ADMIN List");
+
+        return "gardens/admin-list";
     }
 
 //    Owner
@@ -207,7 +193,7 @@ public class AdminController {
     }
 
     @PostMapping("/owners/add")
-    public String addGarden(@ModelAttribute @Valid Owner newOwner,
+    public String addOwner(@ModelAttribute @Valid Owner newOwner,
                             Errors errors, Model model) {
 
         if (errors.hasErrors()) {
