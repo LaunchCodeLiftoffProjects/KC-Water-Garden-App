@@ -37,6 +37,11 @@
 }
 
 .grid-row {
-    font-weight: 600;
     padding: 30px;
 }
+
+.individual-image{
+    max-width: 75%;
+    border-radius: 32px;
+}
+

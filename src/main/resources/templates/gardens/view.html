@@ -5,20 +5,30 @@
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
-<body>
+<body style="background-color: #f7f8f9;">
 <div th:replace="fragments :: page-header"></div>
 <div class="container body-content">
-<h1 th:text="${'Garden: ' + garden.id}">Placeholder</h1>
-    <img th:src="@{${'/user/garden/list/' + garden.id}}" alt = "Water Garden Photo"/>
-    <p th:text="${'Name: ' + garden.name}"></p>
-    <p th:text="${'Description: ' + garden.description}"></p>
-    <p th:text="${'Address: ' + garden.address}"></p>
-    <h3>Features: </h3>
-        <ul th:each="feature : ${garden.features}">
-            <li th:text="${feature.name}">Feature Text</li>
-        </ul>
-    <h3>Owner: </h3>
-        <p th:text="${garden.owner.name}"></p>
+    <div class = "row justify-content-md-center">
+        <h1 th:text="${garden.name}"></h1>
+    </div>
+    <div class = "row grid-row">
+        <div class="col" >
+            <img class = "individual-image" th:src="@{${'/user/garden/list/' + garden.id}}" alt = "Water Garden Photo"/>
+        </div>
+        <div class="col" >
+            <p th:text="${garden.description}"></p>
+            <p th:text="${'Address: ' + garden.address}"></p>
+            <h3>Features: </h3>
+            <ul th:each="feature : ${garden.features}">
+                <li th:text="${feature.name}">Feature Text</li>
+            </ul>
+            <h3>Owner: </h3>
+            <p th:text="${garden.owner.name}"></p>
+        </div>
+    </div>
+    <div class = "row  justify-content-center">
+        <a th:href="@{/user/gardens/list}">Return to Water Gardens</a>
+    </div>
 </div>
 
 </body>
