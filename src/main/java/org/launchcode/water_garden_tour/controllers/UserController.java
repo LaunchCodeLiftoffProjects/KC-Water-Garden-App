@@ -22,24 +22,16 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
-    
+
     @GetMapping("/users/list")
-    public String displaySearchPage(Model model) {
-        model.addAttribute("users", userRepository.findAll());
-        model.addAttribute("title", "Users");
-        return "users/list";
-    }
-
-
-    @GetMapping("/users/search")
     public String displaySearchResults(Model model, @RequestParam(required = false, value = "searchTerm") String searchTerm) {
+
         Iterable<User> users;
         List<User> allUsers = userRepository.findAll();
         List<User> selectedUsers = new ArrayList<>();
 
-        if (searchTerm.isEmpty()) {
-            model.addAttribute("results", userRepository.findAll());
-            model.addAttribute("searchTerm", "All Users");
+        if (searchTerm == null || searchTerm.isEmpty()) {
+            model.addAttribute("results",allUsers);
         } else {
             for (User user : allUsers) {
 
@@ -52,10 +44,11 @@ public class UserController {
                 }
             }
             model.addAttribute("results", selectedUsers);
-            model.addAttribute("searchTerm", searchTerm);
+            model.addAttribute("search", "Results containing first or last name: " + searchTerm);
+            //model.addAttribute("searchTerm", searchTerm);
         }
         model.addAttribute("title", "User Search");
-        return "users/search";
+        return "users/list";
     }
 
     @GetMapping("/users/update")
@@ -75,7 +68,6 @@ public class UserController {
     @PostMapping("/users/update")
     public String updateUser(Model model,
                               int userId,
-                              String password,
                               String username,
                               String fname,
                               String lname,
@@ -88,11 +80,10 @@ public class UserController {
         userToUpdate.setLname(lname);
         userToUpdate.setUsername(username);
         userToUpdate.setRole(role);
-        userToUpdate.setPassword(password);
 
         userRepository.save(userToUpdate);
 
-            model.addAttribute("users", userRepository.findAll());
+            model.addAttribute("results", userRepository.findAll());
             model.addAttribute("title", "User List");
             return "users/list";
         }
