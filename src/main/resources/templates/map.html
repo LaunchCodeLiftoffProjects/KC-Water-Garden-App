@@ -15,8 +15,10 @@
 
 <nav th:replace="fragments :: page-header"></nav>
 
+<div class="container">
 <div id="map"></div>
 <div id="directions"></div>
+</div>
 
 <!-- Displaying the map from Maps JavaScript API -->
 <script th:inline="javascript">
@@ -33,7 +35,7 @@ function initMap() {
     let directionsService = new google.maps.DirectionsService;
     let directionsRenderer = new google.maps.DirectionsRenderer({preserveViewport: true});
     directionsRenderer.setMap(map);
-    directionsRenderer.setPanel(document.getElementById("directions"));
+    directionsRenderer.setPanel(document.getElementById("directions-test"));
 
     let infoWindow = new google.maps.InfoWindow();
 
@@ -101,9 +103,13 @@ function initMap() {
                 ' | ' +
                 'View Directions on <a class="directions" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=' + userPosition.lat + ',' + userPosition.lng + '&destination=' + gardenLatLng + '">Google Maps</a>' +
                 '</p>' +
+                '<div="directions-test">' +
+                '</div>' +
                 '</div>');
 
             getDirections(userPosition, directionsEndpoint);
+
+
 
             infoWindow.open(map, marker);
 

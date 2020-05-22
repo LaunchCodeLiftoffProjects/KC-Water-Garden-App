@@ -3,7 +3,6 @@
     margin: 50px 0px;
     margin-left: auto;
     margin-right: auto;
-    max-width: 50%;
     height: auto;
     border-radius: 32px;
 }
@@ -20,7 +19,7 @@
 }
 
 .nav-link {
-    font-size: 140%;
+    font-size: 2rem;
 }
 
 .hr {
@@ -32,11 +31,15 @@
 
 #map {
     height: 80vh;
-    width: 80vw;
     margin: 2rem auto auto auto;
 }
 
 .grid-row {
     font-weight: 600;
     padding: 30px;
+}
+
+.logo {
+    border-radius: 50%;
+    height: 120px;
 }

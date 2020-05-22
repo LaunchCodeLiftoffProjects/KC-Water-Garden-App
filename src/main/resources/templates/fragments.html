@@ -12,18 +12,22 @@
     <link rel="stylesheet" th:href="@{/styles.css}" type="text/css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-<div th:fragment="page-header">
+
+<div th:fragment="page-header" class="container">
     <nav class="navbar navbar-expand-sm bg-success navbar-dark navbar-fixed-top">
         <!-- Logo -->
-        <img th:src="@{/images/logo.jpg}" alt="Logo" style="width:40px;">
+        <img th:src="@{/images/logo.jpg}" alt="Logo" class="logo">
 
         <!-- adds button for Nav Links when Navbar collapses (because screen size is small) -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse">
-            <div class="navbar-nav">
+
+            <div class="navbar-nav container">
                 <a class="nav-link home-link" th:href="@{/}">Home</a>
                 <a class="nav-link list-link" th:href="@{/user/gardens/list}" sec:authorize="isAuthenticated()">Water Gardens</a>
                 <a class="nav-link map-link" th:href="@{/user/map}" sec:authorize="isAuthenticated()">Map</a>
@@ -33,8 +37,11 @@
                 <form th:action="@{/logout}" method="post" name="logoutForm"></form>
                 <a class="nav-link" href="#" sec:authorize="isAuthenticated()"  onclick="document.logoutForm.submit()">Log Out</a>
             </div>
+
         </div>
+
     </nav>
+
 </div>
 
 <footer th:fragment="footer" align="center">
@@ -45,6 +52,7 @@
         <img class="footerLinkPicture" alt="LaunchCode" src="https://www.launchcode.org/assets/dabomb-2080d6e23ef41463553f203daaa15991fd4c812676d0b098243b4941fcf4b57f.svg">
     </a>
 </footer>
+
 </body>
 
 </html>
