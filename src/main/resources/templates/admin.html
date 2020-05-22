@@ -28,6 +28,9 @@
     <li>
         <a th:href="@{/admin/features/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Feature</a>
     </li>
+    <li>
+        <a th:href="@{/admin/users/list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Users</a>
+    </li>
 </ul>
 
 <footer th:replace="fragments :: footer"></footer>
