@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" th:href="@{/normalize.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/styles.css}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
-<div th:fragment="page-header" class="container">
-    <nav class="navbar navbar-expand-sm bg-success navbar-dark navbar-fixed-top">
+<div th:fragment="page-header" class="container-fluid">
+    <nav class="navbar navbar-expand-md bg-success navbar-dark navbar-fixed-top">
         <!-- Logo -->
         <img th:src="@{/images/logo.jpg}" alt="Logo" class="logo">
 

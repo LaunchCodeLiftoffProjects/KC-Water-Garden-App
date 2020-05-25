@@ -15,23 +15,22 @@
 
 <body>
 
-<div class="container">
-
 <div class="home" th:replace = "fragments :: page-header"></div>
 
-<h1 class="display-1" align="center">WELCOME!</h1>
-<hr>
+    <div class="container">
+        <h1 class="display-1" align="center">WELCOME!</h1>
+        <hr>
+    <div>
+        <img class="img-fluid" th:src = "@{/images/GardenPhoto_HomeBody.jpg}"/>
+    </div>
 
-<div>
-    <img class="img-fluid" th:src = "@{/images/GardenPhoto_HomeBody.jpg}"/>
-</div>
-<hr>
+        <hr>
 
-<p align="center" class="lead">The Water Garden Society of Greater Kansas City (WGSGKC) is made up of members from all parts of the KC metro area who are interested in water gardening. Monthly meetings, September - May are open to members and the public. Tours, community service projects, garden shows and plant exchanges are some of the activities scheduled throughout the year. We welcome all interested in water gardening to join us.</p>
+    <p align="center" class="lead">The Water Garden Society of Greater Kansas City (WGSGKC) is made up of members from all parts of the KC metro area who are interested in water gardening. Monthly meetings, September - May are open to members and the public. Tours, community service projects, garden shows and plant exchanges are some of the activities scheduled throughout the year. We welcome all interested in water gardening to join us.</p>
 
-<footer th:replace="fragments :: footer"></footer>
+    <footer th:replace="fragments :: footer"></footer>
 
-</div>
+    </div>
 
 </body>
 </html>

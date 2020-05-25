@@ -43,3 +43,7 @@
     border-radius: 50%;
     height: 120px;
 }
+
+.navbar .container {
+    justify-content: space-evenly;
+}
