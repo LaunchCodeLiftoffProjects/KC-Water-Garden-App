@@ -9,6 +9,8 @@
 
 <nav th:replace="fragments :: page-header"></nav>
 
+<div class="container">
+
 <ul>
     <li>
         <a th:href="@{/admin/gardens/admin-list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Gardens</a>
@@ -28,8 +30,14 @@
     <li>
         <a th:href="@{/admin/features/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Feature</a>
     </li>
+    <li>
+        <a th:href="@{/admin/users/list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Users</a>
+    </li>
 </ul>
 
 <footer th:replace="fragments :: footer"></footer>
+
+</div>
+
 </body>
 </html>
