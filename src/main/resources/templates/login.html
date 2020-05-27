@@ -10,7 +10,11 @@
         </style>
     </head>
 <body>
+
     <div th:replace = "fragments :: page-header"></div>
+
+    <div class="container">
+
     <form th:action="@{/login}" method="post">
         <h2>Log In</h2>
         <div th:if="${param.error}">
@@ -29,5 +33,8 @@
         </div>
         <input type="submit" value="Log in" />
     </form>
+
+    </div>
+
 </body>
 </html>

@@ -9,6 +9,8 @@
 
 <nav th:replace="fragments :: page-header"></nav>
 
+<div class="container">
+
 <ul>
     <li>
         <a th:href="@{/admin/gardens/admin-list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Gardens</a>
@@ -34,5 +36,8 @@
 </ul>
 
 <footer th:replace="fragments :: footer"></footer>
+
+</div>
+
 </body>
 </html>

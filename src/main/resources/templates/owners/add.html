@@ -7,6 +7,8 @@
 
 <body>
 
+<div class="container">
+
 <div th:replace="fragments :: page-header"></div>
 
 <form method="post" th:action="@{/admin/owners/add}">
@@ -29,6 +31,8 @@
 </form>
 
 <footer th:replace="fragments :: footer"></footer>
+
+</div>
 
 </body>
 </html>
