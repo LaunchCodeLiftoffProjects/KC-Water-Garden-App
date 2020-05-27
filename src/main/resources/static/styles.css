@@ -11,9 +11,10 @@
     margin-left: 10%;
     margin-right: 10%;
 }
+
 .footerLinkPicture {
-    max-height: 80px;
-    max-width: 255px;
+    max-height: 60px;
+    max-width: 200px;
     margin: 10px;
 }
 
