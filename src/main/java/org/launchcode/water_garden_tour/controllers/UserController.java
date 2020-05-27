@@ -5,12 +5,16 @@ import org.launchcode.water_garden_tour.models.User;
 import org.launchcode.water_garden_tour.models.data.UserRepository;
 import org.launchcode.water_garden_tour.models.garden.Garden;
 import org.launchcode.water_garden_tour.models.garden.Owner;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,11 +71,27 @@ public class UserController {
 
     @PostMapping("/users/update")
     public String updateUser(Model model,
-                              int userId,
-                              String username,
-                              String fname,
-                              String lname,
-                              String role) {
+                             @Valid @ModelAttribute User updateUser,
+                             Errors errors,
+                             int userId,
+                             String username,
+                             String fname,
+                             String lname,
+                             String role) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Update User");
+
+            Optional <User> optUser = userRepository.findById(userId);
+            if (optUser.isPresent()) {
+                User userToUpdate = (User) optUser.get();
+                model.addAttribute("user", userToUpdate);
+            }
+            model.addAttribute("errorMsg", "Errors found, please try again");
+            model.addAttribute("errorStatus", "true");
+
+            return "/users/update";
+        }
 
         Optional<User> optUser = userRepository.findById(userId);
         User userToUpdate = (User) optUser.get();
@@ -83,10 +103,11 @@ public class UserController {
 
         userRepository.save(userToUpdate);
 
-            model.addAttribute("results", userRepository.findAll());
-            model.addAttribute("title", "User List");
-            return "redirect:list";
-        }
+        model.addAttribute("results", userRepository.findAll());
+        model.addAttribute("title", "User List");
+
+        return "redirect:list";
+    }
 
     @PostMapping("/users/delete")
     public String deleteUser(Model model, @RequestParam int userId) {

@@ -35,8 +35,11 @@
                         <p class="card-text" th:text="${'Owner: ' + garden.owner.name}"></p>
                         <p class="card-text" style="margin-bottom: 0"><strong>About our garden...</strong></p>
                         <p class="card-text show-read-more" th:text="${garden.description}"></p>
-                        <a class="card-text btn btn-primary" th:href="@{'/user/view/' + ${garden.id}}" style="margin-bottom:10px;">More Information</a>
-                        <a class="card-text btn btn-danger" th:href="@{'/user/gardens/tour/delete/' + ${garden.id}}">Delete from Tour</a>
+                        <div style="text-align:center;">
+                            <a class="card-text btn-sm btn-primary" th:href="@{'/user/view/' + ${garden.id}}" style="margin-bottom:10px;">More Information</a>
+                            <br>
+                            <a class="card-text btn-sm btn-danger" th:href="@{'/user/gardens/tour/delete/' + ${garden.id}}">Delete from Tour</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@
 <nav th:replace="fragments :: page-header"></nav>
 
 <div class="container body-content">
-    <h2 th:text="${title}"></h2>
+    <h2 class="garden-title" th:text="${title}"></h2>
 
     <td style="vertical-align:middle;">
         <form method="get" th:action="@{/admin/users/list/}" th:object="${user}">

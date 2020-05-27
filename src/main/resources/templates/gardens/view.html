@@ -6,37 +6,51 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-    <div th:replace="fragments :: page-header"></div>
+    <nav th:replace="fragments :: page-header"></nav>
 
     <div style="max-width: 85%; " class="container body-content">
         <div class = "row justify-content-center">
-            <h1 th:text="${garden.name}"></h1>
+            <h1 class="garden-title" th:text="${garden.name}"></h1>
         </div>
-        <div class = "row grid-row individual-content">
-            <div class="col" >
+        <div class = "row">
+            <div class="col-md-6 col-sm-10" style="text-align:center;">
                 <img class = "individual-image" th:src="@{${'/user/garden/list/' + garden.id}}" alt = "Water Garden Photo"/>
             </div>
-            <div class="col-8">
-                <p style="margin-bottom: 0"><strong>About our garden...</strong></p>
+            <div class="col-md-6 col-sm-10">
+                <h4 style="margin-bottom: 0" class="font-bold">About our garden...</h4>
                 <p th:text="${garden.description}"></p>
-                <h4>Features </h4>
+                <h4 class="font-bold">Features </h4>
                 <hr>
                 <ul th:each="feature : ${garden.features}">
                     <li th:text="${feature.name}">Feature Text</li>
                 </ul>
-                <h4>Address</h4>
+                <h4 class="font-bold">Address</h4>
                 <hr>
                 <p th:text="${garden.address}"></p>
-                <h4>Owner </h4>
+                <h4 class="font-bold">Owner </h4>
                 <hr>
                 <p th:text="${garden.owner.name}"></p>
             </div>
         </div>
-    </div>
-        <div class = "row justify-content-center" style="margin-bottom:20px;">
-            <a class="card-text btn btn-success" id="add" th:href="@{'/user/gardens/tour/' + ${garden.id}}">Add to Tour</a>
-            <a class="btn btn-primary" th:href="@{/user/gardens/list}" style="margin-right:10px; margin-left:10px;" >Return to Water Gardens</a>
-            <a class="btn btn-info" th:href="@{'/user/gardens/tour'}">Return to My Water Garden Tour</a>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <a class="card-text mr-1 mb-1 btn btn-success" id="add" th:href="@{'/user/gardens/tour/' + ${garden.id}}">Add to Tour</a>
+            </span>
+            <span class="input-group-btn">
+                <a class="card-text mr-1 mb-1  btn btn-primary" th:href="@{/user/gardens/list}">Return to Water Gardens</a>
+            </span>
+            <span class="input-group-btn">
+                <a class="card-text mr-1 mb-1  btn btn-info" th:href="@{'/user/gardens/tour'}">Return to My Water Garden Tour</a>
+            </span>
+            <span class="input-group-btn">
+                <form method="GET" th:action="@{/user/map}">
+                    <button class="card-text mr-1 mb-1 btn btn-secondary"
+                       th:value="${garden.id}"
+                       name="gardenId"
+                       style="color:#fff;">View on Map</button>
+                </form>
+            </span>
+        </div>
         </div>
     </div>
 

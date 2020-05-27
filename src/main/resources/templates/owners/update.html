@@ -7,30 +7,36 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-<div th:replace="fragments :: page-header"></div>
+    <div th:replace="fragments :: page-header"></div>
 
-<form method="POST" th:action="@{/admin/owners/update}" th:object="${owner}">
-    <input type="hidden" th:name="ownerId" th:value="${owner.id}" />
-    <div class="form-group">
-        <label th:for="name">Owner Name</label>
-        <input class="form-control" th:field="${owner.name}" />
-        <span th:errors="${owner.name}" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="email">Owner Email</label>
-        <input class="form-control" th:field="${owner.email}" />
-        <span th:errors="${owner.email}" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="phoneNum">Phone Number</label>
-        <input class="form-control" th:field="${owner.phoneNum}" />
-        <span th:errors="${owner.phoneNum}" class="error"></span>
-    </div>
-    <button type="submit" class="btn btn-warning">Update</button>
-</form>
+    <h3 th:text="${'Update Owner ' + {owner.id}}"></h3>
+    <h4 th:text="${errorMsg}" th:if="${errorStatus}"></h4>
 
-<div th:replace="fragments :: footer-spacer"></div>
-<footer th:replace="fragments :: footer"></footer>
+
+    <form method="POST" th:action="@{/admin/owners/update}" th:object="${owner}">
+        <input type="hidden" th:name="ownerId" th:value="${owner.id}" />
+        <div class="form-group">
+            <label th:for="name">Owner Name</label>
+            <input class="form-control" th:field="${owner.name}" />
+            <span th:errors="${owner.name}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label th:for="email">Owner Email</label>
+            <input class="form-control" th:field="${owner.email}" />
+            <span th:errors="${owner.email}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label th:for="phoneNum">Phone Number</label>
+            <input class="form-control" th:field="${owner.phoneNum}" />
+            <span th:errors="${owner.phoneNum}" class="error"></span>
+        </div>
+        <button type="submit" class="btn btn-warning">Update</button>
+        <a class="btn btn-secondary" th:href="@{/admin/owners/}" style="margin-right:10px;">Cancel</a>
+    </form>
+
+
+    <div th:replace="fragments :: footer-spacer"></div>
+    <footer th:replace="fragments :: footer"></footer>
 
 </body>
 </html>
