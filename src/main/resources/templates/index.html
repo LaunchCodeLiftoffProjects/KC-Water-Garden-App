@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
-<head >
+<head>
     <div th:replace="fragments :: head" th:remove="tag">
     </div>
     <style>
@@ -9,34 +9,98 @@
             display: none;
         }
     </style>
+    <script type="text/javascript" th:src="@{/script.js}"></script>
     <meta charset="UTF-8"/>
     <title>Kansas City Water Garden Tours</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
 
-<div class="home" th:replace = "fragments :: page-header"></div>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"></script>
 
-    <div class="container">
-        <h1 class="display-1" align="center">WELCOME!</h1>
-        <hr>
-        <p align="center" class="lead">The Water Garden Society of Greater Kansas City (WGSGKC) is made up of members from all parts of the KC metro area who are interested in water gardening. Monthly meetings, September - May are open to members and the public. Tours, community service projects, garden shows and plant exchanges are some of the activities scheduled throughout the year. We welcome all interested in water gardening to join us.</p>
-        <div>
-            <img class="img-fluid" th:src = "@{/images/GardenPhoto_HomeBody.jpg}"/>
+    <div class="home" th:replace = "fragments :: page-header"></div>
+
+    <div class="container body-content">
+        <div class = "row" sec:authorize="!isAuthenticated()" style="margin-top:20px;">
+            <div class="col-md-6 col-sm-10" >
+                <img class="img-fluid" th:src = "@{/images/GardenPhoto_HomeBody.jpg}"/>
+            </div>
+            <div class="col-md-6 col-sm-10">
+                <h3 class="display-1" align="center">Welcome!</h3>
+                <p align="center" class="lead">The Water Garden Society of Greater Kansas City (WGSGKC) is made up of members from all parts of the KC metro area who are interested in water gardening. Monthly meetings, September - May are open to members and the public. Tours, community service projects, garden shows and plant exchanges are some of the activities scheduled throughout the year. We welcome all interested in water gardening to join us.</p>
+            </div>
         </div>
-
-        <div style="text-align:center;">
-        <h3>Featured Garden Categories:</h3>
-        <a th:each="feature : ${features}"
-           th:href="@{'user/gardens/feature/' + ${feature.id}}"
-           th:text="${feature.name}"
-           style="margin-left:5px; margin-right:5px"></a>
+        <div align="center" sec:authorize="isAuthenticated()">
+            <div class="container">
+                <div class="row" style="margin-top:20px">
+                    <div class="col-md-6 col-sm-10">
+                        <img class="img-fluid" th:src = "@{/images/GardenPhoto_HomeBody.jpg}"/>
+                    </div>
+                    <div class="col-md-6 col-sm-10 justify-content-center">
+                        <div class="fb-page"
+                             data-href="https://www.facebook.com/WaterGardenSocietyOfGreaterKansasCity"
+                             data-tabs="timeline"
+                             data-width="600"
+                             data-height="350"
+                             data-small-header="false"
+                             data-adapt-container-width="true"
+                             data-hide-cover="false"
+                             data-show-facepile="true">
+                            <blockquote cite="https://www.facebook.com/WaterGardenSocietyOfGreaterKansasCity" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/WaterGardenSocietyOfGreaterKansasCity">Water Garden Society of Greater Kansas City</a></blockquote>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row align-items-center justify-content-center">
+                    <div class="col">
+                        <h2 class="garden-title">Featured Categories</h2>
+                        <div class="container">
+                            <a th:each="feature : ${features}"
+                               th:text="${feature.name}"
+                               th:href="@{${'/user/gardens/feature/' + feature.id}}"
+                               style="margin-left:5px;
+                                      margin-right:5px;
+                                      margin-bottom:20px;
+                                      font-size:20px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="container justify-content-center" style="max-width: 90%;">
+                <h2  class="garden-title" style="margin-bottom:0;">Featured Water Gardens</h2>
+                <!--    Below div iterates through the collection and makes a row for every elements with an index divisible by 3 e.g. 0, 3, 6
+                        adding rowStatus uses a thymeleaf mechanism to create a variable with an index property that holds the current iteration index -->
+                <div class="card-deck mb-5">
+                    <div class="row grid-row">
+                        <!--    Below div iterates through the collection again with a new status variable and adds gardens to the row if this index is less than
+                                the row index + 3 and the index is >= -->
+                        <div th:each="garden : ${gardens}" class="col-sm">
+                            <div class="card border-dark mb-3">
+                                <a th:href="@{'/user/view/' + ${garden.id}}">
+                                    <img class="card-img-top rounded"  th:src="@{${'/user/garden/list/' + garden.id}}" alt="Beautiful Garden"/>
+                                </a>
+                                <div class="card-body">
+                                    <a th:href="@{'/user/view/' + ${garden.id}}">
+                                        <h5 class="card-title" th:text="${garden.name}" ></h5>
+                                    </a>
+                                    <p class="card-text" style="margin-bottom: 0"><strong>About our garden...</strong></p>
+                                    <p class="card-text show-read-more" th:text="${garden.description}"></p>
+                                    <a class="card-text btn btn-primary" th:href="@{'/user/view/' + ${garden.id}}">More Information</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <hr>
     </div>
 
-<div th:replace="fragments :: footer-spacer"></div>
-<footer th:replace="fragments :: footer"></footer>
+    <div th:replace="fragments :: footer-spacer"></div>
+    <footer th:replace="fragments :: footer"></footer>
 
 </body>
 </html>

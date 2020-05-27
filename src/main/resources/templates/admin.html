@@ -12,38 +12,37 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-<nav th:replace="fragments :: page-header"></nav>
+    <nav th:replace="fragments :: page-header"></nav>
 
-<div class="container">
+    <div class="container">
+        <h2 th:text="${title}"></h2>
 
-<ul>
-    <li>
-        <a th:href="@{/admin/gardens/admin-list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Gardens</a>
-    </li>
-    <li>
-        <a th:href="@{/admin/gardens/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Garden</a>
-    </li>
-    <li>
-        <a th:href="@{/admin/owners/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Owners</a>
-    </li>
-    <li>
-        <a th:href="@{/admin/owners/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Owner</a>
-    </li>
-    <li>
-        <a th:href="@{/admin/features/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Features</a>
-    </li>
-    <li>
-        <a th:href="@{/admin/features/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Feature</a>
-    </li>
-    <li>
-        <a th:href="@{/admin/users/list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Users</a>
-    </li>
-</ul>
+        <div class="row text-center">
+            <div class="col">
+                <h4>Gardens</h4>
+                <a class="btn btn-secondary btn-lg" th:href="@{/admin/gardens/admin-list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Gardens</a>
+                <a class="btn btn-dark btn-lg" th:href="@{/admin/gardens/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Garden</a>
+            </div>
+            <div class="col">
+                <h4>Owners</h4>
+                <a class="btn btn-secondary btn-lg" th:href="@{/admin/owners/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Owners</a>
+                <a class="btn btn-dark btn-lg" th:href="@{/admin/owners/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Owner</a>
+            </div>
+            <div class="col">
+                <h4>Features</h4>
+                <a class="btn btn-secondary btn-lg" th:href="@{/admin/features/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Features</a>
+                <a class="btn btn-dark btn-lg" th:href="@{/admin/features/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Feature</a>
+            </div>
+            <div class="col">
+                <h4>Users</h4>
+                <a class="btn btn-secondary btn-lg" th:href="@{/admin/users/list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Users</a>
+            </div>
+        </div>
 
-</div>
+    </div>
 
-<div th:replace="fragments :: footer-spacer"></div>
-<footer th:replace="fragments :: footer"></footer>
+    <div th:replace="fragments :: footer-spacer"></div>
+    <footer th:replace="fragments :: footer"></footer>
 
 </body>
 </html>

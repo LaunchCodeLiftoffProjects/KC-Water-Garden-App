@@ -43,6 +43,7 @@
                     <input type="hidden" th:name="ownerId" th:value="${owner.id}">
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
+                <button th:if="${ownersWithGardens.contains(owner)}" type="button" class="btn btn-danger" disabled>Delete</button>
             </td>
         </tr>
     </table>
