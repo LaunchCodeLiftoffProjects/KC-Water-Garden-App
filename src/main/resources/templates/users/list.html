@@ -18,7 +18,7 @@
         <form method="get" th:action="@{/admin/users/list/}" th:object="${user}">
             <input type="text" name="searchTerm" id="searchTerm" th:value="${searchTerm}">
             <button type="submit" class="btn btn-warning">Search</button>
-            <a th:href="@{'?searchTerm='}">Full List of Users</a>
+            <a th:href="@{'?searchTerm='}"class="btn btn-success">Full List of Users</a>
             <p th:text="${search}"></p>
         </form>
     </td>

@@ -8,28 +8,40 @@
             display: none;
         }
     </style>
+    <script type="text/javascript" th:src="@{/script.js}"></script>
 </head>
-<body>
-<div th:replace="fragments :: page-header"></div>
-<div class="container body-content">
-    <h2 th:text="${title}">Gardens</h2>
+<body class="gardens">
 
-<!--    Below div iterates through the collection and makes a row for every elements with an index divisible by 3 e.g. 0, 3, 6
-        adding rowStatus uses a thymeleaf mechanism to create a variable with an index property that holds the current iteration index -->
-    <div th:each="garden,rowStatus : ${gardens}" class="row grid-row" th:if="${rowStatus.index % 3} == 0">
-<!--    Below div iterates through the collection again with a new status variable and adds gardens to the row if this index is less than
-        the row index + 3 and the index is >= -->
-        <div th:each="garden,gardenStatus : ${gardens}" class="col-sm"
-             th:if="${gardenStatus.index < rowStatus.index + 3 and gardenStatus.index >= rowStatus.index}">
-            <img th:src="@{${'/user/garden/list/' + garden.id}}" style="width: 75px;" alt="Beautiful Garden"/>
-            <p th:text="${garden.name}"></p>
-            <p th:text="${garden.address}"></p>
-            <p th:text="${'Owner: ' + garden.owner.name}"></p>
-            <p th:text="${'Description: ' + garden.description}"></p>
-            <a th:href="@{'/user/view/' + ${garden.id}}">More Information</a>
+<div th:replace="fragments :: page-header"></div>
+
+<h2 class="garden-title">Water Gardens</h2>
+<h4 class="garden-subtitle">Here are the water gardens that are featured on our tour. Click on a garden to learn more about its beautiful features. Use the Map link above to see the mapped locations of the gardens.</h4>
+
+<div class="card-deck mb-5">
+    <div class="row justify-content-center">
+        <div th:each="garden : ${gardens}">
+            <div class="col-lg-4 col-sm-6">
+                <div class="card text-left h-100" style="width:18rem">
+                    <a th:href="@{'/user/view/' + ${garden.id}}">
+                    <img class="card-img-top rounded" th:src="@{${'/user/garden/list/' + garden.id}}" alt="Beautiful Garden"/>
+                    </a>
+                    <div class="card-body">
+                        <a th:href="@{'/user/view/' + ${garden.id}}">
+                        <h5 class="card-title" th:text="${garden.name}" ></h5>
+                        </a>
+                        <p class="card-text" th:text="${garden.address}"></p>
+                        <p class="card-text" th:text="${'Owner: ' + garden.owner.name}"></p>
+                        <p class="card-text" style="margin-bottom: 0"><strong>About our garden...</strong></p>
+                        <p class="card-text show-read-more" th:text="${garden.description}"></p>
+                        <a class="card-text btn btn-primary" th:href="@{'/user/view/' + ${garden.id}}">More Information</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
 <!--Saving some info in case we want to add links back in-->
 <!--                Features:-->
 <!--                <ul th:each="feature : ${garden.features}">-->

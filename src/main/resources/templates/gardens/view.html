@@ -5,13 +5,14 @@
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
-<body>
+<body class="gardens">
 <div th:replace="fragments :: page-header"></div>
 <div class="container body-content">
 <h1 th:text="${'Garden: ' + garden.id}">Placeholder</h1>
     <img th:src="@{${'/user/garden/list/' + garden.id}}" alt = "Water Garden Photo"/>
     <p th:text="${'Name: ' + garden.name}"></p>
-    <p th:text="${'Description: ' + garden.description}"></p>
+    <p style="margin-bottom: 0"><strong>About our garden...</strong></p>
+    <p th:text="${garden.description}"></p>
     <p th:text="${'Address: ' + garden.address}"></p>
     <h3>Features: </h3>
         <ul th:each="feature : ${garden.features}">

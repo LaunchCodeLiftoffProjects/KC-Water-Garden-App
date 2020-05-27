@@ -36,7 +36,69 @@
     margin: 2rem auto auto auto;
 }
 
-.grid-row {
-    font-weight: 600;
-    padding: 30px;
+.garden-title {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-family: "Garamond";
+    font-weight: bold;
+    font-size: 225%;
 }
+
+.garden-subtitle {
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-family: "Garamond";
+    font-weight: bold;
+    font-size: 160%;
+
+}
+
+.gardens {
+    background-color: #cae8d5;
+}
+
+.card {
+    border: none;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.card-img-top {
+    height: 20vw;
+    object-fit: cover;
+}
+
+.card-title {
+    color: black;
+    font-family: "Garamond";
+    font-weight: bold;
+    font-size: 160%;
+    }
+
+.card-body {
+background-color: #cae8d5;
+}
+
+
+.card-text {
+    font-family: "Garamond";
+    font-size: 120%;
+}
+
+.show-read-more .more-text{
+    display: none;
+}
+
+.morecontent span {
+    display: none;
+}
+.morelink {
+    display: block;
+}
+
+
+
+
+
