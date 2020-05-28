@@ -27,7 +27,7 @@
                 <a class="nav-link home-link" th:href="@{/}">Home</a>
                 <a class="nav-link list-link" th:href="@{/user/gardens/list}" sec:authorize="isAuthenticated()">Water Gardens</a>
                 <a class="nav-link map-link" th:href="@{/user/map}" sec:authorize="isAuthenticated()">Map</a>
-                <a class="nav-link" th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')">Admin</a>
+                <a class="nav-link admin-link" th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')">Admin</a>
                 <a class="nav-link login-link" th:href="@{/login}" sec:authorize="!isAuthenticated()">Log In</a>
                 <a class="nav-link register-link" th:href="@{/register}" sec:authorize="!isAuthenticated()">Register</a>
                 <form th:action="@{/logout}" method="post" name="logoutForm"></form>
