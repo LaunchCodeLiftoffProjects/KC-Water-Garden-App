@@ -35,8 +35,17 @@
 }
 
 .grid-row {
-    font-weight: 600;
-    padding: 30px;
+    padding: 10px;
+}
+
+.individual-image{
+    max-width: 90%;
+    border-radius: 32px;
+}
+
+.individual-content {
+font-size: 1.2em;
+line-height: 1.5em;
 }
 
 .logo {
@@ -47,3 +56,4 @@
 .navbar .container {
     justify-content: space-evenly;
 }
+
