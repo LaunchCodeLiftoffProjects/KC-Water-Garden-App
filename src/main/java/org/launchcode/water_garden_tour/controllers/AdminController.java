@@ -61,14 +61,21 @@ public class AdminController {
                             Errors errors, Model model) throws IOException {
 
         if (errors.hasErrors()) {
-            return "/gardens/add";
+            model.addAttribute("title", "Add Garden");
+            return "gardens/add";
         }
 
         newGarden.setImage(file.getBytes());
 
         gardenRepository.save(newGarden);
+
+        List<Feature> selectedFeatures = new ArrayList<>();
+
+        model.addAttribute("selectedFeatures", selectedFeatures);
         model.addAttribute("gardens", gardenRepository.findAll());
+        model.addAttribute("features", featureRepository.findAll());;
         model.addAttribute("title", "Garden List");
+        model.addAttribute("searchTerm", "");
 
         return "/gardens/list";
     }
