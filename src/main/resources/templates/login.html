@@ -9,7 +9,7 @@
         }
         </style>
     </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <div th:replace = "fragments :: page-header"></div>
 
@@ -34,9 +34,10 @@
         <input type="submit" value="Log in" />
     </form>
 
-    <footer th:replace="fragments :: footer"></footer>
-
     </div>
+
+    <div th:replace="fragments :: footer-spacer"></div>
+    <footer th:replace="fragments :: footer" th:remove="tag"></footer>
 
 </body>
 </html>
