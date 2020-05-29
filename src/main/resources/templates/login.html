@@ -14,28 +14,29 @@
 
 <div th:replace = "fragments :: page-header"></div>
 
-    <div class="container">
-
+    <div class="container card login-div">
     <form th:action="@{/login}" method="post">
-        <h2>Log In</h2>
-        <div th:if="${param.error}">
-            <p>Invalid username or password.</p>
+        <div class="form-group">
+            <h2>Log In</h2>
+            <div th:if="${param.error}">
+                <p>Invalid username or password.</p>
+            </div>
+            <div th:if="${param.logout}">
+                <p>You have been logged out.</p>
+            </div>
+            <div class = "login-field">
+                <label for="username">Username</label>
+                <input class="form-control" type="text" name="username" id="username"/>
+            </div>
+            <div class = "login-field">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name="password" id="password"/>
+            </div>
+            <button class="btn btn-success" type="submit">Log In</button>
+            <a class="btn btn-success" th:href="@{/register}">Register</a>
         </div>
-        <div th:if="${param.logout}">
-            <p>You have been logged out.</p>
-        </div>
-        <div>
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username"/>
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password"/>
-        </div>
-        <input type="submit" value="Log in" />
     </form>
-
-    </div>
+</div>
 
 <div th:replace="fragments :: footer-spacer"></div>
 <footer th:replace="fragments :: footer" th:remove="tag"></footer>

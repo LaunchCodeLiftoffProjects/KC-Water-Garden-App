@@ -1,5 +1,4 @@
-$(document).ready(function() {
-
+function showMoreText() {
         var showChar = 75;
         var ellipsestext = "...";
         var moretext = "Show more >";
@@ -29,5 +28,7 @@ $(document).ready(function() {
         $(this).prev().toggle();
         return false;
     });
-});
+}
+
+$(document).ready(showMoreText);
 

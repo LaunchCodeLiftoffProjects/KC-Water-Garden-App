@@ -9,6 +9,7 @@
             display: none;
         }
     </style>
+    <script type="text/javascript" th:src="@{/script.js}" async defer></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -94,14 +95,19 @@ function initMap() {
         });
         marker.addListener('click', function() {
             let directionsEndpoint = gardenLatLng;
-            infoWindow.setContent('<div id="info-window-content">' +
-                '<h1>' +
+            infoWindow.setContent('<div id="info-window-content" style="max-width: 95%;" class="container">' +
+             '<div class="row">' +
+             '<div class="col map-image-col">' +
+            '<img style="max-width: 90%" src="/user/garden/list/' + gardenId + '">' +
+            '</div>' +
+             '<div class="col map-text-col" style="max-width: 80%" >' +
+                '<p id = "info-window-header">' +
                 gardenName +
-                '</h1>' +
-                '<h2>' +
-                gardenAddress +
-                '</h2>' +
+                '</p>' +
                 '<p>' +
+                gardenAddress +
+                '</p>' +
+                '<p class="show-read-more">' +
                 gardenDescription +
                 '</p>' +
                 '<p>' +
@@ -109,7 +115,11 @@ function initMap() {
                 ' | ' +
                 'View Directions on <a class="directions" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=' + userPosition.lat + ',' + userPosition.lng + '&destination=' + gardenLatLng + '">Google Maps</a>' +
                 '</p>' +
+                '</div>' +
+                '</div>' +
                 '</div>');
+
+                showMoreText();
 
             getDirections(userPosition, directionsEndpoint);
 
@@ -137,7 +147,6 @@ function initMap() {
 </script>
 
 <!-- async defer allows the rest of the page to load before the map loads -->
-<script src="https://maps.googleapis.com/maps/api/js?key=INSERTapiKEYhere&callback=initMap" async defer></script>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNdGXjzZABIMcG2p2Ybg0Lf_CwdI7o8NY&callback=initMap" async defer></script>
 </body>
 </html>
