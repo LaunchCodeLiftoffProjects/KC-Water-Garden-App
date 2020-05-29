@@ -16,7 +16,6 @@ public class Feature extends AbstractEntity {
     public Feature() {}
 
     public Feature(String name, List<Garden> gardens) {
-        super();
         this.name = name;
         this.gardens = gardens;
     }
