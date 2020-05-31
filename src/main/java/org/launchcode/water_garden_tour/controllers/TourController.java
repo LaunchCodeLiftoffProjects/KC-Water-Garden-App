@@ -39,6 +39,7 @@ public class TourController {
         }
         model.addAttribute("gardens", gardenRepository.findAll());
         model.addAttribute("tourGardens", tourGardens);
+        model.addAttribute("title", "My Water Garden Tour");
         return "/gardens/list";
     }
 

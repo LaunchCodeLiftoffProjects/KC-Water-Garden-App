@@ -51,6 +51,7 @@
                 <button class="btn btn-outline-success btn-rounded btn-sm my-0" type="submit">Search</button>
             </form>
         </div>
+    </div>
     <!-- hide link if on main gardens/list/ (only show when on search)-->
         <th:block th:if="${title.equals('Garden Search')}">
             <a  th:href="@{/user/gardens/list}">Show All Gardens</a>
