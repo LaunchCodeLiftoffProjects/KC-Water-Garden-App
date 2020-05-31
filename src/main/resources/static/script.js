@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-        var showChar = 100;
+        var showChar = 75;
         var ellipsestext = "...";
         var moretext = "Show more >";
         var lesstext = "Show less";
@@ -30,3 +30,4 @@ $(document).ready(function() {
         return false;
     });
 });
+
