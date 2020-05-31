@@ -12,13 +12,18 @@
 <nav th:replace="fragments :: page-header"></nav>
 
 <div class="container body-content">
-    <h2 th:text="${title}">Owners</h2>
+    <div>
+        <span><h2 style="float:left;" th:text="${title}">Owners</h2></span>
+        <span><div><p style="float:right;">Note: only unassigned owners can be deleted</p></div></span>
+    </div>
     <table class="table">
         <tr>
             <th scope="col">Owner ID</th>
             <th scope="col">Owner Name</th>
             <th scope="col">Owner Email</th>
             <th scope="col">Owner Phone Number</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         <tr th:each="owner : ${owners}">
             <td th:text="${owner.id}" style="vertical-align:middle;"></td>
@@ -41,7 +46,9 @@
             </td>
         </tr>
     </table>
-    <a th:href="@{'/admin/owners/add'}">Add Garden Owner</a>
+    <div>
+        <a th:href="@{'/admin/owners/add'}">Add Garden Owner</a>
+    </div>
 </div>
 
 <footer th:replace="fragments :: footer"></footer>

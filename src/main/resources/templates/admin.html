@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments :: head">
-    <meta charset="UTF-8"/>
-    <title></title>
+<head>
+    <div th:replace="fragments :: head" th:remove="tag">
+    </div>
+    <style>
+        .admin-link {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>

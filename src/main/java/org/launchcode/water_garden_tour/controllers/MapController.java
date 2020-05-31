@@ -16,7 +16,9 @@ public class MapController {
     @RequestMapping("map")
     public String map(Model model) {
         model.addAttribute("gardens", gardenRepository.findAll());
-        return "/map";
+        model.addAttribute("title", "Garden Map View");
+
+        return "map";
     }
 
 }

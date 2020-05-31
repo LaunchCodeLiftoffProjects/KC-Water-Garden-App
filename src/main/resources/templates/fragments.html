@@ -5,7 +5,7 @@
 <head th:fragment="head">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Kansas City Water Garden Tours</title>
+    <title th:text="${title}">Kansas City Water Garden Tours</title>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" th:href="@{/normalize.css}" type="text/css">
