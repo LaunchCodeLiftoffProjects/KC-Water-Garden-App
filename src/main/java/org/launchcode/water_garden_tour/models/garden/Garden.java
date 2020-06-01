@@ -26,7 +26,7 @@ public class Garden extends AbstractEntity {
     private String longitude;
 
     @NotBlank(message="Description is required.")
-    @Size(max=1000, message="Description exceeds maximum number of characters")
+    @Size(max=2000, message="Description exceeds maximum number of characters")
     private String description;
 
     @ManyToOne
@@ -42,6 +42,7 @@ public class Garden extends AbstractEntity {
     private byte[] image;
 
     public Garden(String name, String address, String latitude, String longitude, String description, Owner owner, List<Feature> features, byte[] image) throws IOException {
+        this();
         this.name = name;
         this.address = address;
         this.latitude = latitude;
@@ -52,7 +53,9 @@ public class Garden extends AbstractEntity {
         this.image = image;
     }
 
-    public Garden() {}
+    public Garden() {
+        super();
+    }
 
     public String getName() {
         return name;

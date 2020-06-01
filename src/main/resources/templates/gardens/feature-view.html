@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+
+<body>
+
+<nav th:replace="fragments :: page-header"/>
+<h2 th:text="${feature.name}"></h2>
+<div th:each="garden,rowStatus : ${gardens}" class="row grid-row" th:if="${rowStatus.index % 3} == 0">
+    <div th:each="garden,gardenStatus : ${gardens}" class="col-sm"
+         th:if="${gardenStatus.index < rowStatus.index + 3 and gardenStatus.index >= rowStatus.index}">
+        <img th:src="@{${'/user/garden/list/' + garden.id}}" style="width: 75px;" alt="Beautiful Garden"/>
+        <p th:text="${garden.description}"></p>
+        <a th:href="@{'/user/view/' + ${garden.id}}">More Information</a>
+    </div>
+</div>
+
+
+
+<footer th:replace="fragments :: footer"/>
+</body>
+</html>

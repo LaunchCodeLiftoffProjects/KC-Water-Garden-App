@@ -20,16 +20,20 @@
     <div class="container">
         <h1 class="display-1" align="center">WELCOME!</h1>
         <hr>
-    <div>
-        <img class="img-fluid" th:src = "@{/images/GardenPhoto_HomeBody.jpg}"/>
-    </div>
+        <p align="center" class="lead">The Water Garden Society of Greater Kansas City (WGSGKC) is made up of members from all parts of the KC metro area who are interested in water gardening. Monthly meetings, September - May are open to members and the public. Tours, community service projects, garden shows and plant exchanges are some of the activities scheduled throughout the year. We welcome all interested in water gardening to join us.</p>
+        <div>
+            <img class="img-fluid" th:src = "@{/images/GardenPhoto_HomeBody.jpg}"/>
+        </div>
 
+        <div style="text-align:center;">
+        <h3>Featured Garden Categories:</h3>
+        <a th:each="feature : ${features}"
+           th:href="@{'user/gardens/feature/' + ${feature.id}}"
+           th:text="${feature.name}"
+           style="margin-left:5px; margin-right:5px"></a>
+        </div>
         <hr>
-
-    <p align="center" class="lead">The Water Garden Society of Greater Kansas City (WGSGKC) is made up of members from all parts of the KC metro area who are interested in water gardening. Monthly meetings, September - May are open to members and the public. Tours, community service projects, garden shows and plant exchanges are some of the activities scheduled throughout the year. We welcome all interested in water gardening to join us.</p>
-
-    <footer th:replace="fragments :: footer"></footer>
-
+        <footer th:replace="fragments :: footer"></footer>
     </div>
 
 </body>

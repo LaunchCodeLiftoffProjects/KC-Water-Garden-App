@@ -8,38 +8,90 @@
             display: none;
         }
     </style>
+    <script type="text/javascript" th:src="@{/script.js}"></script>
 </head>
-<body>
-<div th:replace="fragments :: page-header"></div>
-<div class="container body-content">
-    <h2 th:text="${title}">Gardens</h2>
 
-<!--    Below div iterates through the collection and makes a row for every elements with an index divisible by 3 e.g. 0, 3, 6
-        adding rowStatus uses a thymeleaf mechanism to create a variable with an index property that holds the current iteration index -->
-    <div th:each="garden,rowStatus : ${gardens}" class="row grid-row" th:if="${rowStatus.index % 3} == 0">
-<!--    Below div iterates through the collection again with a new status variable and adds gardens to the row if this index is less than
-        the row index + 3 and the index is >= -->
-        <div th:each="garden,gardenStatus : ${gardens}" class="col-sm"
-             th:if="${gardenStatus.index < rowStatus.index + 3 and gardenStatus.index >= rowStatus.index}">
-            <img th:src="@{${'/user/garden/list/' + garden.id}}" style="width: 75px;" alt="Beautiful Garden"/>
-            <p th:text="${garden.name}"></p>
-            <p th:text="${garden.address}"></p>
-            <p th:text="${'Owner: ' + garden.owner.name}"></p>
-            <p th:text="${'Description: ' + garden.description}"></p>
-            <a th:href="@{'/user/view/' + ${garden.id}}">More Information</a>
+<body class="gardens">
+
+<div th:replace="fragments :: page-header"></div>
+
+<h2 class="garden-title">Water Gardens</h2>
+<h4 class="garden-subtitle">Here are the water gardens that are featured on our tour. Click on a garden to learn more about its beautiful features, or search for something more specific. 
+  Use the Map link above to see the mapped locations of the gardens.  You can also add your favorites to your own custom tour!</h4>
+<div class="row justify-content-center">
+    <a class="card-text btn btn-success" th:href="@{'/user/gardens/tour'}">My Water Garden Tour</a>
+</div>
+    <div class="container body-content">
+        <div>
+            <!-- Search form -->
+            <form th:action="@{/user/gardens/search}" method="GET">
+                <div style="margin-top: 5px">
+                    <input class="form-control mr-sm-2"
+                       th:name="searchTerm"
+                       type="text"
+                       th:value="${searchTerm}"
+                       aria-label="Search">
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label th:for="features">Features: </label>
+                    <th:block th:each="feature : ${features}">
+                        <input type="checkbox"
+                               th:name="featureIds"
+                               th:value="${feature.id}"
+                               th:if="${selectedFeatures.contains(feature)}"
+                               checked>
+                        <input type="checkbox"
+                               name="featureIds"
+                               th:value="${feature.id}"
+                               th:unless="${selectedFeatures.contains(feature)}">
+                        <label th:text="${feature.name} + '  '"></label>
+                    </th:block>
+                    <p>Note: all gardens are searched if no categories are selected.</p>
+                </div>
+                <button class="btn btn-outline-success btn-rounded btn-sm my-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    <!-- hide link if on main gardens/list/ (only show when on search)-->
+        <th:block th:if="${title.equals('Garden Search')}">
+            <a  th:href="@{/user/gardens/list}">Show All Gardens</a>
+            <th:block th:if="${!searchTerm.isEmpty()}">
+                <p th:text="'Results containing term: ' + ${searchTerm}"></p>
+            </th:block>
+        </th:block>
+        <th:block th:if="${title.equals('Garden List')}">
+            <p>Displaying All Gardens</p>
+        </th:block>
+        <hr>
+      
+    <div class="container-fluid">
+    <div class="row justify-content-center">
+        <div th:each="garden : ${gardens}">
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <div class="card text-left h-100" style="width:18rem">
+                    <a th:href="@{'/user/view/' + ${garden.id}}">
+                    <img class="card-img-top rounded" th:src="@{${'/user/garden/list/' + garden.id}}" alt="Beautiful Garden"/>
+                    </a>
+                    <div class="card-body">
+                        <a th:href="@{'/user/view/' + ${garden.id}}">
+                        <h5 class="card-title" th:text="${garden.name}" ></h5>
+                        </a>
+                        <p class="card-text" th:text="${garden.address}"></p>
+                        <p class="card-text" th:text="${'Owner: ' + garden.owner.name}"></p>
+                        <p class="card-text" style="margin-bottom: 0"><strong>About our garden...</strong></p>
+                        <p class="card-text show-read-more" th:text="${garden.description}"></p>
+                        <a class="card-text btn btn-primary" th:href="@{'/user/view/' + ${garden.id}}" style="margin-bottom:10px;">More Information</a>
+                        <a class="card-text btn btn-success" id="add" th:href="@{'/user/gardens/tour/' + ${garden.id}}">Add to Tour</a>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<!--Saving some info in case we want to add links back in-->
-<!--                Features:-->
-<!--                <ul th:each="feature : ${garden.features}">-->
-<!--                    <li>-->
-<!--            <p th:text="${feature.name}"></p>-->
-<!--Owner Info-->
-<!--                <a th:text="${garden.owner.name}"></a>-->
-<!--              <a th:href="@{'/owners/view/' + ${garden.gardenOwner.id}}" th:text="${garden.gardenOwner.name}"></a>-->
+      
+    <footer th:replace="fragments :: footer"></footer>
 
-<footer th:replace="fragments :: footer"></footer>
 
 </body>
 </html>

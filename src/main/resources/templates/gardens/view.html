@@ -3,8 +3,9 @@
 <head>
     <head th:replace="fragments :: head">
 </head>
-<body>
+<body class="gardens">
 <div th:replace="fragments :: page-header"></div>
+
 <div style="max-width: 85%; " class="container body-content">
     <div class = "row justify-content-center">
         <h1 th:text="${garden.name}"></h1>
@@ -14,6 +15,7 @@
             <img class = "individual-image" th:src="@{${'/user/garden/list/' + garden.id}}" alt = "Water Garden Photo"/>
         </div>
         <div class="col-8">
+            <p style="margin-bottom: 0"><strong>About our garden...</strong></p>
             <p th:text="${garden.description}"></p>
             <h4>Features </h4>
             <hr>
@@ -28,10 +30,13 @@
             <p th:text="${garden.owner.name}"></p>
         </div>
     </div>
-    <div class = "row  justify-content-center">
-        <a th:href="@{/user/gardens/list}">Return to Water Gardens</a>
+    <div class = "row  justify-content-center" style="margin-bottom:20px;">
+        <a class="btn btn-primary" th:href="@{/user/gardens/list}" style="margin-right:10px;" >Return to Water Gardens</a>
+        <a class="btn btn-success" th:href="@{'/user/gardens/tour'}">Return to My Water Garden Tour</a>
     </div>
 </div>
+
+<footer th:replace="fragments :: footer"></footer>
 
 </body>
 </html>
