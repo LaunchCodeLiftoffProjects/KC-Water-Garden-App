@@ -80,7 +80,7 @@
                         <p class="card-text" th:text="${'Owner: ' + garden.owner.name}"></p>
                         <p class="card-text" style="margin-bottom: 0"><strong>About our garden...</strong></p>
                         <p class="card-text show-read-more" th:text="${garden.description}"></p>
-                        <a class="card-text btn btn-primary" th:href="@{'/user/view/' + ${garden.id}}">More Information</a>
+                        <a class="card-text btn btn-primary" th:href="@{'/user/view/' + ${garden.id}}" style="margin-bottom:10px;">More Information</a>
                         <a class="card-text btn btn-success" id="add" th:href="@{'/user/gardens/tour/' + ${garden.id}}">Add to Tour</a>
 
                     </div>

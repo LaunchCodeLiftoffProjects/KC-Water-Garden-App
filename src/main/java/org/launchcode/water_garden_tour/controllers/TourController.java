@@ -2,7 +2,9 @@ package org.launchcode.water_garden_tour.controllers;
 
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.launchcode.water_garden_tour.models.data.FeatureRepository;
 import org.launchcode.water_garden_tour.models.data.GardenRepository;
+import org.launchcode.water_garden_tour.models.garden.Feature;
 import org.launchcode.water_garden_tour.models.garden.Garden;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class TourController {
     @Autowired
     private GardenRepository gardenRepository;
 
+    @Autowired
+    private FeatureRepository featureRepository;
+
     List<Garden> tourGardens = new ArrayList<>();
 
     @GetMapping("/gardens/tour/{gardenId}")
@@ -37,8 +42,14 @@ public class TourController {
                 tourGardens.add(tourGarden);
             }
         }
+
+        List<Feature> selectedFeatures = new ArrayList<>();
+
         model.addAttribute("gardens", gardenRepository.findAll());
         model.addAttribute("tourGardens", tourGardens);
+        model.addAttribute("selectedFeatures", selectedFeatures);
+        model.addAttribute("features", featureRepository.findAll());
+        model.addAttribute("searchTerm", "");
         model.addAttribute("title", "My Water Garden Tour");
         return "/gardens/list";
     }
