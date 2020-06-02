@@ -121,4 +121,8 @@ line-height: 1.5em;
     justify-content: space-evenly;
 }
 
+.logoutForm {
+    display: none;
+}
+
 

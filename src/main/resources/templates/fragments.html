@@ -34,7 +34,7 @@
                 <a class="nav-link admin-link" th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')">Admin</a>
                 <a class="nav-link login-link" th:href="@{/login}" sec:authorize="!isAuthenticated()">Log In</a>
                 <a class="nav-link register-link" th:href="@{/register}" sec:authorize="!isAuthenticated()">Register</a>
-                <form th:action="@{/logout}" method="post" name="logoutForm"></form>
+                <form class="logoutForm" th:action="@{/logout}" method="post" name="logoutForm"></form>
                 <a class="nav-link" href="#" sec:authorize="isAuthenticated()"  onclick="document.logoutForm.submit()">Log Out</a>
             </div>
 
