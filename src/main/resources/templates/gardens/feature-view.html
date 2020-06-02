@@ -5,7 +5,7 @@
     <title></title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <nav th:replace="fragments :: page-header"/>
 <h2 th:text="${feature.name}"></h2>
@@ -18,8 +18,8 @@
     </div>
 </div>
 
+<div th:replace="fragments :: footer-spacer"></div>
+<footer th:replace="fragments :: footer"></footer>
 
-
-<footer th:replace="fragments :: footer"/>
 </body>
 </html>

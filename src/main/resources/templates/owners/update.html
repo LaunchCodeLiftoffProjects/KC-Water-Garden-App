@@ -5,7 +5,7 @@
     <title></title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <div th:replace="fragments :: page-header"></div>
 
@@ -29,6 +29,7 @@
     <button type="submit" class="btn btn-warning">Update</button>
 </form>
 
+<div th:replace="fragments :: footer-spacer"></div>
 <footer th:replace="fragments :: footer"></footer>
 
 </body>

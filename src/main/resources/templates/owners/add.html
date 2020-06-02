@@ -5,11 +5,11 @@
     <title></title>
 </head>
 
-<body>
-
-<div class="container">
+<body class="d-flex flex-column min-vh-100">
 
 <div th:replace="fragments :: page-header"></div>
+
+<div class="container">
 
 <form method="post" th:action="@{/admin/owners/add}">
     <div class="form-group">
@@ -30,9 +30,10 @@
     <input type="submit" class="btn btn-success" value="Add Owner"/>
 </form>
 
-<footer th:replace="fragments :: footer"></footer>
-
 </div>
+
+<div th:replace="fragments :: footer-spacer"></div>
+<footer th:replace="fragments :: footer"></footer>
 
 </body>
 </html>

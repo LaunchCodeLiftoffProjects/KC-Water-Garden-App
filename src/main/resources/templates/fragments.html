@@ -16,8 +16,7 @@
 
 <body>
 
-<div th:fragment="page-header" class="container-fluid">
-    <nav class="navbar navbar-expand-md bg-success navbar-dark navbar-fixed-top">
+    <nav th:fragment="page-header" class="navbar navbar-expand-md bg-success navbar-dark navbar-fixed-top">
         <!-- Logo -->
         <img th:src="@{/images/logo.jpg}" alt="Logo" class="logo">
 
@@ -42,8 +41,6 @@
         </div>
 
     </nav>
-
-</div>
 
     <div th:fragment="footer-spacer" class="wrapper flex-grow-1"><!--Spacer for footer--></div>
     <footer th:fragment="footer" align="center">
