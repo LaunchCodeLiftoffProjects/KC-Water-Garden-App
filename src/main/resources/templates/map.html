@@ -11,14 +11,20 @@
     </style>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <nav th:replace="fragments :: page-header"></nav>
 
 <div class="container">
-<div id="map"></div>
-<div id="directions"></div>
+
+    <div id="map"></div>
+
+    <div id="directions"></div>
+
 </div>
+
+<div th:replace="fragments :: footer-spacer"></div>
+<footer th:replace="fragments :: footer"></footer>
 
 <!-- Displaying the map from Maps JavaScript API -->
 <script th:inline="javascript">

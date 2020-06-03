@@ -7,7 +7,7 @@
     <title></title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <nav th:replace="fragments :: page-header"></nav>
 
@@ -50,6 +50,11 @@
     </td>
 </tr>
 </table>
+
 </div>
+
+<div th:replace="fragments :: footer-spacer"></div>
+<footer th:replace="fragments :: footer"></footer>
+
 </body>
 </html>

@@ -9,9 +9,10 @@
         }
         </style>
     </head>
-<body>
 
-    <div th:replace = "fragments :: page-header"></div>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:replace = "fragments :: page-header"></div>
 
     <div class="container">
 
@@ -35,6 +36,9 @@
     </form>
 
     </div>
+
+<div th:replace="fragments :: footer-spacer"></div>
+<footer th:replace="fragments :: footer" th:remove="tag"></footer>
 
 </body>
 </html>

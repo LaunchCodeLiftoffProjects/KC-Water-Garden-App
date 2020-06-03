@@ -13,8 +13,8 @@
 }
 
 .footerLinkPicture {
-    max-width: 10%;
-    height: auto;
+    max-height: 60px;
+    max-width: 200px;
     margin: 10px;
 }
 
@@ -119,6 +119,10 @@ line-height: 1.5em;
 
 .navbar .container {
     justify-content: space-evenly;
+}
+
+.logoutForm {
+    display: none;
 }
 
 

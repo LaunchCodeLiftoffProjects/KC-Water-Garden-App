@@ -16,8 +16,7 @@
 
 <body>
 
-<div th:fragment="page-header" class="container-fluid">
-    <nav class="navbar navbar-expand-md bg-success navbar-dark navbar-fixed-top">
+    <nav th:fragment="page-header" class="navbar navbar-expand-md bg-success navbar-dark navbar-fixed-top">
         <!-- Logo -->
         <img th:src="@{/images/logo.jpg}" alt="Logo" class="logo">
 
@@ -35,7 +34,7 @@
                 <a class="nav-link admin-link" th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')">Admin</a>
                 <a class="nav-link login-link" th:href="@{/login}" sec:authorize="!isAuthenticated()">Log In</a>
                 <a class="nav-link register-link" th:href="@{/register}" sec:authorize="!isAuthenticated()">Register</a>
-                <form th:action="@{/logout}" method="post" name="logoutForm"></form>
+                <form class="logoutForm" th:action="@{/logout}" method="post" name="logoutForm"></form>
                 <a class="nav-link" href="#" sec:authorize="isAuthenticated()"  onclick="document.logoutForm.submit()">Log Out</a>
             </div>
 
@@ -43,16 +42,20 @@
 
     </nav>
 
-</div>
+    <div th:fragment="footer-spacer" class="wrapper flex-grow-1"><!--Spacer for footer--></div>
+    <footer th:fragment="footer" align="center">
+        <a href="https://www.kcwatergarden.com/">
+            <img class="footerLinkPicture" alt="WGSGKC" th:src="@{/images/logo.jpg}">
+        </a>
 
-<footer th:fragment="footer" align="center">
-    <a href="https://www.kcwatergarden.com/">
-        <img class="footerLinkPicture" alt="WGSGKC" src="http://www.kcwatergarden.com/wp-content/uploads/2012/08/logo-90p2.jpg">
-    </a>
-    <a href="https://www.launchcode.org/">
-        <img class="footerLinkPicture" alt="LaunchCode" src="https://www.launchcode.org/assets/dabomb-2080d6e23ef41463553f203daaa15991fd4c812676d0b098243b4941fcf4b57f.svg">
-    </a>
-</footer>
+        <a href="https://www.launchcode.org/">
+            <img class="footerLinkPicture" alt="LaunchCode" src="https://www.launchcode.org/assets/dabomb-2080d6e23ef41463553f203daaa15991fd4c812676d0b098243b4941fcf4b57f.svg">
+        </a>
+
+        <a href="https://www.facebook.com/WaterGardenSocietyOfGreaterKansasCity/">
+            <img class="footerLinkPicture" alt="facebook logo" th:src="@{/images/fb-logo.png}">
+        </a>
+    </footer>
 
 </body>
 
