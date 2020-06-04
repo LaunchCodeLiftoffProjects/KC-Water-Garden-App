@@ -33,7 +33,9 @@ public class AdminController {
     private OwnerRepository ownerRepository;
 
     @GetMapping("")
-    public String renderAdminPage() {
+    public String renderAdminPage(Model model) {
+        model.addAttribute("title","Admin Controls");
+
         return "admin";
     }
 

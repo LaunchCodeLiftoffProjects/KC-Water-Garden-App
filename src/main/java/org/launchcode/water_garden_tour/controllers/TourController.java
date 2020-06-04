@@ -1,21 +1,15 @@
 package org.launchcode.water_garden_tour.controllers;
 
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.launchcode.water_garden_tour.models.data.FeatureRepository;
 import org.launchcode.water_garden_tour.models.data.GardenRepository;
 import org.launchcode.water_garden_tour.models.garden.Feature;
 import org.launchcode.water_garden_tour.models.garden.Garden;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

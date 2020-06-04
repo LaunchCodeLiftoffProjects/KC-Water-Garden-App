@@ -66,7 +66,6 @@ public class GardenData {
                 }
             }
         }
-
         return results;
     }
 

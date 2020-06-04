@@ -26,6 +26,7 @@
         <input class="form-control" th:field="${garden.address}" />
         <span th:errors="${garden.address}" class="error"></span>
     </div>
+    <a href="https://www.latlong.net/convert-address-to-lat-long.html" target="_blank" class="btn btn-primary">Convert Address</a>
     <div class="form-group">
         <label th:for="latitude">Address Latitude</label>
         <input class="form-control" th:field="${garden.latitude}" />

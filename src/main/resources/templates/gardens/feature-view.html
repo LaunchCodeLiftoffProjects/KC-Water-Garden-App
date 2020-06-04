@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-    <meta charset="UTF-8"/>
-    <title></title>
+
+<head>
+    <div th:replace="fragments :: head"></div>
+    <script type="text/javascript" th:src="@{/script.js}"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
 
 <nav th:replace="fragments :: page-header"/>
-<h2 th:text="${feature.name}"></h2>
-<div th:each="garden,rowStatus : ${gardens}" class="row grid-row" th:if="${rowStatus.index % 3} == 0">
-    <div th:each="garden,gardenStatus : ${gardens}" class="col-sm"
-         th:if="${gardenStatus.index < rowStatus.index + 3 and gardenStatus.index >= rowStatus.index}">
-        <img th:src="@{${'/user/garden/list/' + garden.id}}" style="width: 75px;" alt="Beautiful Garden"/>
-        <p th:text="${garden.description}"></p>
-        <a th:href="@{'/user/view/' + ${garden.id}}">More Information</a>
-    </div>
+
+<h2 class="garden-title" th:text="${'Gardens with feature: ' + feature.name}"></h2>
+<div th:replace="gardens/list :: garden-card">
 </div>
 
 <div th:replace="fragments :: footer-spacer"></div>

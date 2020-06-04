@@ -1,6 +1,6 @@
 .img-fluid {
     display: block;
-    margin: 50px 0px;
+    margin: 0px 0px;
     margin-left: auto;
     margin-right: auto;
     height: auto;
@@ -55,10 +55,6 @@
 
 }
 
-.gardens {
-    background-color: #cae8d5;
-}
-
 .card {
     border: none;
     margin-top: 3rem;
@@ -66,7 +62,7 @@
 }
 
 .card-img-top {
-    height: 20vw;
+    height: 40vh;
     object-fit: cover;
 }
 
@@ -78,9 +74,8 @@
     }
 
 .card-body {
-background-color: #cae8d5;
+    background-color: #cae8d5;
 }
-
 
 .card-text {
     font-family: "Garamond";
@@ -108,8 +103,8 @@ background-color: #cae8d5;
 }
 
 .individual-content {
-font-size: 1.2em;
-line-height: 1.5em;
+    font-size: 1.2em;
+    line-height: 1.5em;
 }
 
 .logo {
@@ -124,5 +119,3 @@ line-height: 1.5em;
 .logoutForm {
     display: none;
 }
-
-

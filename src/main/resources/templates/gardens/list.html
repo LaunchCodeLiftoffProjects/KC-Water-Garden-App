@@ -13,24 +13,24 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-<div th:replace="fragments :: page-header"></div>
+    <div th:replace="fragments :: page-header"></div>
 
-<h2 class="garden-title">Water Gardens</h2>
-<h4 class="garden-subtitle">Here are the water gardens that are featured on our tour. Click on a garden to learn more about its beautiful features, or search for something more specific. 
-  Use the Map link above to see the mapped locations of the gardens.  You can also add your favorites to your own custom tour!</h4>
-<div class="row justify-content-center">
-    <a class="card-text btn btn-success" th:href="@{'/user/gardens/tour'}">My Water Garden Tour</a>
-</div>
+    <h2 class="garden-title">Water Gardens</h2>
+    <h4 class="garden-subtitle">Here are the water gardens that are featured on our tour. Click on a garden to learn more about its beautiful features, or search for something more specific.
+      Use the Map link above to see the mapped locations of the gardens.  You can also add your favorites to your own custom tour!</h4>
+    <div class="row justify-content-center">
+        <a class="card-text btn btn-success" th:href="@{'/user/gardens/tour'}">My Water Garden Tour</a>
+    </div>
     <div class="container body-content">
         <div>
             <!-- Search form -->
             <form th:action="@{/user/gardens/search}" method="GET">
                 <div style="margin-top: 5px">
                     <input class="form-control mr-sm-2"
-                       th:name="searchTerm"
-                       type="text"
-                       th:value="${searchTerm}"
-                       aria-label="Search">
+                           th:name="searchTerm"
+                           type="text"
+                           th:value="${searchTerm}"
+                           aria-label="Search">
                 </div>
                 <div class="form-group" style="margin-bottom: 0;">
                     <label th:for="features">Features: </label>
@@ -51,8 +51,6 @@
                 <button class="btn btn-outline-success btn-rounded btn-sm my-0" type="submit">Search</button>
             </form>
         </div>
-    </div>
-    <!-- hide link if on main gardens/list/ (only show when on search)-->
         <th:block th:if="${title.equals('Garden Search')}">
             <a  th:href="@{/user/gardens/list}">Show All Gardens</a>
             <th:block th:if="${!searchTerm.isEmpty()}">
@@ -62,36 +60,38 @@
         <th:block th:if="${title.equals('Garden List')}">
             <p>Displaying All Gardens</p>
         </th:block>
-        <hr>
-      
-    <div class="container-fluid">
-    <div class="row justify-content-center">
-        <div th:each="garden : ${gardens}">
-            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                <div class="card text-left h-100" style="width:18rem">
-                    <a th:href="@{'/user/view/' + ${garden.id}}">
-                    <img class="card-img-top rounded" th:src="@{${'/user/garden/list/' + garden.id}}" alt="Beautiful Garden"/>
-                    </a>
-                    <div class="card-body">
-                        <a th:href="@{'/user/view/' + ${garden.id}}">
-                        <h5 class="card-title" th:text="${garden.name}" ></h5>
-                        </a>
-                        <p class="card-text" th:text="${garden.address}"></p>
-                        <p class="card-text" th:text="${'Owner: ' + garden.owner.name}"></p>
-                        <p class="card-text" style="margin-bottom: 0"><strong>About our garden...</strong></p>
-                        <p class="card-text show-read-more" th:text="${garden.description}"></p>
-                        <a class="card-text btn btn-primary" th:href="@{'/user/view/' + ${garden.id}}" style="margin-bottom:10px;">More Information</a>
-                        <a class="card-text btn btn-success" id="add" th:href="@{'/user/gardens/tour/' + ${garden.id}}">Add to Tour</a>
+        <!-- hide link if on main gardens/list/ (only show when on search)-->
 
+        <hr>
+        <div th:fragment="garden-card" class="container-fluid">
+            <div class="row justify-content-center">
+                <div th:each="garden : ${gardens}">
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                        <div class="card text-left h-100" style="width:18rem">
+                            <a th:href="@{'/user/view/' + ${garden.id}}">
+                            <img class="card-img-top rounded" th:src="@{${'/user/garden/list/' + garden.id}}" alt="Beautiful Garden"/>
+                            </a>
+                            <div class="card-body">
+                                <a th:href="@{'/user/view/' + ${garden.id}}">
+                                <h5 class="card-title" th:text="${garden.name}" ></h5>
+                                </a>
+                                <p class="card-text" th:text="${garden.address}"></p>
+                                <p class="card-text" th:text="${'Owner: ' + garden.owner.name}"></p>
+                                <p class="card-text" style="margin-bottom: 0"><strong>About our garden...</strong></p>
+                                <p class="card-text show-read-more" th:text="${garden.description}"></p>
+                                <a class="card-text btn btn-primary" th:href="@{'/user/view/' + ${garden.id}}" style="margin-bottom:10px;">More Information</a>
+                                <a class="card-text btn btn-success" id="add" th:href="@{'/user/gardens/tour/' + ${garden.id}}">Add to Tour</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div th:replace="fragments :: footer-spacer"></div>
-<footer th:replace="fragments :: footer"></footer>
+
+    <div th:replace="fragments :: footer-spacer"></div>
+    <footer th:replace="fragments :: footer"></footer>
 
 </body>
 </html>
