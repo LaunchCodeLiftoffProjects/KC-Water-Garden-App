@@ -1,6 +1,7 @@
 package org.launchcode.water_garden_tour.models.garden;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.launchcode.water_garden_tour.models.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -41,7 +42,10 @@ public class Garden extends AbstractEntity {
     @Lob
     private byte[] image;
 
-    public Garden(String name, String address, String latitude, String longitude, String description, Owner owner, List<Feature> features, byte[] image) throws IOException {
+    @ManyToMany(mappedBy = "gardens")
+    private List<User> users = new ArrayList<>();
+
+    public Garden(String name, String address, String latitude, String longitude, String description, Owner owner, List<Feature> features, byte[] image, List<User> users) throws IOException {
         this();
         this.name = name;
         this.address = address;
@@ -51,6 +55,7 @@ public class Garden extends AbstractEntity {
         this.owner = owner;
         this.features = features;
         this.image = image;
+        this.users = users;
     }
 
     public Garden() {
@@ -119,6 +124,14 @@ public class Garden extends AbstractEntity {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     @Override
