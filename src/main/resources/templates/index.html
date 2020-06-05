@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head >
     <div th:replace="fragments :: head" th:remove="tag">
@@ -19,6 +19,10 @@
 
     <div class="container">
         <h1 class="display-1" align="center">WELCOME!</h1>
+        <hr>
+        <div class="row justify-content-center">
+            <a class="card-text btn btn-success mb-3" th:href="@{'/user/gardens/tour'}" sec:authorize="isAuthenticated()">My Water Garden Tour</a>
+        </div>
         <hr>
         <p align="center" class="lead">The Water Garden Society of Greater Kansas City (WGSGKC) is made up of members from all parts of the KC metro area who are interested in water gardening. Monthly meetings, September - May are open to members and the public. Tours, community service projects, garden shows and plant exchanges are some of the activities scheduled throughout the year. We welcome all interested in water gardening to join us.</p>
         <div>

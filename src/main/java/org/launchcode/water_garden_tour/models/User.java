@@ -1,13 +1,16 @@
 package org.launchcode.water_garden_tour.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.launchcode.water_garden_tour.models.garden.Feature;
+import org.launchcode.water_garden_tour.models.garden.Garden;
+
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 //@Table(name = "user")
@@ -36,6 +39,10 @@ public class User {
 
     private String role;
 
+    @ManyToMany
+    @JsonIgnore
+    private List<Garden> gardens = new ArrayList<>();
+
     public User() {
     }
 
@@ -45,6 +52,7 @@ public class User {
         this.lname = lname;
         this.username = username;
         this.password = password;
+        this.gardens = gardens;
         this.role = "ROLE_USER";
         this.isActive = true;
     }
@@ -83,6 +91,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Garden> getGardens() {
+        return gardens;
+    }
+
+    public void setGardens(List<Garden> gardens) {
+        this.gardens = gardens;
     }
 
     public boolean isActive() {
