@@ -1,14 +1,13 @@
 package org.launchcode.water_garden_tour.controllers;
 
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.launchcode.water_garden_tour.models.User;
 import org.launchcode.water_garden_tour.models.data.FeatureRepository;
 import org.launchcode.water_garden_tour.models.data.GardenRepository;
 import org.launchcode.water_garden_tour.models.data.UserRepository;
 import org.launchcode.water_garden_tour.models.garden.Feature;
 import org.launchcode.water_garden_tour.models.garden.Garden;
-import org.springframework.beans.factory.ObjectProvider;
+import org.launchcode.water_garden_tour.user.UserDetailServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,10 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,22 +32,16 @@ public class TourController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserDetailServiceImplementation userDetailServiceImplementation;
+
     List<Garden> tourGardens = new ArrayList<>();
-    List<User> tourUsers = new ArrayList<>();
 
     @GetMapping("/gardens/tour/{gardenId}")
     public String addTourGarden(Model model, @PathVariable("gardenId") Integer gardenId) {
-        String username;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails)principal).getUsername();
-        } else {
-            username = principal.toString();
-        }
 
-        Optional<User> currentUser = userRepository.findByUsername(username);
-        User tourUser = currentUser.get();
-        tourUsers.add(tourUser);
+        //use method to get logged in user
+        User tourUser = userDetailServiceImplementation.getCurrentUser();
 
         Optional<Garden> chosenGarden = gardenRepository.findById(gardenId);
         if (chosenGarden.isPresent()) {
@@ -69,7 +58,6 @@ public class TourController {
 
         model.addAttribute("gardens", gardenRepository.findAll());
         model.addAttribute("tourGardens", tourGardens);
-        model.addAttribute("tourUsers", tourUsers);
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("selectedFeatures", selectedFeatures);
         model.addAttribute("features", featureRepository.findAll());
@@ -81,20 +69,12 @@ public class TourController {
     @GetMapping("/gardens/tour")
     public String listGardenTour(Model model) {
 
-        String username;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails)principal).getUsername();
-        } else {
-            username = principal.toString();
-        }
+        //use method to get logged in user
+        User tourUser = userDetailServiceImplementation.getCurrentUser();
 
-        Optional<User> currentUser = userRepository.findByUsername(username);
-        User tourUser = currentUser.get();
         tourGardens = tourUser.getGardens();
 
         model.addAttribute("tourGardens", tourGardens);
-        //model.addAttribute("tourUsers", tourUsers);
         model.addAttribute("title", "My Water Garden Tour");
 
         return "gardens/tour";
@@ -103,17 +83,8 @@ public class TourController {
     @GetMapping("/gardens/tour/delete/{gardenId}")
     public String deleteGarden(Model model, @PathVariable("gardenId") Integer gardenId) {
 
-        String username;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails)principal).getUsername();
-        } else {
-            username = principal.toString();
-        }
-
-        Optional<User> currentUser = userRepository.findByUsername(username);
-        User tourUser = currentUser.get();
-        tourUsers.add(tourUser);
+        //use method to get logged in user
+        User tourUser = userDetailServiceImplementation.getCurrentUser();
 
         Optional<Garden> chosenGarden = gardenRepository.findById(gardenId);
         if (chosenGarden.isPresent()) {
@@ -126,7 +97,6 @@ public class TourController {
 
         model.addAttribute("gardens", gardenRepository.findAll());
         model.addAttribute("tourGardens", tourGardens);
-        model.addAttribute("tourUsers", tourUsers);
         model.addAttribute("users", userRepository.findAll());
 
         return "/gardens/tour";

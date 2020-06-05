@@ -3,6 +3,7 @@ package org.launchcode.water_garden_tour.user;
 import org.launchcode.water_garden_tour.models.User;
 import org.launchcode.water_garden_tour.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,4 +29,19 @@ public class UserDetailServiceImplementation implements UserDetailsService {
         return user.map(UserDetailsImplementation::new).get();
 
     }
+
+    public User getCurrentUser() {
+        String username;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(principal instanceof UserDetails)
+        {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        Optional<User> currentUser = userRepository.findByUsername(username);
+        return currentUser.get();
+    }
+
 }
