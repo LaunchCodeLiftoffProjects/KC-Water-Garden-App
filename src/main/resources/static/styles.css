@@ -119,3 +119,53 @@
 .logoutForm {
     display: none;
 }
+
+#info-window-content {
+    padding: 0px;
+    margin: 0px;
+}
+
+#info-window-img {
+    padding: 0px;
+    max-width:40%
+}
+
+.map-text-col,
+.map-image-col{
+    margin: 0px;
+    padding: 0px;
+}
+
+.map-text-col {
+    font-size: 1.1em;
+}
+
+#info-window-header{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.login-div {
+    width: 22rem;
+    border: 3px solid black;
+    text-align: center;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+
+.login-div div {
+    padding: 20px 0px;
+}
+
+.register-div {
+    text-align: center;
+    border: 3px solid black;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    max-width: 50%;
+}
+
+.register-div div{
+    padding: 16px 0px;
+}
+

@@ -14,7 +14,7 @@
 
 <div th:replace = "fragments :: page-header"></div>
 
-<div class="container">
+<div class="container card register-div">
 
 <h1>Registration</h1>
 
@@ -46,6 +46,10 @@
         </div>
 
         <input type="submit" class="btn btn-success" value="Register" />
+    <br>
+    <div class = "form-group">
+        <a class="btn btn-success" th:href="@{/login}"> Already Registered? <br> Login</a>
+    </div>
     </form>
 
 </div>
