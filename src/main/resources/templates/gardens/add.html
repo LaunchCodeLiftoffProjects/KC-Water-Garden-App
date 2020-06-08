@@ -41,14 +41,15 @@
         <div class="form-group">
             <label th:for="owner">Garden Owner: </label>
             <select name="owner">
-                <option disabled selected value> -- select an option -- </option>
                 <option th:each="owner : ${owners}"
                         th:text="${owner.name}"
                         th:value="${owner.id}"></option>
             </select>
             <a th:href="@{'/admin/owners/add'}">Add Owner</a>
+            <p th:errors="${garden.owner}" class="error"></p>
         </div>
         <div class="form-group">
+            <p th:errors="${garden.features}" class="error"></p>
             <label th:for="features">Features: </label>
             <th:block th:each="feature : ${features}">
                 <input type="checkbox" name="features" th:value="${feature.id}">

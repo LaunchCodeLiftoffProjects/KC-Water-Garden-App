@@ -210,3 +210,7 @@
 body {
   font-family: "Garamond";
 }
+
+.error {
+  color: red;
+}

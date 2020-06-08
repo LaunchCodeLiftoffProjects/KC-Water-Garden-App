@@ -65,6 +65,8 @@ public class AdminController {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Garden");
+            model.addAttribute("owners", ownerRepository.findAll());
+            model.addAttribute("features", featureRepository.findAll());
             return "gardens/add";
         }
 
@@ -76,7 +78,7 @@ public class AdminController {
 
         model.addAttribute("selectedFeatures", selectedFeatures);
         model.addAttribute("gardens", gardenRepository.findAll());
-        model.addAttribute("features", featureRepository.findAll());;
+        model.addAttribute("features", featureRepository.findAll());
         model.addAttribute("title", "Garden List");
         model.addAttribute("searchTerm", "");
 
@@ -158,7 +160,6 @@ public class AdminController {
         }
         gardenToUpdate.setOwner(owner);
         gardenToUpdate.setFeatures(features);
-
         gardenRepository.save(gardenToUpdate);
 
         //attributes for return to admin-list
