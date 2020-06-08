@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -59,8 +60,8 @@ public class AdminController {
     }
 
     @PostMapping("/gardens/add")
-    public String addGarden(@ModelAttribute @Valid Garden newGarden, @RequestParam("file") MultipartFile file,
-                            Errors errors, Model model) throws IOException {
+    public String addGarden(@ModelAttribute @Valid Garden newGarden, Errors errors, @RequestParam("file") MultipartFile file,
+                            Model model) throws IOException {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Garden");
@@ -107,6 +108,8 @@ public class AdminController {
 
     @PostMapping("/gardens/update")
     public String updateGarden(Model model,
+                               @ModelAttribute @Valid Garden newGarden,
+                               Errors errors,
                                int gardenId,
                                @RequestParam("file") MultipartFile file,
                                String name,
@@ -116,6 +119,19 @@ public class AdminController {
                                String description,
                                int ownerId,
                                Integer[] featureIds) throws IOException {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Update Garden");
+            model.addAttribute("garden", gardenRepository.getOne(gardenId));
+            model.addAttribute("gardenOwner", gardenRepository.getOne(gardenId).getOwner());
+            model.addAttribute("gardenFeatures", gardenRepository.getOne(gardenId).getFeatures());
+            model.addAttribute("features", featureRepository.findAll());
+            model.addAttribute("owners", ownerRepository.findAll());
+            model.addAttribute("errorMsg", "Errors found, please try again");
+            model.addAttribute("errorStatus", "true");
+
+            return "gardens/update";
+        }
 
         Optional<Garden> optGarden = gardenRepository.findById(gardenId);
         Garden gardenToUpdate = (Garden) optGarden.get();
@@ -264,10 +280,25 @@ public class AdminController {
 
     @PostMapping("/owners/update")
     public String updateOwner(Model model,
+                              @Valid @ModelAttribute Owner newOwner,
+                              Errors errors,
                               int ownerId,
                               String name,
                               String email,
                               String phoneNum) {
+
+        if (errors.hasErrors()) {
+            Owner ownerToUpdate = ownerRepository.getOne(ownerId);
+
+            model.addAttribute("owner",ownerToUpdate);
+            model.addAttribute("title", "Update Owner");
+            model.addAttribute("errorMsg", "Errors found, please try again");
+            model.addAttribute("errorStatus", "true");
+
+
+            return "owners/update";
+        }
+
 
         Optional<Owner> optOwner = ownerRepository.findById(ownerId);
         Owner ownerToUpdate = (Owner) optOwner.get();
@@ -373,8 +404,25 @@ public class AdminController {
 
     @PostMapping("/features/update")
     public String updateFeature(Model model,
+                                @Valid @ModelAttribute Feature newFeature,
+                                Errors errors,
                                 int featureId,
                                 String name) {
+
+        if (errors.hasErrors()) {
+
+            Optional optFeature = featureRepository.findById(featureId);
+            if (optFeature.isPresent()) {
+                Feature featureToUpdate = (Feature) optFeature.get();
+                model.addAttribute("feature", featureToUpdate);
+            }
+
+            model.addAttribute("title", "Update Feature");
+            model.addAttribute("errorMsg", "Errors found, please try again");
+            model.addAttribute("errorStatus", "true");
+
+            return "features/update";
+        }
 
         Optional<Feature> optFeature = featureRepository.findById(featureId);
         Feature featureToUpdate = (Feature) optFeature.get();

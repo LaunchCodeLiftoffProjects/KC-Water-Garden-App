@@ -13,15 +13,15 @@ public class RegisterDTO {
     private String lname;
 
     @NotBlank
-    @Size(min=5, max=20, message="Invalid username")
+    @Size(min=5, max=20, message="Invalid username, 5-20 characters please")
     private String username;
 
     @NotBlank
-    @Size(min=5, max=20, message="Invalid password")
+    @Size(min=5, max=20, message="Invalid password, 5-20 characters please")
     private String password;
 
     @NotBlank
-    @Size(min=5, max=20, message="Invalid password")
+    @Size(min=5, max=20, message="Invalid password match")
     private String verifyPassword;
 
     public RegisterDTO() {}

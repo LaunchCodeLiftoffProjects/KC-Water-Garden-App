@@ -32,7 +32,6 @@ public class User {
     @Email(message="Email is not valid.")
     private String username;
 
-    @NotBlank(message="Password is required.")
     private String password;
 
     private boolean isActive;

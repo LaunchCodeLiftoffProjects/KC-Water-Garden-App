@@ -19,7 +19,7 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"></script>
 
-    <div class="home" th:replace = "fragments :: page-header"></div>
+    <nav class="home" th:replace = "fragments :: page-header"></nav>
 
     <div class="container body-content">
         <div class = "row" sec:authorize="!isAuthenticated()" style="margin-top:20px;">
@@ -27,42 +27,39 @@
                 <img class="img-fluid" th:src = "@{/images/GardenPhoto_HomeBody.jpg}"/>
             </div>
             <div class="col-md-6 col-sm-10">
-                <h3 class="display-1" align="center">Welcome!</h3>
-                <p align="center" class="lead">The Water Garden Society of Greater Kansas City (WGSGKC) is made up of members from all parts of the KC metro area who are interested in water gardening. Monthly meetings, September - May are open to members and the public. Tours, community service projects, garden shows and plant exchanges are some of the activities scheduled throughout the year. We welcome all interested in water gardening to join us.</p>
+                <h3 class="garden-welcome" align="center">Welcome!</h3>
+                <p align="center" class="lead" style="font-size:1.5rem;">The Water Garden Society of Greater Kansas City (WGSGKC) is made up of members from all parts of the KC metro area who are interested in water gardening. Monthly meetings, September - May are open to members and the public. Tours, community service projects, garden shows and plant exchanges are some of the activities scheduled throughout the year. We welcome all interested in water gardening to join us.</p>
             </div>
         </div>
         <div align="center" sec:authorize="isAuthenticated()">
             <div class="container">
                 <div class="row" style="margin-top:20px">
-                    <div class="col-md-6 col-sm-10">
+                    <div class="col-md-6 col-sm-10 align-items-center ">
                         <img class="img-fluid" th:src = "@{/images/GardenPhoto_HomeBody.jpg}"/>
-                    </div>
-                    <div class="col-md-6 col-sm-10 justify-content-center">
-                        <div class="fb-page"
-                             data-href="https://www.facebook.com/WaterGardenSocietyOfGreaterKansasCity"
-                             data-tabs="timeline"
-                             data-width="600"
-                             data-height="350"
-                             data-small-header="false"
-                             data-adapt-container-width="true"
-                             data-hide-cover="false"
-                             data-show-facepile="true">
-                            <blockquote cite="https://www.facebook.com/WaterGardenSocietyOfGreaterKansasCity" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/WaterGardenSocietyOfGreaterKansasCity">Water Garden Society of Greater Kansas City</a></blockquote>
+                        <div class="row justify-content-center" style="margin-bottom:1rem;">
+                            <a class="card-text btn btn-success btn-block" style="margin-top:1rem;" th:href="@{'/user/gardens/tour'}">My Water Garden Tour</a>
                         </div>
+
+                    </div>
+                    <div class="col-md-6 col-sm-10 align-items-center ">
+                            <div class="fb-page"
+                                 data-href="https://www.facebook.com/WaterGardenSocietyOfGreaterKansasCity"
+                                 data-tabs="timeline"
+                                 data-height="425"
+                                 data-small-header="false"
+                                 data-adapt-container-width="true"
+                                 data-hide-cover="false"
+                                 data-show-facepile="true"><blockquote cite="https://www.facebook.com/WaterGardenSocietyOfGreaterKansasCity" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/WaterGardenSocietyOfGreaterKansasCity">Water Garden Society of Greater Kansas City</a></blockquote></div>
                     </div>
                 </div>
                 <hr>
-                <div class="row align-items-center justify-content-center">
+                <div class="row">
                     <div class="col">
                         <h2 class="garden-title">Featured Categories</h2>
                         <div class="container">
-                            <a th:each="feature : ${features}"
+                            <a class="feature-link" th:each="feature : ${features}"
                                th:text="${feature.name}"
-                               th:href="@{${'/user/gardens/feature/' + feature.id}}"
-                               style="margin-left:5px;
-                                      margin-right:5px;
-                                      margin-bottom:20px;
-                                      font-size:20px;">
+                               th:href="@{${'/user/gardens/feature/' + feature.id}}">
                             </a>
                         </div>
                     </div>
@@ -96,8 +93,8 @@
                 </div>
             </div>
         </div>
-        <hr>
     </div>
+    <hr>
 
     <div th:replace="fragments :: footer-spacer"></div>
     <footer th:replace="fragments :: footer"></footer>

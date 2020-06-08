@@ -2,12 +2,16 @@ package org.launchcode.water_garden_tour.models.garden;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Feature extends AbstractEntity {
 
+    @NotBlank(message = "Feature name is required.")
+    @Size(max = 100, message = "Exceeds maximum space allowed.")
     private String name;
 
     @ManyToMany(mappedBy = "features")

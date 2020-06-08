@@ -15,27 +15,27 @@
     <nav th:replace="fragments :: page-header"></nav>
 
     <div class="container">
-        <h2 th:text="${title}"></h2>
+        <h1 class="garden-title" th:text="${title}"></h1>
 
         <div class="row text-center">
             <div class="col">
-                <h4>Gardens</h4>
-                <a class="btn btn-secondary btn-lg" th:href="@{/admin/gardens/admin-list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Gardens</a>
+                <h4 class="admin-group">Gardens</h4>
+                <a class="btn btn-secondary btn-lg admin-btn" th:href="@{/admin/gardens/admin-list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Gardens</a>
                 <a class="btn btn-dark btn-lg" th:href="@{/admin/gardens/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Garden</a>
             </div>
             <div class="col">
-                <h4>Owners</h4>
-                <a class="btn btn-secondary btn-lg" th:href="@{/admin/owners/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Owners</a>
+                <h4 class="admin-group">Owners</h4>
+                <a class="btn btn-secondary btn-lg admin-btn" th:href="@{/admin/owners/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Owners</a>
                 <a class="btn btn-dark btn-lg" th:href="@{/admin/owners/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Owner</a>
             </div>
             <div class="col">
-                <h4>Features</h4>
-                <a class="btn btn-secondary btn-lg" th:href="@{/admin/features/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Features</a>
+                <h4 class="admin-group">Features</h4>
+                <a class="btn btn-secondary btn-lg admin-btn" th:href="@{/admin/features/}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Features</a>
                 <a class="btn btn-dark btn-lg" th:href="@{/admin/features/add}" sec:authorize="hasRole('ROLE_ADMIN')">Add Feature</a>
             </div>
             <div class="col">
-                <h4>Users</h4>
-                <a class="btn btn-secondary btn-lg" th:href="@{/admin/users/list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Users</a>
+                <h4 class="admin-group">Users</h4>
+                <a class="btn btn-secondary btn-lg admin-btn" th:href="@{/admin/users/list}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Users</a>
             </div>
         </div>
 

@@ -17,6 +17,10 @@
 <nav th:replace="fragments :: page-header"></nav>
 
 <div class="container">
+    <a class="btn btn-success"
+       style="margin-top:10px"
+       th:href="@{/user/map}"
+       th:unless="${title.equals('Garden Map View')}">Load all Gardens</a>
 
     <div id="map"></div>
 

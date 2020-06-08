@@ -114,7 +114,7 @@ public class GardenController {
 
         model.addAttribute("gardens", gardensWithFeature);
         model.addAttribute("feature", featureForView);
-        model.addAttribute("title", title);
+        model.addAttribute("title", "Feature View");
 
         return "gardens/feature-view";
     }
@@ -124,6 +124,7 @@ public class GardenController {
         Optional<Garden> foundGarden = gardenRepository.findById(gardenId);
         Garden garden = foundGarden.get();
         model.addAttribute("garden", garden);
+        model.addAttribute("title", garden.getName());
         return "gardens/view";
     }
 

@@ -13,7 +13,7 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-    <div th:replace="fragments :: page-header"></div>
+    <nav th:replace="fragments :: page-header"></nav>
 
     <h2 class="garden-title">Water Gardens</h2>
     <h4 class="garden-subtitle">Here are the water gardens that are featured on our tour. Click on a garden to learn more about its beautiful features, or search for something more specific.
@@ -61,7 +61,6 @@
             <p>Displaying All Gardens</p>
         </th:block>
     </div>
-
     <hr>
     <div th:fragment="garden-card" class="container-fluid">
         <div class="row justify-content-center">
@@ -79,15 +78,25 @@
                             <p class="card-text" th:text="${'Owner: ' + garden.owner.name}"></p>
                             <p class="card-text" style="margin-bottom: 0"><strong>About our garden...</strong></p>
                             <p class="card-text show-read-more" th:text="${garden.description}"></p>
-                            <a class="card-text btn btn-primary" th:href="@{'/user/view/' + ${garden.id}}" style="margin-bottom:10px;">More Information</a>
-                            <a class="card-text btn btn-success" id="add" th:href="@{'/user/gardens/tour/' + ${garden.id}}">Add to Tour</a>
+                            <div style="text-align:center;">
+                                <a class="card-text btn-sm btn-primary" th:href="@{'/user/view/' + ${garden.id}}">More Information</a>
+                                <br>
+                                <div style="margin-top:5px">
+                                    <a class="card-text btn-sm btn-success" id="add" th:href="@{'/user/gardens/tour/' + ${garden.id}}" style="margin-right:10px;">Add to Tour</a>
+                                    <form method="GET" th:action="@{/user/map}" style="display:inline;">
+                                        <button class="card-text btn-sm btn-secondary"
+                                           th:value="${garden.id}"
+                                           name="gardenId"
+                                           style="color:#fff;border:0;line-height:1.2">View on Map</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
     <div th:replace="fragments :: footer-spacer"></div>
     <footer th:replace="fragments :: footer"></footer>

@@ -8,14 +8,13 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-<nav th:replace="fragments :: page-header"/>
+    <nav th:replace="fragments :: page-header"></nav>
 
-<h2 class="garden-title" th:text="${'Gardens with feature: ' + feature.name}"></h2>
-<div th:replace="gardens/list :: garden-card">
-</div>
+    <h2 class="garden-title" th:text="${'Gardens with feature: ' + feature.name}"></h2>
+    <div th:replace="gardens/list :: garden-card"></div>
 
-<div th:replace="fragments :: footer-spacer"></div>
-<footer th:replace="fragments :: footer"></footer>
+    <div th:replace="fragments :: footer-spacer"></div>
+    <footer th:replace="fragments :: footer"></footer>
 
 </body>
 </html>

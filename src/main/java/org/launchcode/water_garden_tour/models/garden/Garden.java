@@ -2,6 +2,7 @@ package org.launchcode.water_garden_tour.models.garden;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.launchcode.water_garden_tour.models.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Garden extends AbstractEntity {
 
     @NotBlank(message = "Name is required.")
