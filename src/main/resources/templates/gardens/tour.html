@@ -53,6 +53,14 @@
             </div>
         </div>
     </div>
+    <div class="row justify-content-center">
+        <h3>Click any icon below for tour directions.</h3>
+    </div>
+</div>
+
+<div class="container">
+    <div id="map"></div>
+    <div id="directions"></div>
 </div>
 
 <div class="container">
@@ -139,12 +147,18 @@ function initMap() {
             infoWindow.setContent('<p>' +
                 gardenAddress +
                 '</p>');
+<<<<<<< HEAD
             infoWindow.open(map, marker);
         });
 
    google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
     getDirections(userPosition);
         });
+=======
+            getDirections(userPosition);
+            infoWindow.open(map, marker);
+        });
+>>>>>>> 88fddc6... added map functionality to user tour when marker is clicked.
     };
 
     function getDirections(userPosition) {
