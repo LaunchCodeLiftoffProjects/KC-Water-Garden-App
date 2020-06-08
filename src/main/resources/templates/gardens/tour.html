@@ -36,9 +36,17 @@
                         <p class="card-text" style="margin-bottom: 0"><strong>About our garden...</strong></p>
                         <p class="card-text show-read-more" th:text="${garden.description}"></p>
                         <div style="text-align:center;">
-                            <a class="card-text btn-sm btn-primary" th:href="@{'/user/view/' + ${garden.id}}" style="margin-bottom:10px;">More Information</a>
+                            <a class="card-text btn-sm btn-primary" th:href="@{'/user/view/' + ${garden.id}}" style="margin-top:5px;">More Information</a>
                             <br>
-                            <a class="card-text btn-sm btn-danger" th:href="@{'/user/gardens/tour/delete/' + ${garden.id}}">Delete from Tour</a>
+                            <div style="margin-top:5px">
+                                <a class="card-text btn-sm btn-danger" th:href="@{'/user/gardens/tour/delete/' + ${garden.id}}" style="margin-top:5px">Delete from Tour</a>
+                                <form method="GET" th:action="@{/user/map}" style="margin-top:5px">
+                                    <button class="card-text btn-sm btn-secondary"
+                                            th:value="${garden.id}"
+                                            name="gardenId"
+                                            style="color:#fff;border:0;line-height:1.2">View on Map</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
