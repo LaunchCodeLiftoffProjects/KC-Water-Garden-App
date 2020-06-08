@@ -45,7 +45,7 @@ public class GardenController {
 
         model.addAttribute("selectedFeatures", selectedFeatures);
         model.addAttribute("gardens", gardenRepository.findAll());
-        model.addAttribute("features", featureRepository.findAll());;
+        model.addAttribute("features", featureRepository.findAll());
         model.addAttribute("title", "Garden List");
         model.addAttribute("searchTerm", "");
 

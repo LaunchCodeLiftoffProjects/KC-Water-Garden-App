@@ -3,6 +3,11 @@
 <head>
     <div th:replace="fragments :: head" th:remove="tag">
     </div>
+    <style>
+        .tour-link {
+            display: none;
+        }
+    </style>
     <script type="text/javascript" th:src="@{/script.js}"></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -18,26 +23,26 @@
     <div class="row justify-content-center">
         <div th:each="garden : ${tourGardens}">
             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                    <div class="card text-left h-100" style="width:18rem">
+                <div class="card text-left h-100" style="width:18rem">
+                    <a th:href="@{'/user/view/' + ${garden.id}}">
+                        <img class="card-img-top rounded" th:src="@{${'/user/garden/list/' + garden.id}}" alt="Beautiful Garden"/>
+                    </a>
+                    <div class="card-body">
                         <a th:href="@{'/user/view/' + ${garden.id}}">
-                            <img class="card-img-top rounded" th:src="@{${'/user/garden/list/' + garden.id}}" alt="Beautiful Garden"/>
+                            <h5 class="card-title" th:text="${garden.name}" ></h5>
                         </a>
-                        <div class="card-body">
-                            <a th:href="@{'/user/view/' + ${garden.id}}">
-                                <h5 class="card-title" th:text="${garden.name}" ></h5>
-                            </a>
-                            <p class="card-text" th:text="${garden.address}"></p>
-                            <p class="card-text" th:text="${'Owner: ' + garden.owner.name}"></p>
-                            <p class="card-text" style="margin-bottom: 0"><strong>About our garden...</strong></p>
-                            <p class="card-text show-read-more" th:text="${garden.description}"></p>
-                            <a class="card-text btn btn-primary" th:href="@{'/user/view/' + ${garden.id}}" style="margin-bottom:10px;">More Information</a>
-                            <a class="card-text btn btn-danger" th:href="@{'/user/gardens/tour/delete/' + ${garden.id}}">Delete from Tour</a>
-                        </div>
+                        <p class="card-text" th:text="${garden.address}"></p>
+                        <p class="card-text" th:text="${'Owner: ' + garden.owner.name}"></p>
+                        <p class="card-text" style="margin-bottom: 0"><strong>About our garden...</strong></p>
+                        <p class="card-text show-read-more" th:text="${garden.description}"></p>
+                        <a class="card-text btn btn-primary" th:href="@{'/user/view/' + ${garden.id}}" style="margin-bottom:10px;">More Information</a>
+                        <a class="card-text btn btn-danger" th:href="@{'/user/gardens/tour/delete/' + ${garden.id}}">Delete from Tour</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 <div th:replace="fragments :: footer-spacer"></div>
 <footer th:replace="fragments :: footer"></footer>

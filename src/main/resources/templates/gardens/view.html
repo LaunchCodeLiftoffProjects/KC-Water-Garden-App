@@ -32,9 +32,11 @@
                 <p th:text="${garden.owner.name}"></p>
             </div>
         </div>
-        <div class = "row  justify-content-center" style="margin-bottom:20px;">
-            <a class="btn btn-primary" th:href="@{/user/gardens/list}" style="margin-right:10px;" >Return to Water Gardens</a>
-            <a class="btn btn-success" th:href="@{'/user/gardens/tour'}">Return to My Water Garden Tour</a>
+    </div>
+        <div class = "row justify-content-center" style="margin-bottom:20px;">
+            <a class="card-text btn btn-success" id="add" th:href="@{'/user/gardens/tour/' + ${garden.id}}">Add to Tour</a>
+            <a class="btn btn-primary" th:href="@{/user/gardens/list}" style="margin-right:10px; margin-left:10px;" >Return to Water Gardens</a>
+            <a class="btn btn-info" th:href="@{'/user/gardens/tour'}">Return to My Water Garden Tour</a>
         </div>
     </div>
 

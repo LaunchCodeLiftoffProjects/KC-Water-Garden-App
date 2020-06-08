@@ -85,7 +85,7 @@ public class UserController {
 
             model.addAttribute("results", userRepository.findAll());
             model.addAttribute("title", "User List");
-            return "users/list";
+            return "redirect:list";
         }
 
     @PostMapping("/users/delete")
@@ -102,7 +102,7 @@ public class UserController {
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("title", "User List");
 
-        return "users/list";
+        return "redirect:list";
 
     }
 
