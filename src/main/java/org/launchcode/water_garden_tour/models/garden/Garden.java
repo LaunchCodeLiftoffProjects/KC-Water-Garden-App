@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,10 +36,12 @@ public class Garden extends AbstractEntity {
     @ManyToOne
     @JoinColumn
     @JsonIgnore
+    @NotNull(message = "Please select an owner.")
     private Owner owner;
 
     @ManyToMany
     @JsonIgnore
+    @Size(min =1, message = "You must select at least one feature.")
     private List<Feature> features = new ArrayList<>();
 
     @Lob
