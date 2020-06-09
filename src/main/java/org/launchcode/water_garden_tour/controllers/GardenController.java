@@ -1,6 +1,7 @@
 package org.launchcode.water_garden_tour.controllers;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.launchcode.water_garden_tour.models.User;
 import org.launchcode.water_garden_tour.models.data.FeatureRepository;
 import org.launchcode.water_garden_tour.models.data.GardenRepository;
 import org.launchcode.water_garden_tour.models.data.OwnerRepository;
@@ -8,6 +9,7 @@ import org.launchcode.water_garden_tour.models.garden.Feature;
 import org.launchcode.water_garden_tour.models.garden.Garden;
 import org.launchcode.water_garden_tour.models.garden.GardenData;
 import org.launchcode.water_garden_tour.models.garden.Owner;
+import org.launchcode.water_garden_tour.user.UserDetailServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,13 +39,22 @@ public class GardenController {
     @Autowired
     private OwnerRepository ownerRepository;
 
+    @Autowired
+    private UserDetailServiceImplementation userDetailServiceImplementation;
+
+    List<Garden> tourGardens = new ArrayList<>();
+
     //****Garden controllers
 
     @GetMapping("gardens/list")
     public String listGarden(Model model) {
         List<Feature> selectedFeatures = new ArrayList<>();
 
+        User tourUser = userDetailServiceImplementation.getCurrentUser();
+        tourGardens = tourUser.getGardens();
+
         model.addAttribute("selectedFeatures", selectedFeatures);
+        model.addAttribute("tourGardens", tourGardens);
         model.addAttribute("gardens", gardenRepository.findAll());
         model.addAttribute("features", featureRepository.findAll());
         model.addAttribute("title", "Garden List");
