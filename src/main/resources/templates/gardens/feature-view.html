@@ -13,6 +13,15 @@
     <h2 class="garden-title" th:text="${'Gardens with feature: ' + feature.name}"></h2>
     <div th:replace="gardens/list :: garden-card"></div>
 
+    <div class="input-group justify-content-center">
+    <span class="input-group-btn">
+                <a class="card-text mr-1 mb-1  btn btn-primary" th:href="@{/user/gardens/list}">Return to Water Gardens</a>
+            </span>
+    <span class="input-group-btn">
+                <a class="card-text mr-1 mb-1  btn btn-info" th:href="@{'/user/gardens/tour'}">Return to My Water Garden Tour</a>
+            </span>
+    </div>
+
     <div th:replace="fragments :: footer-spacer"></div>
     <footer th:replace="fragments :: footer"></footer>
 

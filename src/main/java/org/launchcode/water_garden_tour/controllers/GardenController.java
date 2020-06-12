@@ -69,6 +69,9 @@ public class GardenController {
         List<Feature> allFeatures = featureRepository.findAll();
         List<Feature> selectedFeatures = new ArrayList<>();
 
+        User tourUser = userDetailServiceImplementation.getCurrentUser();
+        tourGardens = tourUser.getGardens();
+
         if (featureIds != null) {
             gardens = GardenData.gardenSearchFeaturesFiltered(searchTerm, featureIds, allFeatures, gardenRepository.findAll());
 
@@ -85,6 +88,7 @@ public class GardenController {
         model.addAttribute("selectedFeatures", selectedFeatures);
         model.addAttribute("features", featureRepository.findAll());
         model.addAttribute("searchTerm", searchTerm);
+        model.addAttribute("tourGardens", tourGardens);
         model.addAttribute("title", "Garden Search");
 
         return "gardens/list";
@@ -107,8 +111,10 @@ public class GardenController {
         List<Garden> gardensWithFeature = new ArrayList<>();
         List<Feature> curFeatures = new ArrayList<>();
 
-        Feature featureForView = GardenData.getFeatureFromId(featureId, featureRepository.findAll());
+        User tourUser = userDetailServiceImplementation.getCurrentUser();
+        tourGardens = tourUser.getGardens();
 
+        Feature featureForView = GardenData.getFeatureFromId(featureId, featureRepository.findAll());
 
         for (Garden garden : gardenRepository.findAll()) {
             curFeatures = garden.getFeatures();
@@ -119,12 +125,11 @@ public class GardenController {
             }
         }
 
-
         String title = featureForView + "View";
-
 
         model.addAttribute("gardens", gardensWithFeature);
         model.addAttribute("feature", featureForView);
+        model.addAttribute("tourGardens", tourGardens);
         model.addAttribute("title", "Feature View");
 
         return "gardens/feature-view";
@@ -134,7 +139,12 @@ public class GardenController {
     public String viewGarden(Model model, @PathVariable int gardenId) {
         Optional<Garden> foundGarden = gardenRepository.findById(gardenId);
         Garden garden = foundGarden.get();
+
+        User tourUser = userDetailServiceImplementation.getCurrentUser();
+        tourGardens = tourUser.getGardens();
+
         model.addAttribute("garden", garden);
+        model.addAttribute("tourGardens", tourGardens);
         model.addAttribute("title", garden.getName());
         return "gardens/view";
     }

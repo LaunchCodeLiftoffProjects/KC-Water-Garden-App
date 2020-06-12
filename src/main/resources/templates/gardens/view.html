@@ -34,7 +34,8 @@
         </div>
         <div class="input-group justify-content-center">
             <span class="input-group-btn">
-                <a class="card-text mr-1 mb-1 btn btn-success" id="add" th:href="@{'/user/gardens/tour/' + ${garden.id}}">Add to Tour</a>
+                <a class="card-text mr-1 mb-1 btn btn-success" id="added" style="disabled;" th:if="${tourGardens.contains(garden)}">Added!</a>
+                <a class="card-text mr-1 mb-1 btn btn-success" id="add" th:href="@{'/user/gardens/tour/' + ${garden.id}}" th:unless="${tourGardens.contains(garden)}">Add To Tour</a>
             </span>
             <span class="input-group-btn">
                 <a class="card-text mr-1 mb-1  btn btn-primary" th:href="@{/user/gardens/list}">Return to Water Gardens</a>
