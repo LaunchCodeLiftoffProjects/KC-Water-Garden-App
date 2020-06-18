@@ -47,7 +47,7 @@ provide a functioning website on which a phone app may be developed and improved
 ## Requirements
 
 **Java 13** 
-https://www.oracle.com/java/technologies/javase-jdk13-downloads.html
+[Link]https://www.oracle.com/java/technologies/javase-jdk13-downloads.html
 
 Integrated development environment (IDE) such as IntelliJ or Eclipse. 
 
@@ -55,13 +55,13 @@ MySQL Workbench
 
 ## Setup
 
-In MySQL Workbench create a Water_Garden schema. Under Administration - Users and Privileges create a user with login name "Water_Garden" and password "Water_Garden" and Select All under the user's Schema Priveleges.
+In MySQL Workbench create a Water_Garden schema. Under Administration - Users and Privileges create a user with login name "Water_Garden" and password "Water_Garden" and Select All under the user's Schema Privileges.
 
 Open the project in your IDE through version control: git@github.com:LaunchCodeLiftoffProjects/KC-Water-Garden-App.git
 
 With MySQL Workbench running start the application and then visit http://localhost:8080 in your browser. 
 
-For full functionality after registering a user you must manually update the user's role in MySQL Workbench by running the querie: 
+For full functionality after registering a user you must manually update the user's role in MySQL Workbench by running the query: 
 UPDATE user
 set role = "ROLE_ADMIN"
 where id = 1; 
