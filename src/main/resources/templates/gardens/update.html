@@ -9,11 +9,10 @@
 
     <div th:replace="fragments :: page-header"></div>
 
-    <h3 th:text="${'Update Garden ' + {garden.id}}"></h3>
-    <h4 th:text="${errorMsg}" th:if="${errorStatus}"></h4>
+    <h3 th:text="${'Update Garden ' + {gardenId}}"></h3>
 
-    <form method="POST" enctype="multipart/form-data" th:action="@{/admin/gardens/update}" th:object="${garden}">
-        <input type="hidden" th:name="gardenId" th:value="${garden.id}" />
+    <form method="POST" enctype="multipart/form-data" th:action="@{/admin/gardens/update}">
+        <input type="hidden" th:name="gardenId" th:value="${gardenId}" />
         <div class="form-group">
             <label th:for="name">Garden Name</label>
             <input class="form-control" th:field="${garden.name}" />
@@ -42,7 +41,7 @@
         </div>
         <div class="form-group">
             <label th:for="owner">Garden Owner: </label>
-            <select name="ownerId">
+            <select th:field="${garden.owner}">
                 <th:block th:each="owner : ${owners}">
     <!--                if/else for selecting current owner-->
                     <option th:text="${owner.name}"
@@ -57,22 +56,24 @@
                 </th:block>
             </select>
             <a th:href="@{'/admin/owners/add'}">Add Owner</a>
+            <span th:errors="${garden.owner}" class="error"></span>
         </div>
         <div class="form-group">
             <label th:for="features">Features: </label>
             <th:block th:each="feature : ${features}">
                 <input type="checkbox"
-                       th:name="featureIds"
+                       th:field="${garden.features}"
                        th:value="${feature.id}"
                        th:if="${gardenFeatures.contains(feature)}"
                        checked>
                 <input type="checkbox"
-                       name="featureIds"
+                       th:field="${garden.features}"
                        th:value="${feature.id}"
                        th:unless="${gardenFeatures.contains(feature)}">
                 <label th:text="${feature.name}"></label>
             </th:block>
             <a th:href="@{'/admin/features/add'}">Add Features</a>
+            <span th:errors="${garden.features}" class="error"></span>
             <div class="form-group">
                 <label>Upload Image</label>
                 <input class="form-control-file" type="file" name="file"/>
