@@ -47,7 +47,7 @@ provide a functioning website on which a phone app may be developed and improved
 ## Requirements
 
 **Java 13** 
-[Link]https://www.oracle.com/java/technologies/javase-jdk13-downloads.html
+https://www.oracle.com/java/technologies/javase-jdk13-downloads.html
 
 Integrated development environment (IDE) such as IntelliJ or Eclipse. 
 
