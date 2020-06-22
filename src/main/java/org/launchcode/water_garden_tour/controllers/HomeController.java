@@ -26,13 +26,15 @@ public class HomeController {
         List<Garden> featuredGardens = new ArrayList<>();
         List<Garden> allGardens = gardenRepository.findAll();
 
-        while (featuredGardens.size() < 3) {
-            Garden curGarden;
-            double randomNumberDbl = Math.random() * allGardens.size();
-            int randomNumber = (int) Math.floor(randomNumberDbl);
-            curGarden = allGardens.get(randomNumber);
-            if (!featuredGardens.contains(curGarden)) {
-                featuredGardens.add(curGarden);
+        if (allGardens.size() >= 3) {
+            while (featuredGardens.size() < 3) {
+                Garden curGarden;
+                double randomNumberDbl = Math.random() * allGardens.size();
+                int randomNumber = (int) Math.floor(randomNumberDbl);
+                curGarden = allGardens.get(randomNumber);
+                if (!featuredGardens.contains(curGarden)) {
+                    featuredGardens.add(curGarden);
+                }
             }
         }
 
