@@ -53,14 +53,6 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <h3>Click any icon below for tour directions.</h3>
-    </div>
-</div>
-
-<div class="container">
-    <div id="map"></div>
-    <div id="directions"></div>
 </div>
 
 <div class="container">
@@ -150,8 +142,8 @@ function initMap() {
             infoWindow.open(map, marker);
         });
 
-   google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
-    getDirections(userPosition);
+        google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
+            getDirections(userPosition);
         });
     };
 
