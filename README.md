@@ -53,11 +53,18 @@ Integrated development environment (IDE) such as IntelliJ or Eclipse.
 
 MySQL Workbench
 
+Google Maps API Key 
+- An account can be created at https://cloud.google.com/maps-platform/ and then used to generate the API key.  
+
 ## Setup
 
 In MySQL Workbench create a Water_Garden schema. Under Administration - Users and Privileges create a user with login name "Water_Garden" and password "Water_Garden" and Select All under the user's Schema Privileges.
 
 Open the project in your IDE through version control: git@github.com:LaunchCodeLiftoffProjects/KC-Water-Garden-App.git
+
+Add your Google Maps API key in place of "INSERTapiKEYhere" in the last script tag on the following pages. 
+-src/main/resources/templates/map.html
+-src/main/resources/templates/gardens/tour.html
 
 With MySQL Workbench running start the application and then visit http://localhost:8080 in your browser. 
 
