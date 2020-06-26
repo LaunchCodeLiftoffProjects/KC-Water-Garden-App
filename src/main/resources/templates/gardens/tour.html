@@ -55,8 +55,116 @@
     </div>
 </div>
 
+<div class="container">
+    <div id="map"></div>
+    <div id="directions"></div>
+</div>
+
 <div th:replace="fragments :: footer-spacer"></div>
 <footer th:replace="fragments :: footer"></footer>
+
+
+<script th:inline="javascript">
+let gardens = /*[[${tourGardens}]]*/;
+let userPosition;
+let waypoints = [];
+
+function initMap() {
+
+    let map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 39.0997, lng: -94.5786},
+        zoom: 10
+    });
+
+    let directionsService = new google.maps.DirectionsService;
+    let directionsRenderer = new google.maps.DirectionsRenderer({preserveViewport: true});
+    directionsRenderer.setMap(map);
+    directionsRenderer.setPanel(document.getElementById("directions"));
+
+    let infoWindow = new google.maps.InfoWindow();
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            userPosition = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(userPosition);
+            infoWindow.setContent('You are here.');
+            infoWindow.open(map);
+        }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+
+    for(let i=0; i < gardens.length; i++) {
+
+        let gardenId = gardens[i].id;
+        let gardenLatLng = new google.maps.LatLng(
+            parseFloat(gardens[i].latitude),
+            parseFloat(gardens[i].longitude));
+        let gardenName = gardens[i].name;
+        let gardenAddress = gardens[i].address;
+        let gardenDescription = gardens[i].description;
+
+            waypoints.push({
+              location: gardenLatLng,
+              stopover: true
+            });
+
+        createMarker(gardenId, gardenLatLng, gardenName, gardenAddress, gardenDescription);
+
+    };
+
+    function handleLocationError(browserHasGeolocation, infoWindow, userPosition) {
+        infoWindow.setPosition(userPosition);
+        infoWindow.setContent(browserHasGeolocation ?
+            'Error: The geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+    };
+
+    function createMarker(gardenId, gardenLatLng, gardenName, gardenAddress, gardenDescription) {
+
+        let marker = new google.maps.Marker({
+            position: gardenLatLng,
+            map: map,
+            icon: 'https://img.icons8.com/color/48/000000/water-wheel.png',
+            animation: google.maps.Animation.DROP
+        });
+        marker.addListener('click', function() {
+            infoWindow.setContent('<p>' +
+                gardenAddress +
+                '</p>');
+            infoWindow.open(map, marker);
+        });
+
+        google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
+            getDirections(userPosition);
+        });
+    };
+
+    function getDirections(userPosition) {
+        directionsService.route({
+            origin: userPosition,
+            destination: userPosition,
+            waypoints: waypoints,
+            optimizeWaypoints: true,
+            travelMode: 'DRIVING'
+        }, function(response, status) {
+            if (status === 'OK') {
+                directionsRenderer.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    }
+};
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=INSERTapiKEYhere&callback=initMap" async defer></script>
 
 </body>
 </html>
