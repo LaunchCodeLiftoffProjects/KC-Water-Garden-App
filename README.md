@@ -35,9 +35,10 @@ provide a functioning website on which a phone app may be developed and improved
 - Spring Security
 - MySQL
 - Spring Data JPA
-- Thymeleaf templates & extras for Spring Security
+- Thymeleaf templates, fragments & extras for Spring Security
 - Bootstrap
 - Google Maps API
+- Gradle
 
 ## What the Team Will Need to Learn
 - How to work together on a team to produce a product from concept through demonstration of product
