@@ -30,22 +30,50 @@ provide a functioning website on which a phone app may be developed and improved
 ## Technologies
 
 - Java
+- JavaScript
 - Spring Boot
+- Spring Security
 - MySQL
-- Thymeleaf templates
+- Spring Data JPA
+- Thymeleaf templates, fragments & extras for Spring Security
 - Bootstrap
 - Google Maps API
+- Gradle
 
 ## What the Team Will Need to Learn
 - How to work together on a team to produce a product from concept through demonstration of product
 - How to interact as a team using Github and Trello
 - How to interact with Google maps to display multiple pins and select a pin for directions
 
-# Setup  
-- Create Water_Garden schema in MySQL Workbench with user of login name "Water_Garden" password "Water_Garden" with all permissions.
-- Create user table in MySQL Workbench with one column labeled "id" as a primary key, not null, and auto-incremented.  The rest of the table will populate through persistence when a new user registers.
+## Requirements
 
+**Java 13** 
+https://www.oracle.com/java/technologies/javase-jdk13-downloads.html
 
-# Development
+Integrated development environment (IDE) such as IntelliJ or Eclipse. 
+
+MySQL Workbench
+
+Google Maps API Key 
+- An account can be created at https://cloud.google.com/maps-platform/ and then used to generate the API key.  
+
+## Setup
+
+In MySQL Workbench create a Water_Garden schema. Under Administration - Users and Privileges create a user with login name "Water_Garden" and password "Water_Garden" and Select All under the user's Schema Privileges.
+
+Open the project in your IDE through version control: git@github.com:LaunchCodeLiftoffProjects/KC-Water-Garden-App.git
+
+Add your Google Maps API key in place of "INSERTapiKEYhere" in the last script tag on the following pages. 
+-src/main/resources/templates/map.html
+-src/main/resources/templates/gardens/tour.html
+
+With MySQL Workbench running start the application and then visit http://localhost:8080 in your browser. 
+
+For full functionality after registering a user you must manually update the user's role in MySQL Workbench by running the query: 
+UPDATE user
+set role = "ROLE_ADMIN"
+where id = 1; 
+
+## Development
 Please see our Development README for more information:
 [Development README](./Development.md)
