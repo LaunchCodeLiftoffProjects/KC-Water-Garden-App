@@ -2,6 +2,7 @@ package org.launchcode.water_garden_tour.models.garden;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class Owner extends AbstractEntity{
     private String name;
 
     @NotBlank
+    @Email
     @Size(max=50)
     private String email;
 

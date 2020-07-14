@@ -115,6 +115,7 @@ public class AdminController {
         model.addAttribute("title", "Update Garden");
         model.addAttribute("features", featureRepository.findAll());
         model.addAttribute("owners", ownerRepository.findAll());
+        model.addAttribute("gardenId", gardenId);
 
         return "gardens/update";
     }
@@ -129,19 +130,15 @@ public class AdminController {
                                String address,
                                String latitude,
                                String longitude,
-                               String description,
-                               int ownerId,
-                               Integer[] featureIds) throws IOException {
+                               String description) throws IOException {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Update Garden");
-            model.addAttribute("garden", gardenRepository.getOne(gardenId));
+            model.addAttribute("gardenId", gardenId);
             model.addAttribute("gardenOwner", gardenRepository.getOne(gardenId).getOwner());
             model.addAttribute("gardenFeatures", gardenRepository.getOne(gardenId).getFeatures());
             model.addAttribute("features", featureRepository.findAll());
             model.addAttribute("owners", ownerRepository.findAll());
-            model.addAttribute("errorMsg", "Errors found, please try again");
-            model.addAttribute("errorStatus", "true");
 
             return "gardens/update";
         }
@@ -149,16 +146,13 @@ public class AdminController {
         Optional<Garden> optGarden = gardenRepository.findById(gardenId);
         Garden gardenToUpdate = (Garden) optGarden.get();
 
-        Optional<Owner> optOwner = ownerRepository.findById(ownerId);
+        Optional<Owner> optOwner = ownerRepository.findById(newGarden.getOwner().getId());
         Owner owner = (Owner) optOwner.get();
 
-        List<Feature> features = new ArrayList<>();
-        for (Integer id : featureIds) {
+        List<Feature> featureListToAdd = new ArrayList<>();
+        for (Feature feature : newGarden.getFeatures()) {
 
-            Optional<Feature> optFeature = featureRepository.findById(id);
-            Feature featureToAdd = (Feature) optFeature.get();
-
-            features.add(featureToAdd);
+            featureListToAdd.add(feature);
         }
 
         gardenToUpdate.setName(name);
@@ -170,7 +164,7 @@ public class AdminController {
             gardenToUpdate.setImage(file.getBytes());
         }
         gardenToUpdate.setOwner(owner);
-        gardenToUpdate.setFeatures(features);
+        gardenToUpdate.setFeatures(featureListToAdd);
         gardenRepository.save(gardenToUpdate);
 
         //attributes for return to admin-list
@@ -186,6 +180,15 @@ public class AdminController {
         Optional optGarden = gardenRepository.findById(gardenId);
         if (optGarden.isPresent()) {
             Garden garden = (Garden) optGarden.get();
+
+            //use method to get logged in user
+            User tourUser = userDetailServiceImplementation.getCurrentUser();
+
+            tourGardens = tourUser.getGardens();
+
+            if (tourGardens.contains(garden)) {
+                tourGardens.remove(garden);
+            }
 
             gardenRepository.delete(garden);
         }
@@ -285,6 +288,7 @@ public class AdminController {
             model.addAttribute("owner", ownerToUpdate);
         }
 
+        model.addAttribute("ownerId", ownerId);
         model.addAttribute("title", "Update Owner");
 
         return "owners/update";
@@ -302,11 +306,8 @@ public class AdminController {
         if (errors.hasErrors()) {
             Owner ownerToUpdate = ownerRepository.getOne(ownerId);
 
-            model.addAttribute("owner",ownerToUpdate);
+            model.addAttribute("ownerId", ownerId);
             model.addAttribute("title", "Update Owner");
-            model.addAttribute("errorMsg", "Errors found, please try again");
-            model.addAttribute("errorStatus", "true");
-
 
             return "owners/update";
         }
@@ -409,6 +410,7 @@ public class AdminController {
             model.addAttribute("feature", featureToUpdate);
         }
 
+        model.addAttribute("featureId", featureId);
         model.addAttribute("title", "Update Feature");
 
         return "features/update";
@@ -423,15 +425,8 @@ public class AdminController {
 
         if (errors.hasErrors()) {
 
-            Optional optFeature = featureRepository.findById(featureId);
-            if (optFeature.isPresent()) {
-                Feature featureToUpdate = (Feature) optFeature.get();
-                model.addAttribute("feature", featureToUpdate);
-            }
-
+            model.addAttribute("featureId", featureId);
             model.addAttribute("title", "Update Feature");
-            model.addAttribute("errorMsg", "Errors found, please try again");
-            model.addAttribute("errorStatus", "true");
 
             return "features/update";
         }
