@@ -56,7 +56,7 @@ Explanation of our branching policy and how to create/check out branches.
 
 
 ## **Rebase Notes:**
-This section will define what a rebase is and how to do a rebase.
+This section will define how a rebase works, reasons why you might rebase your current changes down to one, and how to do a rebase.
 
 ### **How a Rebase Works:**
 
@@ -69,64 +69,18 @@ This section will define what a rebase is and how to do a rebase.
 4.	A rebase is the process of taking your base and replacing it with another base.
 
 5.	`git rebase origin/master -i` : Replaces your base with the current code in master and your work on top of that.
-NOTE: The -i inside of the call means interactive 
+**NOTE**: The -i inside of the call means interactive 
 
 6.	If there are conflicts between changes in master and changes in your code, the rebase will stop and ask you to re-write the conflicting commit
 
 
 More information can be found: https://github.com/Junjie-Chen/git-rebase
 
-### **Running a Rebase:**
-If at any time you want to stop the rebase and start over you can run the command `git rebase --abort` this will put you at the state you were in before you started the rebase. It will act as if it never happened.
-
-1.	Before running rebase - `git checkout master`. Then run the command `git pull`. This updates your local repository with the current remote master branch
-
-2.	Run rebase command `git rebase origin/master -i`
-
-3.	Rebasing opens a text file, called VIM, which contains the SHA (git hash) and the commit message of each commit contained within the branch. 
-
-4.	The available commands that are open to use are shown at the bottom of the text file.
-*	***Pick*** is chosen by default. It means use this commit in the rebase
-*	***Reword*** allows you to use the commit, but you want to edit the commit message
-*	***Squash*** will append a commit to the commit before it and concatenate the commit message
-*	***Fixup*** is the same as squash, however it does not append the commit message
-*	***Drop*** will remove a commit - do not use unless you mean it
-* **99% of the time we want to pick all**
-
-5.	`git rebase -i` opens a vim editor, hit `i` for insert then move with your area keys. When you are done choosing your commands hit `esc` to stop typing and then type `:wq!` on the command line to save and close the editor.
-* If you do not wish to save and close type `:q!` if the rebase still starts then run the command `git rebase --abort` to stop the process.
-
-6.	If your rebase fails, run `git status` to see the conflicted files. Additionally, your terminal will indicate where the conflicts are.
-
-7.	The conflict will show you their changes, followed by a line of ===, signs and followed by your changes. It will look something like:
-```
-<<< HEAD
-what you are rebasing to changes
-===
-Your changes 
->>>
-```
-
-8.	Resolve conflicts by making the file look like it's supposed to after all changes, theirs and yours. Do not just accept one or the other unless you're sure.
-
-9.	After you fix the file, use `git add .` to stage the file to let git know you have resolved the conflict 10. git rm removes a file from your git repo
-
-10.	Once all files have been resolved and staged, run `git rebase --continue` to continue your rebase
-
-11.	Remember to test your code during the rebase to make sure that the changes are correct!
-
-12.	Rebases are done locally, not on remote. So you must push your changes after completing your rebase and if anything breaks you don’t break the overall app.
-
-13.	Use `git push origin --force` to do what's called a force push and overwrite your remote commit history with your local history
-NOTE: you have to use `--force` when rewriting history because GitHub and Git will be out of sync and will not know how to track the changes
-
-14.	Try to never use the force flag unless you're doing it on purpose and for a rebase!
-
 ### **Addition help rebasing:**
 
 You can rebase your current work before starting a merge or rebasing with another branch (I.E. master). What this will do is take all your current work and put it into one commit; having one SHA, one git hash.
 
-To do this use the follow command:
+To do this use the follow command **(before doing this read the how to do a rebase to understand why you would want to do this)**:
 
 1.	`git rebase -i HEAD~#`: rebases your top level commits with the provided number (#) of commits.
 
@@ -143,7 +97,57 @@ Vim would show up and we would see something like (not in a nice table =))
 | Add files via upload | 5d3d612 |
 | zebra stripes | cb9ff8e      |
 
-She would *pick* the top most commit. *fixup* the other two commits. then hit `esc` and type `:wq!` in vim and BOOM done all here changes are now in one commit and have a new git hash
+She would *pick* the top most commit. *fixup* the other two commits. then hit `esc` and type `:wq!` in vim and BOOM done all here changes are now in one commit and have a new git hash.
+
+Why this is important is because now you are rebasing only 1 change and not the 3. So if you were to have a merge conflict then you would only have to change it 1 time and not the possibility of 3 times *(one fore each commit)*.
+
+
+### **Running a Rebase:**
+If at any time you want to stop the rebase and start over you can run the command `git rebase --abort` this will put you at the state you were in before you started the rebase. It will act as if it never happened.
+
+1.	Before running rebase - `git checkout master`. Then run the command `git pull`. This updates your local repository with the current remote/origin master branch
+
+2.	Run rebase command `git rebase origin/master -i`
+
+3.	Rebasing opens a text file, called VIM, which contains the SHA (git hash) and the commit message of each commit contained within the branch. 
+
+The available commands that are open to use are shown at the bottom of the text file.
+*	***Pick*** is chosen by default. It means use this commit in the rebase
+*	***Reword*** allows you to use the commit, but you want to edit the commit message
+*	***Squash*** will append a commit to the commit before it and concatenate the commit message
+*	***Fixup*** is the same as squash, however it does not append the commit message
+*	***Drop*** will remove a commit - do not use unless you mean it
+* **99% of the time we want to pick all**
+
+By default all the commits will be *pick* if you are happy with that then hit `esc` to stop typing and then type `:wq!` on the command line to write (w) and quit (q) vim. OTHERWISE, we will choose our options hit `i` for insert and then move with your arrow keys. Choose from the avalible commands based on what you are trying to do by deleting *pick* and replacing it with the specific command you want.  
+
+**If you do not wish to save and close:** type `:q!` if the rebase still starts then run the command `git rebase --abort` to stop the process.
+
+6.	If your rebase fails, you will see something like: `(CONFLICT) someRandomFilePath`, run `git status` to see the conflicted files they will be in the red.
+
+7.	The conflict will show you their changes, followed by a line of ===, signs and followed by your changes. It will look something like:
+```
+<<< HEAD
+what you are rebasing to changes
+===
+Your changes 
+>>>
+```
+
+8.	Resolve conflicts by making the file look like it's supposed to, you might want to pick a few changes from both, theirs and yours. Do not just accept one or the other unless you're sure.
+
+9.	After you fix the file, use `git add .` or `git add someFile` to stage the file(s) to let git know you have resolved the conflict.
+
+10.	Once all files have been resolved and staged, run `git rebase --continue` to continue your rebase. Remember if you are not happy with the result or changes run `git reabse --abort` to stop the merge.
+
+11.	Remember to test your code during the rebase to make sure that the changes are correct!
+
+12.	Rebases are done locally, not on remote/origin. So you must push your changes after completing your rebase and if anything breaks you don’t break the overall app.
+
+13.	Use `git push origin yourBranchName` this should fail because you rewrote history (changed your base) so you have to do what's called a force push, `git push origin yourBranchName --force` this tells git to overwrite your remote/origin commit history with your local history
+
+14.	Try to never use the force flag unless you're doing it on purpose and for a rebase or any other time you rewrite history (your base)!
+
 
 ## **Pull Request Notes:**
 
