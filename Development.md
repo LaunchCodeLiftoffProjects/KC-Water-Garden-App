@@ -107,9 +107,11 @@ If at any time you want to stop the rebase and start over you can run the comman
 
 1.	Before running rebase - `git checkout master`. Then run the command `git pull`. This updates your local repository with the current remote/origin master branch
 
-2.	Run rebase command `git rebase origin/master -i`
+2.	Checkout your branch (*OPTIONAL* if you rebase down to one commit on your branch, as stated by _Addition help rebasing_ section you will have less work this is because you will not have to rebase each commit individually -- thus having to resolve potentually more merge [or the same merger conflict])
 
-3.	Rebasing opens a text file, called VIM, which contains the SHA (git hash) and the commit message of each commit contained within the branch. 
+3.	run the rebase command `git rebase origin/master -i` on your branch
+
+4.	Rebasing opens a text file, called VIM, which contains the SHA (git hash) and the commit message of each commit contained within the branch. 
 
 The available commands that are open to use are shown at the bottom of the text file.
 *	***Pick*** is chosen by default. It means use this commit in the rebase
